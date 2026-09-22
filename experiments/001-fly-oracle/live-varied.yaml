@@ -1,0 +1,60 @@
+# 24 varied, topically diverse yes/no questions for `bioreservoir.live.validate_states` (see
+# live-states.yaml's `validation_procedure`). Deliberately NOT drawn from questions.yaml (the 33
+# pre-registered election questions) or reference.yaml (24 neutral, non-question statements) —
+# this set exists to check whether a candidate behavioural-state population's spike rate actually
+# varies with what text is shown, across a spread of everyday topics, not just neutral prose vs.
+# one narrow subject. None of these touch moderation.py's blocked categories (voting procedure,
+# medical, financial, private persons, violence, sexual) — this file is simulation input, not a
+# moderation test fixture (see tests/test_moderation.py for that).
+#
+# Like reference.yaml/questions.yaml (see their own header comments), this file is committed and
+# not edited in place: a wording correction lands as a new id.
+
+- id: "var-01"
+  text: "Is coffee more popular than tea in the United States?"
+- id: "var-02"
+  text: "Do most cats dislike getting wet?"
+- id: "var-03"
+  text: "Is the Pacific Ocean the largest ocean on Earth?"
+- id: "var-04"
+  text: "Do bees communicate through dance?"
+- id: "var-05"
+  text: "Is chess older than checkers?"
+- id: "var-06"
+  text: "Do penguins live only in the Southern Hemisphere?"
+- id: "var-07"
+  text: "Is honey the only food that never spoils?"
+- id: "var-08"
+  text: "Do most people dream every night?"
+- id: "var-09"
+  text: "Is the guitar a string instrument?"
+- id: "var-10"
+  text: "Do octopuses have three hearts?"
+- id: "var-11"
+  text: "Is Mount Everest the tallest mountain from base to peak?"
+- id: "var-12"
+  text: "Do most spiders spin webs to catch prey?"
+- id: "var-13"
+  text: "Is sourdough bread made with commercial yeast?"
+- id: "var-14"
+  text: "Do dolphins sleep with one half of their brain at a time?"
+- id: "var-15"
+  text: "Is the tomato technically a fruit?"
+- id: "var-16"
+  text: "Do most marathons cover more than twenty-six miles?"
+- id: "var-17"
+  text: "Is bamboo classified as a type of grass?"
+- id: "var-18"
+  text: "Do hummingbirds beat their wings faster than bees?"
+- id: "var-19"
+  text: "Is Saturn the only planet in our solar system with rings?"
+- id: "var-20"
+  text: "Do most orchestras tune to the oboe before a concert?"
+- id: "var-21"
+  text: "Is a group of crows called a murder?"
+- id: "var-22"
+  text: "Do camels store water in their humps?"
+- id: "var-23"
+  text: "Is the piano considered a percussion instrument?"
+- id: "var-24"
+  text: "Do most sharks need to keep swimming to breathe?"
