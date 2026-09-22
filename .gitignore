@@ -1,0 +1,64 @@
+# Secrets and local config
+.env
+.env.*
+!.env.example
+.claude-ops/secrets/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+venv/
+env/
+.venv/
+.pytest_cache/
+.mypy_cache/
+*.egg-info/
+.eggs/
+dist/
+build/
+*.so
+
+# Node
+node_modules/
+dist/
+.next/
+.nuxt/
+out/
+.cache/
+
+# Logs and data
+*.log
+data/
+# A convenience symlink named data/ pointing at a shared checkout: the plain "data/" rule
+# above only matches real directories, not a symlink with that name.
+/data
+
+# OS
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Editor
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+
+# BioReservoir: runtime artefacts (connectome downloads, ledgers, renders)
+*.sqlite
+*.sqlite-*
+*.db
+runs/
+renders/
+
+# Agent worktrees
+.claude/worktrees/
+# Generated atlas the live-fly site fetches at runtime — rebuilt by
+# `python3 scripts/export_atlas.py` (see site/README.md "Atlas export"), never hand-edited.
+# Already covered by the generic "data/" rule above; listed explicitly for discoverability.
+site/public/data/
