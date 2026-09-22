@@ -1,0 +1,74 @@
+[project]
+name = "bioreservoir"
+version = "0.1.0"
+description = "Digital-brain research lab: connectome loaders and reservoir experiments."
+readme = "README.md"
+# brian2 2.10.1 (the current PyPI release, pinned in the "sim" extra below) requires
+# Python >=3.12 (https://pypi.org/project/brian2/); the whole project follows that floor so
+# `uv sync` can resolve every extra together.
+requires-python = ">=3.12"
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE"]
+dependencies = [
+    "numpy>=2.0",
+    "pandas>=2.2",
+    "pyarrow>=17.0",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+# Brian2 simulation of the LIF network. A whole-brain run is memory- and CPU-heavy: keep it
+# inside the resource cage described in experiments/001-fly-oracle/RUNNING.md.
+# https://pypi.org/project/brian2/ (2.10.1 requires Python >=3.12)
+sim = [
+    "brian2>=2.10.1",
+]
+# Text encoder for question -> sensory-input embedding. CPU-only torch, see
+# https://docs.astral.sh/uv/guides/integration/pytorch/ for the [tool.uv] wiring below.
+encode = [
+    "sentence-transformers>=6.1.0",
+    "torch>=2.4",
+]
+# OpenTimestamps proof for experiments/001-fly-oracle/predictions/SHA256SUMS (oracle/ledger.py
+# stamp_sha256sums). Implemented but never invoked by default — see the `run --stamp`/`score
+# --stamp` CLI flags and ledger.py's own docstring.
+stamp = [
+    "opentimestamps-client>=0.7.0",
+]
+# Live fly page: FastAPI app + worker + share-card renderer (bioreservoir.live). Needs `sim` +
+# `encode` too (the worker runs the same LIFNetwork/encoder pipeline as oracle, live instead of
+# batch) — installed separately here since the API process itself does not need Brian2/torch.
+live = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.30",
+    "pillow>=10.4",
+    "httpx>=0.27",
+    "sse-starlette>=2.1",
+    "better-profanity>=0.7.0",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.6",
+    "pytest>=8.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/bioreservoir"]
+
+# CPU-only PyTorch wheel index, scoped to the "encode" extra only (per
+# https://docs.astral.sh/uv/guides/integration/pytorch/ — "explicit = true" keeps this index
+# from being used for any package other than torch/its PyTorch-ecosystem siblings).
+[tool.uv.sources]
+torch = [
+    { index = "pytorch-cpu", extra = "encode" },
+]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true

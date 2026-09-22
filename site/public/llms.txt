@@ -1,0 +1,41 @@
+# BioReservoir
+
+> A real, published fruit-fly brain (Janelia MaleCNS v1.0, CC BY 4.0 — 165,122 neurons, 6.2
+> million connections), simulated as a whole-brain leaky integrate-and-fire network and driven
+> live by visitor questions. Not a chatbot and not a language model: no part of the pipeline is
+> trained on outcomes, and the only machine-learning step is a small text-embedding model that
+> turns a question into firing rates on real sensory neurons.
+
+A visitor asks a yes/no question. A text-embedding model turns it into a pattern of activity on
+real sensory neurons (taste, smell, sight, touch). A biophysical simulation, ported from Shiu,
+Sterne, Spiller et al., *Nature* 634 (2024), runs the whole connectome for 250 simulated
+milliseconds. Whichever side reaches the descending motor-command neurons harder becomes the
+answer. Measured against its own biological reference, the result lands close to a coin flip —
+that is the experiment, not a defect: this tests whether real brain wiring produces a structured
+response at all, not whether it can forecast anything. Nothing here is a prediction of any
+real-world event, including elections; nothing here is medical, financial, legal or voting advice.
+
+Two things anchor the honesty claim: the simulated brain reproduces the published sugar-feeding
+response (Shiu et al.'s own result), and a second connectome (BANC, the female fly, also CC BY
+4.0) fails an equivalent validation check — reported as a failure, not hidden. See /data for the
+full numbers and controls.
+
+## Key numbers
+
+- [MaleCNS connectome](https://male-cns.janelia.org/): 165,122 neurons, 6,235,682 connections, 89,731,551 synapses (min. 5 synapses/connection, proofread neurons only)
+- [BANC connectome](https://doi.org/10.7910/DVN/8TFGGB) (female, comparison only): 114,456 neurons, 1,395,876 connections, 17,903,013 synapses
+- [Simulation method](https://doi.org/10.1038/s41586-024-07763-9): Shiu, Sterne, Spiller et al., *A Drosophila computational brain model reveals sensorimotor processing*, Nature 634 (2024)
+- [Code](https://github.com/igdigitallab/bioreservoir): open source, Apache License 2.0
+
+## Pages
+
+- [/](https://fly.igdigi.com/): the live interactive experience — ask the fly a yes/no question
+- [/data](https://fly.igdigi.com/data): methodology, controls, invariance and validation numbers, computed from the experiment's own ledger
+- [/press](https://fly.igdigi.com/press): press kit — company and founder background, images, sources, contact
+- [/terms](https://fly.igdigi.com/terms): terms of use
+- [/privacy](https://fly.igdigi.com/privacy): privacy policy
+
+## Who built this
+
+BioReservoir is a research project by [IG Digital Lab](https://igdigi.com/?ref=fly), a software
+and AI automation agency in Sacramento, California. Contact: hello@igdigi.com.
