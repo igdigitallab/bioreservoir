@@ -1,0 +1,6 @@
+# BioReservoir experiment 001 pre-registration manifest
+# Files as committed at git 93ac7fa8aa8367dde5bce3884393a54133c531ce (2026-09-18T23:16Z), before any question was run through a brain.
+# Verify: git show 93ac7fa8aa8367dde5bce3884393a54133c531ce:<path> | sha256sum
+76756eeb5724a82edb5280b8f64544a4a3adc2d86890311efbf9a474b3a3d540  experiments/001-fly-oracle/questions.yaml
+888f3373ba2a2421762d83a5c9360dbd7d6efbf252c0a550d80a458dfb86949e  experiments/001-fly-oracle/README.md
+2aad3ddaae24eac9359f4f8a0725c9f0e21ebdaade790bd0468eaeb6a3e14d5e  experiments/001-fly-oracle/populations.yaml

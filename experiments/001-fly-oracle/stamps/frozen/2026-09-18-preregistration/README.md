@@ -1,0 +1,92 @@
+# Experiment 001: Fly Oracle
+
+**Question:** When a real fly connectome is driven by text about a real-world question, does its
+response differ from that of a scrambled graph, how does it score against a coin flip, and do a
+male and a female brain answer differently?
+
+**First target:** the US midterm elections of November 3, 2026, followed by ongoing public
+questions (sports, economics, culture).
+
+Status: **design**. No runs yet.
+
+## Brains
+
+| | Male | Female |
+|---|---|---|
+| Dataset | Janelia MaleCNS v1.0 | BANC (Brain And Nerve Cord) |
+| Coverage | brain + ventral nerve cord | brain + ventral nerve cord |
+| License | CC BY 4.0 | CC BY 4.0 |
+
+Both brains run the same model: a whole-brain leaky integrate-and-fire network following Shiu et
+al. (*Nature* 2024), built on a common schema (see [docs/DATA.md](../../docs/DATA.md)). Two
+individuals of opposite sex help separate what comes from shared fly topology from what comes
+from one animal's wiring. Only the male has
+the courtship circuits (e.g. P1 neurons).
+
+## Two output formats
+
+| | A. Scored forecast | B. Fly's take |
+|---|---|---|
+| Input | yes/no question with a resolution date and criterion | a trending news topic |
+| Output | P(yes) | one of two graph responses ("approach" / "avoid") |
+| Scored | yes: Brier, log loss, calibration | no, labelled as entertainment |
+| Pre-registered | yes | no |
+
+Format B depends on format A. The daily "fly's take" is only credible because a scored,
+pre-registered forecast record runs alongside it.
+
+## Questions
+
+Questions are **curated by hand** from the public agenda: elections, sports, economics and trending
+news. We write them in our own words, each with an unambiguous resolution criterion and source.
+We don't scrape or call prediction-market APIs, and no platform data goes into the model.
+Market consensus may be quoted as context with a date and a link.
+
+Schema: see [`questions.example.yaml`](questions.example.yaml).
+
+## Pipeline
+
+1. **Encode.** The question text and a short neutral context summary are embedded with
+   `all-MiniLM-L6-v2`. The embedding goes through a fixed random projection (the seed is
+   committed) and becomes Poisson input rates on sensory populations: gustatory (sugar / bitter),
+   olfactory receptor neurons, photoreceptors and mechanosensory neurons.
+2. **Simulate.** The whole-brain LIF network runs N independent trials with fixed seeds.
+3. **Read out.** An **untrained**, fixed contrast between two named populations produces the
+   answer: MN9 (proboscis extension, "feed / approach") against the giant fiber DNp01
+   ("escape / avoid"). Alternative readout: DNa01/DNa02 turning. The contrast gives P(yes).
+4. **Controls.** Every question also goes through:
+   - **a no-brain baseline**: the same embedding, projection and readout wired directly, with no
+     connectome. The meaning comes from the embedding, so the fly has to be compared against
+     this, not only against a coin;
+   - a rewired connectome that preserves degrees, weights, signs and cell types;
+   - an Erdős–Rényi graph of the same size and density (auxiliary);
+   - a seeded coin flip.
+5. **Commit.** The protocol, seeds and question list are published *before* any run. The pipeline
+   is deterministic, so anyone can recompute every prediction and nothing can be quietly
+   discarded. Predictions go to the ledger, their hash is committed to git and an
+   OpenTimestamps proof is added, all before the resolution date.
+6. **Score.** After resolution: Brier score, log loss and calibration for the fly, each control
+   and the market consensus snapshot.
+
+## Invariance tests
+
+Each scored question also runs as its negation ("will X win" / "will X lose"), as a paraphrase and
+with YES and NO swapped. Inconsistent answers are published as they are, because they are part of
+the result.
+
+## What counts as a result
+
+- Primary endpoint: accuracy against the coin flip **and** against the no-brain baseline. Brier
+  score and calibration are secondary.
+- At least 85 resolved questions before any claim against the coin flip (a 65% vs 50% effect,
+  α = .05, power .80). A 60% effect needs about 194. Correlated events, such as the races in one
+  election, count as a cluster rather than as independent draws.
+- "Real brain ≈ rewired brain" is a valid result, and it gets published.
+- The readout is never trained on outcomes, so the brain is not quietly turned into an embedding
+  classifier.
+
+## Known limits
+
+Connectome-only models have no plasticity, no neuromodulation and no gap junctions.
+Neurotransmitter identity is itself an ML prediction (about 94% per neuron). Synapse counts are
+used as weights. See research 01 §5.

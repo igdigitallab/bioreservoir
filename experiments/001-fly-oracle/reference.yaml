@@ -1,0 +1,61 @@
+# Handedness reference set (README.md "Handedness and side mapping"; oracle/reference.py).
+#
+# 24 short, neutral, non-predictive, non-political English sentences, written by hand for this
+# experiment (not drawn from questions.yaml or any external corpus). Every (brain, condition) —
+# real, rewired, er — and the no-brain baseline runs each sentence with the same encoder/trial
+# settings as a real question; the mean lateral bias across all 24 sentences (and their trials)
+# is that group's handedness b0 (oracle/handedness.py), subtracted from every question's raw bias
+# before it becomes a probability.
+#
+# Like questions.yaml (see oracle/questions.py), this file is committed and not edited in place:
+# a wording correction lands as a new id, so a previously-computed b0 is never silently redefined
+# by mutating the sentence text underneath an id the ledger already has results for.
+
+- id: "ref-01"
+  text: "The kettle is on the stove."
+- id: "ref-02"
+  text: "A cat is sleeping on the windowsill."
+- id: "ref-03"
+  text: "The door creaked."
+- id: "ref-04"
+  text: "The library closes at nine in the evening."
+- id: "ref-05"
+  text: "Fresh bread smells warm and slightly sweet."
+- id: "ref-06"
+  text: "Two wooden chairs stand beside the table."
+- id: "ref-07"
+  text: "The river flows past an old stone bridge."
+- id: "ref-08"
+  text: "A blue bicycle leans against the fence."
+- id: "ref-09"
+  text: "The garden has three rows of tomato plants."
+- id: "ref-10"
+  text: "Rain tapped gently on the tin roof all night."
+- id: "ref-11"
+  text: "The clock on the wall reads half past four."
+- id: "ref-12"
+  text: "A paper airplane glided across the classroom."
+- id: "ref-13"
+  text: "The bakery sells croissants every morning."
+- id: "ref-14"
+  text: "Leaves turn orange and red in October."
+- id: "ref-15"
+  text: "The train arrives at the station every hour."
+- id: "ref-16"
+  text: "A wooden spoon rests in the ceramic bowl."
+- id: "ref-17"
+  text: "The mountain trail winds through a pine forest."
+- id: "ref-18"
+  text: "Children built a sandcastle near the shoreline."
+- id: "ref-19"
+  text: "The violin case sat open on the piano bench."
+- id: "ref-20"
+  text: "A gentle breeze moved the curtains in the hallway."
+- id: "ref-21"
+  text: "The recipe calls for two cups of flour."
+- id: "ref-22"
+  text: "An old lantern hung from the barn door."
+- id: "ref-23"
+  text: "Socks were drying on a line in the backyard."
+- id: "ref-24"
+  text: "After the storm passed, the sky turned a pale shade of orange near the horizon."

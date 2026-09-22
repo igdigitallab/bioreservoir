@@ -1,0 +1,18 @@
+BioReservoir fruit-fly specimen — modified flybody meshes
+
+Source: https://github.com/TuragaLab/flybody
+Commit: 736608121847c3c025fd02a629bdb016a3294f9a
+Authors: flybody contributors, Google DeepMind and HHMI Janelia Research Campus.
+Vaxenburg et al. Whole-body physics simulation of fruit fly locomotion.
+Nature 643, 1312–1320 (2025). https://doi.org/10.1038/s41586-025-09029-4
+Licence: Apache License 2.0 (see fly-LICENSE.txt).
+
+Model-specific licence evidence:
+https://github.com/google-deepmind/mujoco_menagerie/blob/8161bba264d7fa7c99ca301e91e7fb44737676ad/flybody/README.md#license
+Upstream licence:
+https://github.com/TuragaLab/flybody/blob/736608121847c3c025fd02a629bdb016a3294f9a/LICENSE
+
+Modified by BioReservoir: decimated and quantised meshes, converted MJCF joint hierarchy to
+one glTF binary, monochrome materials, shortened abdomen and dark terminal tergites for a
+male-like silhouette. The upstream reconstruction is female, not the male connectome donor.
+No upstream endorsement is implied.
