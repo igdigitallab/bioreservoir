@@ -1,0 +1,177 @@
+{
+  "terms": {
+    "route": "/terms",
+    "title": "Terms of Use",
+    "updated": "September 21, 2026",
+    "intro": "fly.igdigi.com (\"the site\") is run by IGGO, LLC dba IG Digital Lab, 3550 Watt Ave, Suite 408, Sacramento, CA 95821. Using the site means you accept these terms. If you do not accept them, do not use the site.",
+    "sections": [
+      {
+        "h": "1. What this is",
+        "p": [
+          "The site is a public research demonstration. A published wiring diagram of a male fruit fly's brain and nerve cord (Janelia MaleCNS v1.0, CC BY 4.0) is simulated neuron by neuron. Your words are turned into numbers by a small text-embedding model, those numbers drive the simulated sensory neurons, and whichever side the activity reaches the motor-command neurons harder is reported as YES or NO.",
+          "The simulation has no understanding of your question. It does not know what a person, a market, a match or a date is. Measured against its own biological reference, the turn it produces is close to a coin flip. That is the experiment: whether real brain wiring produces a structured response at all."
+        ]
+      },
+      {
+        "h": "2. The answers are not advice, and not a forecast",
+        "p": [
+          "Nothing the fly outputs is medical, financial, investment, legal, tax, employment, electoral or any other kind of professional advice, and nothing on the site is a prediction or a forecast of any real-world event.",
+          "Do not rely on an answer for any decision. If a decision matters, consult a qualified professional. No money, stake, wager or prize is involved anywhere on the site, and we neither operate nor facilitate any form of betting.",
+          "We make no claim that an answer is accurate, meaningful, consistent, or better than chance."
+        ]
+      },
+      {
+        "h": "3. Questions on this site come from visitors, not from us",
+        "p": [
+          "Every question shown on the site was typed by a visitor. Questions about elections, public figures, companies, sport or anything else appear because someone asked them.",
+          "A visitor's question is not our question, and the simulation's answer to it is not our opinion, our position, our endorsement or our forecast. IG Digital Lab publishes no prediction about any election or any other event through this site."
+        ]
+      },
+      {
+        "h": "4. Your question is your responsibility, and it is public",
+        "p": [
+          "You are solely responsible for anything you submit — questions and chat messages alike. Do not submit anything you are not entitled to publish.",
+          "An accepted question is public immediately: it is shown on the live page, in the public archive, in the broadcast view, and in the link-preview image generated for sharing. Chat messages are public the moment they are accepted. Treat everything you type here as permanently public.",
+          "Do not put personal data in a question or a chat message — not your own, and not anyone else's. Do not include names of private individuals, contact details, account numbers, health information, or anything confidential.",
+          "By submitting, you grant IG Digital Lab a non-exclusive, worldwide, royalty-free, perpetual licence to store, display, reproduce and publish your text on the site, in the broadcast view, in share images and in research write-ups about this experiment."
+        ]
+      },
+      {
+        "h": "5. What you may not submit",
+        "list": [
+          "Voting logistics of any kind — when, where or how to vote, eligibility, polling hours or locations. This is blocked outright; ask your state or county elections office instead.",
+          "Requests for medical, financial or legal advice.",
+          "Questions about named private individuals. Public figures and public events only.",
+          "Anything unlawful, threatening, harassing, hateful, defamatory, sexual, or promoting violence.",
+          "Personal data about anyone, links, @handles, spam, or automated submissions."
+        ],
+        "after": [
+          "Submissions are screened by automated rules and by an automated classifier before they run. We may reject, delay, hide, edit the visibility of, or delete any question or message, and may block any visitor, at any time, without notice and without giving a reason.",
+          "We are under no obligation to screen, monitor or remove anything, and screening that does happen is best-effort and will make mistakes in both directions. To report something on the site, email hello@igdigi.com."
+        ]
+      },
+      {
+        "h": "6. No warranty",
+        "p": [
+          "The site is provided \"as is\" and \"as available\", without warranties of any kind, express or implied, including any implied warranty of merchantability, fitness for a particular purpose, accuracy or non-infringement.",
+          "It is a research demonstration running on modest hardware. It may be slow, queued, interrupted, restarted, changed or taken down at any time, and answers, questions and chat history may be lost."
+        ]
+      },
+      {
+        "h": "7. Limitation of liability",
+        "p": [
+          "To the fullest extent permitted by law, IG Digital Lab, IGGO, LLC and their members, officers and contractors are not liable for any indirect, incidental, special, consequential, exemplary or punitive damages, or for any loss of profits, data, goodwill or opportunity, arising out of or relating to your use of the site — including any action you take, or fail to take, on the basis of an answer, a question or a chat message.",
+          "To the fullest extent permitted by law, our total liability for all claims relating to the site is limited to one hundred US dollars (US$100).",
+          "Some jurisdictions do not allow certain limitations, so parts of this section may not apply to you."
+        ]
+      },
+      {
+        "h": "8. Your indemnity",
+        "p": [
+          "You agree to indemnify and hold harmless IG Digital Lab and IGGO, LLC against any claim, demand, loss or expense (including reasonable legal fees) arising from content you submit or from your use of the site in breach of these terms."
+        ]
+      },
+      {
+        "h": "9. Attribution, ownership and who we are not",
+        "p": [
+          "The connectome data is Janelia MaleCNS v1.0, licensed CC BY 4.0, by Janelia Research Campus (HHMI), the University of Cambridge, the MRC Laboratory of Molecular Biology and Google Research. The female dataset shown for comparison is BANC (Harvard Dataverse), also CC BY 4.0. The simulation method follows Shiu, Sterne, Spiller et al. (2024). The 3D fly body follows Vaxenburg et al. (2025).",
+          "BioReservoir and IG Digital Lab are not affiliated with, endorsed by, sponsored by or connected to any of those institutions, datasets or authors. Publishing data under an open licence is not an endorsement of what we do with it.",
+          "We are also not affiliated with, endorsed by or connected to Kalshi, Polymarket, Manifold or any prediction-market, betting or trading platform, and we do not use their data.",
+          "Everything else on the site — the text, the interface, the code, the images — belongs to IG Digital Lab, except where a different licence is stated."
+        ]
+      },
+      {
+        "h": "10. Changes",
+        "p": [
+          "We may change these terms. The date at the top of this page is the date of the current version, and continuing to use the site after a change means you accept it."
+        ]
+      },
+      {
+        "h": "11. Governing law and contact",
+        "p": [
+          "These terms are governed by the laws of the State of California, without regard to its conflict-of-laws rules. The courts of Sacramento County, California have exclusive jurisdiction.",
+          "Questions, complaints and removal requests: hello@igdigi.com."
+        ]
+      }
+    ]
+  },
+  "privacy": {
+    "route": "/privacy",
+    "title": "Privacy Policy",
+    "updated": "September 21, 2026",
+    "intro": "This page describes exactly what fly.igdigi.com does with data. The site has no accounts, no sign-up, no email collection, no advertising and no analytics. Controller: IGGO, LLC dba IG Digital Lab, 3550 Watt Ave, Suite 408, Sacramento, CA 95821 — hello@igdigi.com.",
+    "sections": [
+      {
+        "h": "1. What you type",
+        "p": [
+          "Your question, and any chat message you send, is stored and published. It appears on the live page, in the public archive of answered questions, in the broadcast view, and in the link-preview image generated when someone shares an answer. A chat message carries the nickname you chose, or an anonymous handle such as fly-4821 if you chose none.",
+          "There is no private mode. Please do not type personal data about yourself or anyone else. If something personal ends up published, email hello@igdigi.com and we will remove it."
+        ]
+      },
+      {
+        "h": "2. Your IP address",
+        "p": [
+          "We never store your IP address. We store two one-way values derived from it, and nothing else:",
+          "A daily-rotating hash, used to enforce the per-visitor question limits and to count likes once each. The salt is a fresh random secret generated each day and is not derived from the date, so the hash cannot be reversed by guessing.",
+          "A keyed hash (HMAC with a secret held only on the server), used for chat authorship, bans, reports and the anonymous handle. For IPv6 it is computed over the /64 prefix, not the full address.",
+          "Neither value can be turned back into your IP address by us or by anyone reading the database."
+        ]
+      },
+      {
+        "h": "3. Third parties that see your data",
+        "list": [
+          "Cloudflare — the site is served through Cloudflare, which sees the connection and runs the Turnstile bot check in front of the question box and the chat. Cloudflare may set cookies or local storage of its own for that check and for its network protection. See Cloudflare's own privacy policy.",
+          "An automated moderation classifier — the text of your question or chat message is sent to a language model through our own gateway so it can be classified against the rules in the Terms of Use. It is sent for that classification only."
+        ],
+        "after": [
+          "No other third party receives anything. There is no advertising network, no analytics provider, no tracking pixel, no social-media SDK, and no tracker of any kind on this site. We do not sell, rent or share personal information, and we have not done so in the preceding twelve months."
+        ]
+      },
+      {
+        "h": "4. What your browser stores locally",
+        "p": [
+          "The site sets no cookies of its own. It keeps a few things in your browser's local storage, which stay on your device and are never sent to us as a set:"
+        ],
+        "list": [
+          "The list of questions you have asked, so your own answers still find you after you close the tab.",
+          "The ids of questions you have liked, so the heart stays filled.",
+          "Your chat nickname, and a chat session token that proves you already passed the bot check."
+        ],
+        "after": [
+          "Clearing your browser's site data for fly.igdigi.com removes all of it."
+        ]
+      },
+      {
+        "id": "retention",
+        "h": "5. How long things are kept",
+        "list": [
+          "Accepted questions and their answers: kept indefinitely — they are the public record of the experiment.",
+          "The text of a rejected question: 7 days, then blanked.",
+          "Chat identity (the keyed hash and handle behind a message): 30 days, then blanked, unless the author is banned.",
+          "Hidden or removed chat message text: 7 days, then blanked.",
+          "Rate-limit and moderation-call bookkeeping: 1 day.",
+          "Server and Cloudflare request logs: short-lived operational logs, kept only as long as needed to run and debug the service."
+        ]
+      },
+      {
+        "h": "6. Your choices",
+        "p": [
+          "You can use the site without giving us anything but the text you choose to type. To have a question, an answer or a chat message removed, email hello@igdigi.com and identify it (the link to the answer is enough). We will remove it, subject to any legal obligation to retain it.",
+          "Depending on where you live, you may have rights to access, correct, delete or restrict the use of personal data about you. Email the same address and we will act on it."
+        ]
+      },
+      {
+        "h": "7. Children",
+        "p": [
+          "The site is not directed at children under 13 and we do not knowingly collect personal information from them. If you believe a child has submitted personal information here, email hello@igdigi.com and we will delete it."
+        ]
+      },
+      {
+        "h": "8. Changes",
+        "p": [
+          "If this policy changes, the date at the top of this page changes with it."
+        ]
+      }
+    ]
+  }
+}
