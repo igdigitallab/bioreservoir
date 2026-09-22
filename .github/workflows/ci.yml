@@ -1,0 +1,46 @@
+name: ci
+
+# The point of this workflow is not a green badge: it is that a stranger can see the tests this
+# project actually runs, and see them run on a machine that is not ours. Nothing here needs the
+# connectome downloads — anything that does is skipped, by design, so the suite stays runnable
+# in a clean checkout.
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+      - run: uv sync --extra live --extra dev --frozen
+      - name: Lint
+        run: uv run ruff check src scripts tests
+      - name: Unit tests
+        run: uv run pytest -q
+
+  site:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: site
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+      - run: npm ci
+      - name: Types
+        run: npx tsc --noEmit
+      - name: Unit tests
+        run: npx vitest run
+      - name: Build
+        run: npm run build

@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+title: "BioReservoir: public connectomes as fixed reservoirs"
+message: >-
+  If you use this software or its experiment protocols, please cite it. The connectome datasets it
+  consumes have their own citations, listed in NOTICE and docs/DATA.md — cite those too.
+type: software
+authors:
+  - family-names: Golubev
+    given-names: Igor
+    affiliation: "IG Digital Lab (IGGO, LLC), Sacramento, CA, USA"
+repository-code: "https://github.com/igdigitallab/bioreservoir"
+url: "https://fly.igdigi.com"
+abstract: >-
+  BioReservoir treats a published whole-brain connectome as a fixed reservoir: the wiring is loaded
+  as a signed graph, simulated as a leaky integrate-and-fire spiking network, driven with encoded
+  input and read out without training the network itself. Every experiment is pre-registered with
+  an OpenTimestamps proof and ships controls — a degree-preserving rewired graph, an Erdos-Renyi
+  graph, a no-connectome baseline and a seeded coin flip. Experiment 001 uses the male (MaleCNS
+  v1.0) and female (BANC) Drosophila connectomes.
+keywords:
+  - connectome
+  - reservoir computing
+  - spiking neural network
+  - Drosophila
+  - computational neuroscience
+  - pre-registration
+license: Apache-2.0
+version: "0.1.0"
+date-released: "2026-09-21"

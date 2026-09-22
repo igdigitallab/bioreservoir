@@ -1,0 +1,51 @@
+# Experiment 001 (Fly Oracle) configuration, read by `bioreservoir.oracle.config`.
+# Values come from the calibration in docs/MODEL.md §Calibration (biological stimuli only).
+# Any change alters the config hash recorded in the ledger. Change only before a batch is
+# stamped, never between the runs of one batch.
+
+seed:
+  projection: 20260918   # Gaussian projection embedding -> input rates (encode.py)
+  balance: 20260918      # left/right balancing and input sub-sampling
+  trial_base: 100000     # per-trial Poisson seeds, derived per (brain, condition, variant, question, trial)
+  coin_base: 424242      # coin-flip control
+  rewire_base: 1         # degree-preserving rewired control graph
+  er_base: 2             # Erdős–Rényi control graph
+  side_base: 20260918107 # per-question YES-side mapping coin (oracle.side_mapping), README.md
+                          # "Handedness and side mapping" — replaces the old global readout.left_is_yes
+
+trial:
+  duration_ms: 250.0     # the effect is already fully present by 250 ms (MODEL.md duration scan)
+  n_trials: 10
+  min_syn: 5             # harmonize.load_graph threshold; must stay >= BANC's own floor of 3
+
+input:
+  population: sensory_all  # pooled sensory neurons (populations.yaml), balanced left/right
+  n_per_side: 250          # 500 driven neurons, inside the calibrated 300-1000 range
+  rate_hz_min: 50.0        # calibrated range: responsive, no saturation
+  rate_hz_max: 300.0
+
+readout:
+  name: descending_all     # lateral bias (L-R)/(L+R) of all descending neurons, ~650 per side
+  zero_spike_probability: 0.5  # a trial with no readout spikes counts as neutral and is flagged
+  # NOTE: there is no `left_is_yes` flag here any more. Whether a leftward (handedness-corrected)
+  # bias means YES or NO is decided per question, deterministically, by
+  # oracle.side_mapping.left_is_yes_for(question_id, seed.side_base) — see
+  # "Handedness and side mapping" in README.md. A single global flag would have made every one of
+  # the 33 "will <incumbent> hold" questions share one answer key, turning the real brain's own
+  # intrinsic lateral bias into a uniform partisan artefact (2026-09-18 smoke run, memory
+  # fly-handedness.md).
+
+handedness:
+  reference_file: reference.yaml  # experiments/001-fly-oracle/reference.yaml (oracle.reference);
+                                   # 24 neutral sentences used to measure each (brain, condition)'s
+                                   # own intrinsic lateral bias b0 (oracle.handedness)
+
+controls:
+  graph_variants: [real, rewired, er]
+  rewire_max_repair_rounds: 200
+
+scoring:
+  cluster_by: category     # correlated questions (one election) scored as one cluster as well
+
+workers:
+  default: 3               # cage budget: up to 3 processes of ~1.6 GB within MemoryMax=6G
