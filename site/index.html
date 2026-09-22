@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#fafaf9" />
+    <meta
+      name="description"
+      content="Ask a real fly brain a yes/no question. A published Drosophila connectome (MaleCNS, CC BY 4.0) is simulated live and its spikes drive the answer."
+    />
+    <title>Ask a Real Fly Brain a Yes/No Question | IG Digital Lab</title>
+    <!-- Link previews (X, LinkedIn, Slack, iMessage): crawlers do not run JS, so these are static.
+         og.png is rendered from the real MaleCNS soma positions by scripts/export_og_image.py. -->
+    <link rel="canonical" href="https://fly.igdigi.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="BioReservoir by IG Digital Lab" />
+    <meta property="og:url" content="https://fly.igdigi.com/" />
+    <meta property="og:title" content="Ask a real fly brain a yes/no question" />
+    <meta property="og:description" content="165,000 mapped neurons of a fruit fly, simulated live. Ask it a yes-or-no question and watch which way it turns. It lands close to a coin flip — an experiment, not an oracle." />
+    <meta property="og:image" content="https://fly.igdigi.com/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="A real fruit-fly brain, 165,000 neurons, drawn from the MaleCNS connectome" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Ask a real fly brain a yes/no question" />
+    <meta name="twitter:description" content="165,000 mapped neurons, simulated live. Ask a yes-or-no question and watch which way it turns. Close to a coin flip — an experiment, not an oracle." />
+    <meta name="twitter:image" content="https://fly.igdigi.com/og.png" />
+    <!-- Cloudflare Turnstile, explicit render mode:
+         https://developers.cloudflare.com/turnstile/get-started/client-side-rendering/ -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
+    <link rel="icon" href="data:," />
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

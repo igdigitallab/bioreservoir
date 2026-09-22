@@ -1,0 +1,9 @@
+# BioReservoir experiment 001 pre-batch manifest
+# Everything that determines the midterm forecasts, as committed at git 6c91755b1991198970ba821b7c59278160168bec (2026-09-18T23:57Z),
+# before any election question was run through a brain. Verify: git show 6c91755b1991198970ba821b7c59278160168bec:<path> | sha256sum
+45a613a67e27ad6e6b1b1814ac7142c1a746561e33781746b4b80742bbf2164a  experiments/001-fly-oracle/questions.yaml
+8791e49597a3519811c880d1c5fd204e1810fd57b417aa4c148c3b5b78b8e3e0  experiments/001-fly-oracle/reference.yaml
+6428448806f0d4b1ba78b0d8e0b91cdb107e7979ff47f26eb6ab7aa6ba3dc8be  experiments/001-fly-oracle/config.yaml
+51786ab088b46b51dc3317932c0b7296c448a79915ef9bbdb5282574734e7d7e  experiments/001-fly-oracle/populations.yaml
+b8f6d024c4f6e311271012c61cc392ef4b3bf47845d5404b27bb97b01b936832  experiments/001-fly-oracle/README.md
+6615fd2c2150161ba94890864b11c5d4384e0e20  src/ (git tree)

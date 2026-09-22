@@ -1,0 +1,274 @@
+/* Live chat — styled from the same "warm paper" tokens as style.css (colors,
+   radii, shadows all come from :root there; nothing new is invented here). `.chat-dark` is the
+   read-only stream-page variant: same structure, inverted onto --color-soot for an OBS capture
+   that sits next to the rest of stream.ts's dark layout. */
+
+.chat-panel {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  max-height: 520px;
+  overflow: hidden;
+}
+
+/* `.panel` (style.css) always paints a white card -- override it for the stream page's dark
+   variant, otherwise the white-on-dark row text below would sit on a still-white card. */
+.chat-panel.chat-dark {
+  background: var(--color-soot);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.chat-header {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--color-stone-border);
+  flex: none;
+}
+
+.chat-dark .chat-header {
+  border-bottom-color: rgba(255, 255, 255, 0.12);
+}
+
+.chat-messages-wrap {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 160px;
+  display: flex;
+}
+
+.chat-messages {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  scroll-behavior: smooth;
+}
+
+.chat-empty-state {
+  margin: auto;
+  color: var(--color-ash-gray);
+  font-size: 13px;
+  text-align: center;
+  padding: 24px 12px;
+}
+
+.chat-dark .chat-empty-state {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Compact livestream-style row: nickname (ink, semibold) + text (warm gray) + relative time,
+   all inline so rows stay dense — see design-style-reference.md's "compact density" spacing. */
+.chat-row {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 3px 4px;
+  border-radius: 4px;
+  font-size: 13px;
+  line-height: 1.45;
+  animation: chat-row-in 180ms ease-out;
+}
+
+.chat-row:hover,
+.chat-row:focus-within {
+  background: var(--color-stone-canvas);
+}
+
+.chat-dark .chat-row:hover,
+.chat-dark .chat-row:focus-within {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+@keyframes chat-row-in {
+  from {
+    opacity: 0;
+    transform: translateY(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.chat-row-nick {
+  font-weight: 600;
+  color: var(--color-ink-black);
+  flex: none;
+}
+
+.chat-dark .chat-row-nick {
+  color: #ffffff;
+}
+
+.chat-row-text {
+  color: var(--color-warm-gray);
+  overflow-wrap: anywhere;
+  flex: 1 1 auto;
+}
+
+.chat-dark .chat-row-text {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.chat-row-time {
+  flex: none;
+  color: var(--color-ash-gray);
+}
+
+.chat-dark .chat-row-time {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.chat-report-btn {
+  flex: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 10px;
+  color: var(--color-ash-gray);
+  padding: 2px 4px;
+  opacity: 0;
+  transition: opacity 120ms ease-out;
+}
+
+.chat-row:hover .chat-report-btn,
+.chat-row:focus-within .chat-report-btn,
+.chat-report-btn:focus-visible {
+  opacity: 1;
+}
+
+.chat-report-btn:hover {
+  color: var(--color-cyan-edge);
+}
+
+.chat-report-btn:disabled {
+  color: var(--color-stone-muted);
+  cursor: default;
+}
+
+.chat-jump-pill {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-cyan-signal);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-tags);
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+}
+
+.chat-paused-banner {
+  margin: 0;
+  padding: 8px 16px;
+  font-size: 12px;
+  color: var(--color-warm-gray);
+  background: var(--color-stone-canvas);
+  border-top: 1px solid var(--color-stone-border);
+  flex: none;
+}
+
+.chat-composer {
+  flex: none;
+  padding: 10px 12px;
+  border-top: 1px solid var(--color-stone-border);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.chat-nickname {
+  background: var(--color-pure-white);
+  border: 1px solid var(--color-stone-muted);
+  border-radius: var(--radius-inputs);
+  padding: 4px 10px;
+  font-size: 12px;
+  color: var(--color-ink-black);
+  width: 160px;
+  max-width: 100%;
+}
+
+.chat-nickname:focus-visible {
+  outline: 2px solid var(--color-cyan-signal);
+  outline-offset: 1px;
+}
+
+.chat-turnstile-mount:not([hidden]) {
+  display: block;
+}
+
+.chat-input-row {
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+.chat-text {
+  flex: 1 1 auto;
+  resize: none;
+  min-height: 34px;
+  max-height: 34px;
+  overflow: hidden;
+  background: var(--color-pure-white);
+  border: 1px solid var(--color-stone-muted);
+  border-radius: var(--radius-inputs);
+  padding: 7px 12px;
+  font-family: var(--font-inter);
+  font-size: 13px;
+  color: var(--color-ink-black);
+}
+
+.chat-text:focus-visible {
+  outline: 2px solid var(--color-cyan-signal);
+  outline-offset: 1px;
+}
+
+.chat-text:disabled {
+  background: var(--color-stone-canvas);
+  color: var(--color-ash-gray);
+}
+
+.chat-send {
+  flex: none;
+  padding: 7px 16px;
+}
+
+.chat-input-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-char-count-over {
+  color: #c0392b;
+}
+
+.chat-slowmode-note {
+  margin: 0;
+}
+
+.chat-rejection {
+  color: #c0392b;
+  font-size: 12px;
+  min-height: 14px;
+}
+
+/* Mobile: 360px and up -- composer stacks a little tighter, panel loses its own
+   max-height cap so it can fill whatever column the integrator places it in. */
+@media (max-width: 480px) {
+  .chat-panel {
+    max-height: 420px;
+  }
+
+  .chat-nickname {
+    width: 100%;
+  }
+}
