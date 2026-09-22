@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Fruit fly specimen · development preview</title>
+<style>
+* { box-sizing: border-box; }
+body { margin: 0; background: #fafaf9; color: #1c1917; font: 13px system-ui, sans-serif; }
+main { width: 100%; min-height: 640px; display: flex; align-items: center; flex-direction: column; padding: 36px 20px; }
+header { text-align: center; margin-bottom: 24px; }
+h1 { margin: 6px 0; font-size: 22px; font-weight: 400; letter-spacing: -.5px; }
+p { color: #78716c; margin: 6px 0; }
+#specimen { position: relative; width: 320px; height: 320px; background: white; border: 1px solid #e8e6e5; border-radius: 16px; }
+nav { display: flex; gap: 6px; flex-wrap: wrap; max-width: 500px; justify-content: center; margin-top: 24px; }
+a { text-decoration: none; color: #57534e; border: 1px solid #d6d3d1; padding: 6px 12px; border-radius: 30px; }
+a[aria-current] { color: white; background: #292524; }
+label { color: #78716c; display: flex; align-items: center; gap: 10px; margin-top: 18px; }
+#status { font-size: 11px; margin-top: 12px; }
+</style>
+</head>
+<body>
+<main>
+<header><p>BIORESERVOIR / SPECIMEN STUDY</p><h1>Drosophila melanogaster</h1><p id="caption"></p></header>
+<div id="specimen"></div><nav id="controls"></nav>
+<label>Time (seconds) <input id="time" type="range" min="0" max="20" step=".001" value=".5" /><output id="moment"></output></label>
+<p id="status">Loading specimen…</p>
+</main><script type="module" src="./fly.ts"></script>
+</body></html>
