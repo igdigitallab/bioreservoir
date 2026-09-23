@@ -1,0 +1,2414 @@
+/* Design system: "Quiet analyst's desk on warm paper". Tokens below are copied
+   verbatim from the internal design spec's CSS custom properties block; do not invent new
+   colors/radii/shadows — add to the spec first, then here. */
+:root {
+  --color-stone-canvas: #fafaf9;
+  --color-pure-white: #ffffff;
+  --color-stone-border: #e8e6e5;
+  --color-stone-muted: #d6d3d1;
+  --color-ash-gray: #a8a29e;
+  --color-warm-gray: #78716c;
+  --color-ink-black: #0c0a09;
+  --color-soot: #1c1917;
+  --color-sky-wash: #c1e1f7;
+  --color-cyan-signal: #3ba6f1;
+  --color-cyan-edge: #3398e1;
+
+  --font-display: "Inter Tight", ui-sans-serif, system-ui, sans-serif;
+  --font-inter: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+
+  --text-caption: 10px;
+  --leading-caption: 2.3;
+  --text-body-lg: 16px;
+  --leading-body-lg: 1.69;
+  --tracking-body-lg: 0.048px;
+  --text-subheading: 20px;
+  --leading-subheading: 1.2;
+  --tracking-subheading: -0.1px;
+  --text-heading-sm: 32px;
+  --leading-heading-sm: 1.25;
+  --tracking-heading-sm: -0.8px;
+  --text-display: 52px;
+  --leading-display: 1.12;
+  --tracking-display: -1.092px;
+
+  --page-max-width: 1200px;
+  /* 72/80 instead of 96: the page read as padded blank bands (external review, 2026-09-18). */
+  --section-gap: 72px;
+  --card-padding: 24px;
+  --element-gap: 8px;
+
+  --radius-tags: 9999px;
+  --radius-cards: 10px;
+  --radius-icons: 4px;
+  --radius-inputs: 6px;
+  --radius-buttons: 9999px;
+  --radius-feature-card: 16px;
+
+  --shadow-md: rgba(0, 0, 0, 0.05) 0 4px 16px 0;
+  --shadow-sm: rgba(0, 0, 0, 0.1) 0 4px 6px -1px, rgba(0, 0, 0, 0.1) 0 2px 4px -2px;
+  --shadow-subtle: rgba(0, 0, 0, 0.05) 0 1px 2px 0;
+  --shadow-xl: rgba(17, 12, 46, 0.12) 0 12px 45px 0;
+  --shadow-sticker: rgba(0, 0, 0, 0.25) 0 2px 4px;
+
+  color-scheme: light;
+}
+
+@media (min-width: 960px) {
+  :root {
+    --section-gap: 80px;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--color-stone-canvas);
+  color: var(--color-ink-black);
+  font-family: var(--font-inter);
+  font-size: 14px;
+  line-height: 1.64;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  min-height: 100vh;
+}
+
+body.stream-mode {
+  overflow: hidden;
+}
+
+#app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  margin: 0;
+  color: var(--color-ink-black);
+  /* Avoids orphaned words (e.g. a lone "digital-" stranded on its own line) without a manual
+     hyphen in the copy — https://developer.mozilla.org/en-US/docs/Web/CSS/text-wrap/balance.
+     Unsupported browsers just keep default wrapping, so this is a no-risk progressive enhancement. */
+  text-wrap: balance;
+}
+
+a {
+  color: var(--color-cyan-edge);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-cyan-signal);
+}
+
+button {
+  font-family: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-cyan-signal);
+  outline-offset: 2px;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.panel {
+  background: var(--color-pure-white);
+  border: 1px solid var(--color-stone-border);
+  border-radius: var(--radius-cards);
+  box-shadow: var(--shadow-md);
+}
+
+/* A card that is also the page container: its own padding is the card's inner padding, so the
+   page gutter has to come from its width instead, or it runs edge to edge on phones. */
+.panel.container {
+  width: calc(100% - 48px);
+  max-width: calc(var(--page-max-width) - 48px);
+}
+
+.label-mono {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 11px;
+  color: var(--color-warm-gray);
+}
+
+/* Headline highlight phrases render as plain headline text: the cyan
+   highlight chips were removed on 2026-09-18. The span stays (headline.ts) so a future accent
+   needs no copy change. */
+.highlight {
+  color: inherit;
+}
+
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(250, 250, 249, 0.92);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--color-stone-border);
+}
+
+.site-nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  gap: 16px;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-ink-black);
+  font-family: var(--font-display);
+  font-size: 18px;
+  letter-spacing: -0.017em;
+}
+
+.nav-brand:hover {
+  color: var(--color-ink-black);
+}
+
+.nav-mark {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.nav-links {
+  display: none;
+  align-items: center;
+  gap: 0;
+}
+
+@media (min-width: 860px) {
+  .nav-links {
+    display: flex;
+  }
+}
+
+.nav-links a {
+  font-size: 14px;
+  color: var(--color-warm-gray);
+  padding: 0 12px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+}
+
+.nav-links a:hover {
+  color: var(--color-ink-black);
+}
+
+/* Mobile nav: below 860px the link list above is display:none with nothing replacing it, so
+   "How it works"/"Lab data"/"Scoreboard"/"About the lab" become unreachable — this toggle button
+   plus dropdown panel restores them without a drawer/overlay library. */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-inputs);
+  border: 1px solid var(--color-stone-border);
+  background: var(--color-pure-white);
+  color: var(--color-ink-black);
+  cursor: pointer;
+}
+
+@media (min-width: 860px) {
+  .nav-toggle {
+    display: none;
+  }
+}
+
+.nav-toggle svg {
+  width: 18px;
+  height: 18px;
+}
+
+.nav-panel {
+  display: none;
+  flex-direction: column;
+  border-top: 1px solid var(--color-stone-border);
+  background: var(--color-stone-canvas);
+}
+
+.nav-panel.is-open {
+  display: flex;
+}
+
+@media (min-width: 860px) {
+  .nav-panel {
+    display: none !important;
+  }
+}
+
+.nav-panel a {
+  padding: 14px 24px;
+  font-size: 15px;
+  color: var(--color-ink-black);
+  border-bottom: 1px solid var(--color-stone-border);
+}
+
+.nav-panel a:last-child {
+  border-bottom: none;
+}
+
+/* `hidden` must win over a component's own `display` — `.btn` is `inline-flex`, so a hidden
+   button (the questions list's "Show more" when there is no more) stayed on screen without this. */
+[hidden] {
+  display: none !important;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-inter);
+  font-weight: 500;
+  font-size: 14px;
+  border-radius: var(--radius-buttons);
+  padding: 8px 16px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: opacity 0.15s ease;
+  white-space: nowrap;
+  background: var(--color-cyan-signal);
+  border-color: var(--color-cyan-edge);
+  color: var(--color-pure-white);
+  box-shadow: var(--shadow-subtle);
+}
+
+.btn:hover:not(:disabled) {
+  opacity: 0.92;
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.btn-ghost {
+  background: transparent;
+  border: 1px solid var(--color-stone-border);
+  color: var(--color-ink-black);
+  box-shadow: none;
+}
+
+.btn-ghost:hover:not(:disabled) {
+  border-color: var(--color-stone-muted);
+  opacity: 1;
+}
+
+.helper-text {
+  color: var(--color-warm-gray);
+  font-size: 14px;
+  margin-top: 6px;
+}
+
+.rejection {
+  color: var(--color-ink-black);
+  background: var(--color-stone-muted);
+  border-radius: var(--radius-icons);
+  padding: 6px 10px;
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+.rejection:empty {
+  display: none;
+}
+
+/* Hero: copy+composer left, brain viewer right — one above-the-fold unit on desktop (2026-09-18
+   layout audit). Below ~960px the two columns stack (brain under the copy), which is also where
+   the mobile "~2:1 aspect, not a fixed vh height" rule for .hero-canvas applies — same rule at
+   every width, see .hero-canvas below. */
+.hero {
+  position: relative;
+  padding-top: 32px;
+  padding-bottom: 0;
+}
+
+/* Headline row: the headline and the one-line subhead share one row on wide screens, so the
+   stage below starts inside the first viewport instead of after a tall left-aligned text block. */
+/* Headline row. Phones: the headline spans the row, the fly sits beside the subhead. Wider: the
+   fly takes the top-right corner beside both. */
+.hero-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    "title title"
+    "sub fly";
+  gap: 12px 16px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.hero-head h1 {
+  grid-area: title;
+}
+
+.hero-head p {
+  grid-area: sub;
+}
+
+@media (min-width: 640px) {
+  .hero-head {
+    grid-template-areas:
+      "title fly"
+      "sub fly";
+    column-gap: 32px;
+  }
+}
+
+@media (min-width: 960px) {
+  .hero {
+    padding-top: 40px;
+  }
+}
+
+.hero h1 {
+  font-size: clamp(30px, 4.2vw, var(--text-display));
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
+  text-wrap: balance;
+}
+
+.hero-head p {
+  color: var(--color-warm-gray);
+  max-width: 52ch;
+  font-size: var(--text-body-lg);
+  line-height: var(--leading-body-lg);
+}
+
+/* The stage: the brain at the full width of the main column. The replay tag sits inside it as a
+   caption instead of floating alone under the composer. */
+.stage {
+  position: relative;
+  min-width: 0;
+}
+
+/* Desktop: a fixed, modest stage height instead of the full-width 2:1 box, which took the whole
+   first viewport and pushed the composer below the fold ("too bulky"; external review
+   F1). The brain's contain-fit camera (scene/index.ts) frames it inside whatever box it gets. */
+@media (min-width: 860px) {
+  .stage .hero-canvas {
+    aspect-ratio: auto;
+    height: clamp(300px, 40vh, 400px);
+  }
+}
+
+.stage-tag {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: var(--color-pure-white);
+}
+
+/* Phones: the brain fills the narrow card, so the tag goes above it instead of on top of it. */
+@media (max-width: 639px) {
+  .stage {
+    display: flex;
+    flex-direction: column;
+  }
+  .stage-tag {
+    position: static;
+    order: -1;
+    align-self: flex-start;
+    margin-bottom: 8px;
+  }
+}
+
+/* Aspect-ratio, not a viewport-height slab: the brain's own camera framing is ~1.85:1
+   (scene/index.ts's TARGET_HALF_WIDTH/HEIGHT), so a ~2:1 box frames it with a small margin at
+   any container width — same rule on a full-width mobile card as in this narrower hero column,
+   instead of the old `height:52vh` which produced a ~500px near-empty card on phones. */
+.hero-canvas {
+  width: 100%;
+  aspect-ratio: 2 / 1;
+  height: auto;
+  border-radius: var(--radius-feature-card);
+  overflow: hidden;
+  /* Two soft radial blobs standing in for the brain's twin hemispheres until the WebGL point
+     cloud (scene/index.ts) actually draws over it — a flat white card while the atlas loads
+     (slow network, or this dev preview without the generated atlas at all) read as a missing
+     asset rather than a loading state. Once the canvas renders, its own opaque points cover
+     this — it's not removed by JS, just painted over. */
+  background:
+    radial-gradient(circle at 32% 45%, var(--color-stone-muted) 0%, transparent 55%),
+    radial-gradient(circle at 68% 45%, var(--color-stone-muted) 0%, transparent 55%), var(--color-pure-white);
+  padding: 8px;
+  box-shadow: var(--shadow-xl);
+}
+
+.hero-canvas.is-loaded {
+  background: var(--color-pure-white);
+}
+
+.hero-canvas canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 12px;
+}
+
+.replay-tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-warm-gray);
+  border: 1px solid var(--color-stone-border);
+  border-radius: var(--radius-tags);
+  padding: 2px 10px;
+}
+
+
+/* Part of the hero's left column now (moved out of its own full-width .container in the
+   2026-09-18 layout audit) — the composer is the primary action, so it lives right under the
+   headline instead of scrolled below the brain card. */
+.ask-box {
+  padding: var(--card-padding);
+}
+
+.ask-box textarea {
+  width: 100%;
+  resize: none;
+  background: var(--color-pure-white);
+  border: 1px solid var(--color-stone-muted);
+  border-radius: var(--radius-inputs);
+  color: var(--color-ink-black);
+  padding: 10px 12px;
+  font-size: var(--text-body-lg);
+  font-family: inherit;
+}
+
+.ask-box textarea::placeholder {
+  color: var(--color-warm-gray);
+}
+
+.ask-box textarea:focus {
+  outline: 2px solid var(--color-cyan-signal);
+  outline-offset: 1px;
+}
+
+/* Turnstile's own row: a full-width slot right under the textarea so the widget (when Cloudflare
+   actually needs to show it — appearance:"interaction-only", turnstile.ts) has a predictable,
+   uncramped place instead of being squeezed between the char count and the submit button. Empty
+   almost all the time (interaction-only renders nothing until a challenge is required), so no
+   fixed min-height — it only takes space when Cloudflare puts something in it. */
+.turnstile-mount:not(:empty) {
+  margin-top: 10px;
+}
+
+.ask-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.char-count {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-ash-gray);
+}
+
+.turnstile-status {
+  margin-top: 6px;
+}
+
+.rules-list {
+  margin: 8px 0 0;
+  padding-left: 1.1rem;
+  color: var(--color-warm-gray);
+  font-size: 13px;
+}
+
+/* The wait (waitStages.ts): real pipeline steps, the active one in ink, done ones struck quiet. */
+.wait-stages {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.wait-stage {
+  padding-left: 22px;
+  position: relative;
+  color: var(--color-warm-gray);
+}
+
+.wait-stage::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 0.45em;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid var(--color-stone-border);
+}
+
+.wait-stage-done::before {
+  background: var(--color-stone-muted);
+}
+
+.wait-stage-active {
+  color: var(--color-ink-black);
+}
+
+.wait-stage-active::before {
+  background: var(--color-cyan-signal);
+  border-color: var(--color-cyan-signal);
+  animation: wait-pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes wait-pulse {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wait-stage-active::before {
+    animation: none;
+  }
+}
+
+.reveal-in {
+  animation: reveal-in 0.45s ease-out both;
+}
+
+@keyframes reveal-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-in {
+    animation: none;
+  }
+}
+
+.queue-status {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--color-cyan-edge);
+  margin-top: 8px;
+}
+
+/* Answer unit: one bordered card holding the answer/placeholder content, the fly panel, and the
+   recent-answers list — replaces three previously-separate elements (a bare answer slot, a
+   free-floating fly icon, and an almost-always-empty "Live queue" card) that used to spread
+   across the full container width with nothing visually tying them together (2026-09-18 layout
+   audit: "~300px dead band" between the helper text and the fly). `buildAnswerCard()` no longer
+   draws its own card chrome (see answerCard.ts) — this panel is that chrome now, shared with the
+   idle placeholder state so the card doesn't change size/shape when an answer arrives. */
+.answer-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 24px;
+  align-items: start;
+  padding: var(--card-padding);
+}
+
+@media (max-width: 640px) {
+  .answer-row {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+}
+
+.answer-row-content {
+  min-width: 0;
+  /* reveal.ts scrolls this into view: keep it clear of the sticky 64px nav. */
+  scroll-margin-top: 88px;
+  width: 100%;
+}
+
+.fly-panel {
+  flex-shrink: 0;
+  width: 180px;
+  height: 180px;
+  margin: 0 auto;
+}
+
+.fly-panel canvas {
+  filter: drop-shadow(var(--shadow-sticker));
+}
+
+@media (max-width: 640px) {
+  .fly-panel {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+/* Recent-answers list: spans the full card width under the content+fly row (collapsed into the
+   answer area) instead of its own tall empty-shelled card. */
+.answer-feed {
+  grid-column: 1 / -1;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--color-stone-border);
+}
+
+.answer-card {
+  width: 100%;
+}
+
+.answer-card .verdict {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--text-display);
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
+  color: var(--color-ink-black);
+}
+
+
+.state-bars {
+  display: grid;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+/* `max-content` for the label, not a fixed 96px: "Whole-brain buzz" wrapped to two lines inside
+   96px on a phone and left its 6px track floating beside a two-line word stack (2026-09-21). The
+   minmax keeps the track from being squeezed out when a future label is long. */
+.state-bar {
+  display: grid;
+  grid-template-columns: minmax(0, max-content) minmax(80px, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--color-warm-gray);
+}
+
+/* At the values this readout actually produces (3% is typical) the track is visually empty, so
+   the number carries the meaning and the bar only supports it (2026-09-21). */
+.state-bar .state-value {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--color-ink-black);
+}
+
+.state-bar .track {
+  background: var(--color-stone-canvas);
+  border: 1px solid var(--color-stone-border);
+  border-radius: 4px;
+  height: 6px;
+  overflow: hidden;
+}
+
+.state-bar .fill {
+  height: 100%;
+  min-width: 2px;
+  background: var(--color-cyan-signal);
+}
+
+.answer-feed ul {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.answer-feed li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  font-size: 13px;
+  color: var(--color-warm-gray);
+  border-bottom: 1px solid var(--color-stone-border);
+  padding-bottom: 8px;
+}
+
+.answer-feed li .feed-question {
+  color: var(--color-ink-black);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.answer-feed li .feed-meta {
+  flex-shrink: 0;
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+}
+
+/* padding-top only (not the padding shorthand) so this class can be combined with .container on
+   the same element without one shorthand overwriting the other's left/right gutter — a combined
+   ".section.container" used to collapse to zero horizontal padding (only .container's max-width
+   survived), which is why the scoreboard page's content sat ~24px left of every other page's. */
+.section {
+  padding-top: var(--section-gap);
+}
+
+.section h2 {
+  font-size: var(--text-heading-sm);
+  line-height: var(--leading-heading-sm);
+  letter-spacing: var(--tracking-heading-sm);
+  margin-bottom: 16px;
+}
+
+.how-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .how-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 960px) {
+  .how-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.how-card {
+  padding: var(--card-padding);
+}
+
+.how-card h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: var(--text-subheading);
+  letter-spacing: var(--tracking-subheading);
+  margin-bottom: 8px;
+}
+
+/* Same numbered-circle motif as the /stream explainer's steps (.stream-explainer-step) — reused
+   here so the six steps read as an ordered pipeline instead of six flat, equal-weight cards. */
+.how-card-index {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--color-stone-canvas);
+  border: 1px solid var(--color-stone-border);
+  color: var(--color-warm-gray);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.how-card p {
+  color: var(--color-warm-gray);
+  font-size: 14px;
+  margin: 0;
+}
+
+.honesty p {
+  color: var(--color-warm-gray);
+  max-width: 68ch;
+}
+
+/* Editorial grid: heading in a narrow left column, prose (+ optional CTA) in a wider right
+   column — used for the long-form sections (honesty, forecast teaser, about-lab) that were
+   previously a single narrow text block hugging the left edge with the whole right half of the
+   1200px container empty (2026-09-18 layout audit). Stacks on narrow screens. */
+.editorial-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 860px) {
+  .editorial-grid {
+    grid-template-columns: minmax(180px, 300px) 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+}
+
+.editorial-grid h2 {
+  margin-bottom: 0;
+}
+
+.editorial-grid-body {
+  min-width: 0;
+}
+
+.editorial-grid-body p {
+  color: var(--color-warm-gray);
+  max-width: 68ch;
+}
+
+/* Live layout: the interactive column (hero, composer, answer) beside a sticky chat column, the
+   YouTube-live-chat pattern — only from ~1100px up; below that the chat slot
+   drops to a normal in-flow block after the answer card (see home.ts). */
+.live-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+@media (min-width: 1100px) {
+  .live-layout {
+    grid-template-columns: minmax(0, 8fr) minmax(320px, 4fr);
+    gap: 24px;
+  }
+}
+
+.live-main {
+  min-width: 0;
+}
+
+/* No chrome of its own: the chat panel (chat.css) is the card. Mobile: an in-flow block with a
+   bounded height after the answer card. Desktop: sticky beside the stage, one viewport tall, like
+   YouTube live chat. */
+.live-chat-slot {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  height: 460px;
+}
+
+.live-chat-slot:empty {
+  display: none;
+}
+
+/* Chat switched off (kill switch) or not mounted: the stage takes the full width. */
+.live-layout:has(> .live-chat-slot:empty) {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.live-chat-slot > * {
+  flex: 1;
+  min-height: 0;
+}
+
+@media (min-width: 1100px) {
+  .live-chat-slot {
+    position: sticky;
+    /* nav height (64px) + a breathing gap, so the sticky chat never sits flush under the bar */
+    top: 80px;
+    height: calc(100vh - 96px);
+    max-height: 760px;
+  }
+}
+
+footer.site-footer {
+  color: var(--color-warm-gray);
+  font-size: 14px;
+  line-height: 1.6;
+  border-top: 1px solid var(--color-stone-border);
+  margin-top: var(--section-gap);
+}
+
+/* The footer's own padding lives on the inner .container (below), not this element, so the
+   border-top spans full-bleed while the text keeps the same gutter as every other section —
+   previously the footer had no container at all and its text sat flush at x=0. */
+footer.site-footer .container {
+  padding-top: 32px;
+  padding-bottom: 64px;
+}
+
+footer.site-footer p {
+  margin: 0 0 6px;
+  max-width: 90ch;
+}
+
+footer.site-footer a {
+  color: var(--color-warm-gray);
+  text-decoration: underline;
+}
+
+.lab-readout {
+  margin-top: 16px;
+  padding: var(--card-padding);
+  min-width: 0;
+}
+
+.lab-readout summary {
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: var(--text-subheading);
+  letter-spacing: var(--tracking-subheading);
+  color: var(--color-ink-black);
+}
+
+.lab-readout-body {
+  margin-top: 16px;
+}
+
+.lab-readout-body h4 {
+  font-family: var(--font-inter);
+  font-weight: 600;
+  font-size: 12px;
+  color: var(--color-warm-gray);
+  margin: 24px 0 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.lab-readout-body h4:first-child {
+  margin-top: 0;
+}
+
+.lab-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.lab-table th {
+  text-align: left;
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--color-stone-border);
+  color: var(--color-warm-gray);
+  font-weight: 500;
+}
+
+.lab-table td {
+  text-align: left;
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--color-stone-border);
+  color: var(--color-ink-black);
+}
+
+/* `minmax(0, 1fr)`, not the implicit `auto`: an auto grid column is floored at its content's
+   min-content width, so the trial table (a seed like 2,242,088,389 in it) pushed this grid out
+   past the card that contains it instead of letting the table scroll (2026-09-21). */
+.decision-math {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
+  min-width: 0;
+}
+
+/* A table of real numbers cannot reflow: below the width its columns need it scrolls sideways
+   inside its own box rather than dragging the card out of shape. */
+.lab-table-wrap {
+  overflow-x: auto;
+  min-width: 0;
+}
+
+.decision-chain {
+  display: grid;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+
+.decision-step {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 12px;
+  background: var(--color-stone-canvas);
+  border: 1px solid var(--color-stone-border);
+  border-radius: var(--radius-icons);
+  color: var(--color-ink-black);
+}
+
+.decision-step-result {
+  color: var(--color-cyan-edge);
+  font-weight: 600;
+}
+
+.raster-wrap {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--color-stone-border);
+  border-radius: var(--radius-icons);
+  background: var(--color-pure-white);
+}
+
+/* The canvas is drawn at the container's own width (times devicePixelRatio) and given an explicit
+   pixel height by rasterView.ts — no CSS scaling anywhere, because scaling a 1px spike tick is
+   what turned the plot into a field of smeared dots. */
+.raster-canvas {
+  display: block;
+  width: 100%;
+}
+
+.raster-caption {
+  margin: 6px 0 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.raster-tooltip {
+  position: absolute;
+  display: none;
+  background: var(--color-ink-black);
+  border-radius: 4px;
+  padding: 3px 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-pure-white);
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 2;
+}
+
+.scale-numbers {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .scale-numbers {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.scale-value {
+  font-family: var(--font-display);
+  font-size: 20px;
+  color: var(--color-ink-black);
+  margin-right: 6px;
+}
+
+.reproduce-block {
+  display: grid;
+  gap: 8px;
+}
+
+.reproduce-cmd {
+  background: var(--color-stone-canvas);
+  border: 1px solid var(--color-stone-border);
+  border-radius: var(--radius-inputs);
+  padding: 10px 12px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-ink-black);
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.btn-copy {
+  justify-self: start;
+  padding: 6px 14px;
+  font-size: 12px;
+}
+
+.lab-stats {
+  padding: var(--card-padding);
+  margin-top: var(--section-gap);
+}
+
+.stats-grid {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (min-width: 640px) {
+  .stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.stats-grid-small {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (min-width: 640px) {
+  .stats-grid-small {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+/* The 7 "live numbers" stats used to sit in one repeat(4) grid, so the 5th-7th cards wrapped
+   into a second row with a dangling empty 4th cell (2026-09-18 audit: "ragged rows, 4+3"). Split
+   into two grids that each exactly match their own item count instead — this one (3 derived
+   metrics) sits directly under the 4-count .stats-grid above it, both full rows, no gap. */
+.stats-grid-3 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (min-width: 640px) {
+  .stats-grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.stats-grid + .stats-grid-3 {
+  margin-top: 8px;
+}
+
+/* Two columns on phones: an odd last card spans the row instead of dangling beside a hole. */
+@media (max-width: 639px) {
+  .stats-grid > :last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+}
+
+.stat-card {
+  background: var(--color-stone-canvas);
+  border: 1px solid var(--color-stone-border);
+  border-radius: var(--radius-icons);
+  padding: 10px 12px;
+}
+
+.stat-value {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 20px;
+  color: var(--color-ink-black);
+}
+
+.honesty-note {
+  border-left: 2px solid var(--color-cyan-signal);
+  padding-left: 12px;
+  margin-top: 16px;
+  color: var(--color-warm-gray);
+}
+
+.validation {
+  padding: var(--card-padding);
+  margin-top: var(--section-gap);
+}
+
+.validation-body {
+  display: grid;
+  gap: 24px;
+}
+
+.passport-grid {
+  display: grid;
+  gap: 6px;
+  grid-template-columns: 1fr;
+  font-size: 13px;
+}
+
+@media (min-width: 640px) {
+  .passport-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.passport-grid > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  border-bottom: 1px solid var(--color-stone-border);
+  padding-bottom: 6px;
+  color: var(--color-ink-black);
+}
+
+.check-row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-top: 12px;
+}
+
+.check-badge {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: var(--radius-icons);
+  letter-spacing: 0.04em;
+  background: var(--color-pure-white);
+  border: 1px solid var(--color-stone-border);
+  color: var(--color-ink-black);
+}
+
+.check-passed {
+  background: var(--color-ink-black);
+  color: var(--color-pure-white);
+  border-color: var(--color-ink-black);
+}
+
+.check-failed {
+  background: var(--color-stone-muted);
+  color: var(--color-ink-black);
+}
+
+.check-unknown {
+  background: var(--color-stone-canvas);
+  color: var(--color-warm-gray);
+}
+
+.check-row-label {
+  color: var(--color-ink-black);
+  font-weight: 500;
+}
+
+/* The raw numeric readout (mean ± std per side, the left/right gap, pass threshold) sits behind
+   a native <details> disclosure — same "expanded on desktop, collapsible" pattern as the lab
+   readout panel — instead of always-on monospace lines that read as a terminal dump next to the
+   plain-English status. */
+.check-detail {
+  margin-top: 4px;
+}
+
+.check-detail summary {
+  cursor: pointer;
+  font-size: 12px;
+  color: var(--color-cyan-edge);
+}
+
+.check-detail-body {
+  margin-top: 6px;
+}
+
+.stamps-list {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.stamps-list li {
+  border-bottom: 1px solid var(--color-stone-border);
+  padding-bottom: 8px;
+  color: var(--color-ink-black);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.stream-page {
+  width: 1920px;
+  height: 1080px;
+  box-sizing: border-box;
+  transform-origin: top left;
+  display: grid;
+  grid-template-columns: 600px 1fr 420px;
+  grid-template-rows: 1fr 140px;
+  background: var(--color-soot);
+  padding: 32px;
+  gap: 20px;
+  overflow: hidden;
+  color: var(--color-stone-canvas);
+  font-family: var(--font-inter);
+}
+
+.stream-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.stream-col-brain h2 {
+  font-family: var(--font-display);
+  font-size: 20px;
+  color: var(--color-stone-canvas);
+  margin: 0;
+}
+
+.stream-brain {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  border-radius: var(--radius-feature-card);
+  overflow: hidden;
+  /* Same loading-placeholder gradient as .hero-canvas, see its comment. */
+  background:
+    radial-gradient(circle at 32% 45%, var(--color-stone-muted) 0%, transparent 55%),
+    radial-gradient(circle at 68% 45%, var(--color-stone-muted) 0%, transparent 55%), var(--color-pure-white);
+  padding: 8px;
+  box-shadow: var(--shadow-xl);
+}
+
+.stream-brain canvas {
+  border-radius: 12px;
+}
+
+/* The fly icon is drawn in ink black with no theme option (flyIcon.ts is owned by another agent
+   building its 3D replacement in parallel — not edited here). Ink-on-dark is why it read as
+   invisible on the stream's soot background; a light card behind it (matching .stream-brain's
+   own white card treatment) fixes contrast without touching the drawing code. The padding lives
+   on this outer wrapper, NOT on .stream-fly-panel itself — flyIcon.ts sizes its canvas from
+   `container.clientWidth` (which includes padding), so padding on the measured element itself
+   would make the canvas overflow past its own padding; a separate padded wrapper avoids that. */
+.stream-fly-card {
+  flex-shrink: 0;
+  background: var(--color-pure-white);
+  border-radius: var(--radius-cards);
+  box-shadow: var(--shadow-md);
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+/* Square: the 3D fly renders into a min(width, height) square (flyScene.ts), so a wide box
+   only adds dead space beside it. */
+.stream-fly-panel {
+  width: 150px;
+  height: 150px;
+}
+
+.stream-fly-panel canvas {
+  filter: none;
+}
+
+.stream-explainer {
+  list-style: none;
+  margin: 0;
+  padding: var(--card-padding);
+  display: grid;
+  gap: 10px;
+  font-size: 15px;
+  line-height: 1.4;
+  background: var(--color-pure-white);
+  border-radius: var(--radius-cards);
+  color: var(--color-ink-black);
+}
+
+.stream-explainer li {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+}
+
+.stream-explainer-step {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--color-stone-canvas);
+  border: 1px solid var(--color-stone-border);
+  color: var(--color-ink-black);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stream-question {
+  font-family: var(--font-display);
+  font-size: 28px;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  max-height: 2.6em;
+  overflow: hidden;
+  color: var(--color-stone-canvas);
+}
+
+.stream-raster-slot {
+  flex: 1;
+  min-height: 0;
+  background: var(--color-pure-white);
+  border-radius: var(--radius-cards);
+  box-shadow: var(--shadow-md);
+  padding: 12px;
+  overflow: hidden;
+}
+
+.stream-raster-slot .raster-wrap {
+  border: none;
+  overflow: hidden;
+}
+
+/* The pre-first-question explainer (renderExplainer()) is shorter than this slot's full flex
+   height, which used to leave a large dead area below the last step — center it instead of
+   pinning it to the top so the card reads as intentionally composed while idle. The real raster
+   view (renderCurrentAnswer()) does NOT get this class — that one should stay top-aligned since
+   it fills its own height. */
+.stream-raster-slot.is-placeholder {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.stream-raster-slot.is-placeholder .stream-explainer {
+  box-shadow: none;
+}
+
+.decision-big {
+  display: grid;
+  gap: 8px;
+  font-family: var(--font-mono);
+  background: var(--color-pure-white);
+  border-radius: var(--radius-cards);
+  box-shadow: var(--shadow-md);
+  padding: 16px;
+  color: var(--color-ink-black);
+}
+
+.decision-big-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+}
+
+.decision-big-result {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--color-cyan-edge);
+}
+
+.stream-col-side {
+  overflow: hidden;
+}
+
+.stream-col-side h3 {
+  color: var(--color-stone-canvas);
+  font-family: var(--font-display);
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+/* Right column's chat slot — this is what used to be an
+   empty "RECENT ANSWERS" list floating over ~800px of dead black space. Committed empty first
+   (chat.ts mounts the real chat here); sized/carded now so the column already reads
+   as "a chat panel that will fill" instead of void. */
+/* The dark chat panel (chat.css) is its own card; the slot only sizes it. Overrides the home
+   page's sticky one-viewport-tall .live-chat-slot, which makes no sense on the fixed 1080p frame. */
+.live-chat-slot.stream-chat-slot {
+  position: static;
+  flex: 1;
+  height: auto;
+  max-height: none;
+  min-height: 0;
+}
+
+.stream-stats {
+  background: var(--color-pure-white);
+  border-radius: var(--radius-cards);
+  box-shadow: var(--shadow-md);
+  padding: 16px;
+  margin-bottom: 12px;
+  /* Renders synchronously with dash placeholders (stream.ts) before the first `getStats()`
+     resolves, so this never shows as a content-less white bar (2026-09-18 audit's "unexplained
+     empty white bar top-right") — this min-height is a defense-in-depth backstop, not the fix. */
+  min-height: 92px;
+  box-sizing: border-box;
+}
+
+.stream-stats h3 {
+  font-family: var(--font-display);
+  font-size: 15px;
+  color: var(--color-ink-black);
+  margin-bottom: 8px;
+}
+
+.stream-stat-grid {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 0;
+}
+
+.stream-stat-grid > div {
+  color: var(--color-ink-black);
+  font-size: 13px;
+}
+
+.stream-stat-value {
+  font-family: var(--font-display);
+  font-size: 18px;
+  color: var(--color-ink-black);
+  margin-right: 6px;
+}
+
+/* Compact "previous answer" context line under the decision math, center column — replaces the
+   old dedicated "RECENT ANSWERS" side-column list, whose real estate now goes to the chat slot
+   above. One line, not a list: this is context for the current answer, not its own feature. */
+.stream-last-answer {
+  font-size: 13px;
+  color: var(--color-ash-gray);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 0;
+}
+
+.stream-footer {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  overflow: hidden;
+}
+
+/* A "ticker" that never moves just truncates mid-sentence (2026-09-18 audit: "clipped mid-word,
+   appears to run beneath other UI") — an actual scrolling marquee shows the full rotating list of
+   lines instead of permanently hiding all but the first. The track holds the ticker text twice
+   back-to-back and slides exactly -50%, which loops seamlessly (standard CSS marquee technique). */
+.stream-ticker {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  font-family: var(--font-mono);
+  color: var(--color-cyan-signal);
+  font-size: 15px;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 24px, #000 calc(100% - 24px), transparent);
+  mask-image: linear-gradient(to right, transparent, #000 24px, #000 calc(100% - 24px), transparent);
+}
+
+.stream-ticker-track {
+  display: inline-block;
+  white-space: nowrap;
+  animation: stream-ticker-scroll 48s linear infinite;
+}
+
+@keyframes stream-ticker-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stream-ticker-track {
+    animation: none;
+  }
+}
+
+.stream-qr {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.stream-qr p {
+  margin: 0;
+  color: var(--color-stone-canvas);
+  font-size: 13px;
+}
+
+.stream-qr img {
+  border-radius: 8px;
+  background: var(--color-pure-white);
+  padding: 4px;
+}
+
+/* ---------------------------------------------------------------------------------------------
+   Live page v2 (2026-09-19): built for a crowd that mostly waits. Headline and the ask box share
+   the first row; the LIVE stage (the fly answering everyone's questions in turn, the brain
+   replaying the real spikes beside it) follows; the chat is a tall sticky column on desktop.
+   --------------------------------------------------------------------------------------------- */
+.hero-row {
+  display: grid;
+  gap: 20px;
+  align-items: start;
+  margin-bottom: 24px;
+}
+
+@media (min-width: 960px) {
+  .hero-row {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: 40px;
+  }
+}
+
+/* The old headline grid reserved a corner for a fly; the stage has the fly now. */
+.hero-head {
+  display: block;
+  margin-bottom: 0;
+}
+
+.hero-head h1 {
+  margin-bottom: 12px;
+}
+
+.hero-deck {
+  color: var(--color-warm-gray);
+  max-width: 56ch;
+  font-size: var(--text-body-lg);
+  line-height: 1.6;
+}
+
+.hero-deck a,
+/* Several of these links are whole sentences — a full-strength underline under four wrapped
+   lines reads as a redaction bar (2026-09-21). Kept underlined (they are links and the text
+   around them is the same colour), just hairline and muted until the pointer is on one. */
+.sources-list a {
+  color: var(--color-ink-black);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--color-stone-muted);
+  text-underline-offset: 3px;
+}
+
+.sources-list a:hover,
+.sources-list a:focus-visible {
+  text-decoration-color: currentColor;
+}
+
+.hero-deck a {
+  white-space: nowrap;
+}
+
+.ask-column {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+}
+
+.ask-column .ask-box {
+  padding: 16px 16px 12px;
+}
+
+.ask-rules {
+  margin-top: 8px;
+}
+
+.ask-rules summary {
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--color-warm-gray);
+}
+
+.ask-rules[open] summary {
+  margin-bottom: 6px;
+}
+
+.my-questions {
+  padding: 16px;
+  background: var(--color-pure-white);
+  border: 1px solid var(--color-stone-border);
+  border-radius: var(--radius-cards);
+}
+
+.my-questions-list {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 14px;
+}
+
+.my-question + .my-question {
+  border-top: 1px solid var(--color-stone-border);
+  padding-top: 14px;
+}
+
+.my-question p {
+  margin: 0 0 4px;
+}
+
+.my-question-text {
+  font-weight: 500;
+}
+
+.my-question-status {
+  font-size: 14px;
+}
+
+.my-question-queued .my-question-status::before,
+.my-question-thinking .my-question-status::before {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  margin-right: 8px;
+  vertical-align: 1px;
+  background: var(--color-ash-gray);
+}
+
+.my-question-thinking .my-question-status::before {
+  background: var(--color-cyan-signal);
+}
+
+.my-question-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-top: 6px;
+}
+
+.my-question-link {
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--color-warm-gray);
+  word-break: break-all;
+  margin-right: 4px;
+}
+
+.btn-small {
+  padding: 4px 12px;
+  font-size: 13px;
+}
+
+/* The stage panel: the live fly on one side, the brain on the other (stacked on phones). */
+.stage-panel {
+  padding: 16px;
+  display: grid;
+  gap: 16px;
+  scroll-margin-top: 76px;
+}
+
+@media (min-width: 860px) {
+  .stage-panel {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    padding: 20px;
+  }
+  /* `stretch`, not `start`: while nothing has been answered yet the fly column is ~110px shorter
+     than the brain beside it, and pinning both to the top left that difference as a white hole
+     under the fly (2026-09-21). Stretched, the fly column owns the full row height and centres
+     the fly in it; once an answer lands the column is the tall one and this changes nothing. */
+  .stage-panel > .live-stage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+.live-stage {
+  min-width: 0;
+}
+
+.stage-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 0;
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 860px) {
+  .stage-status {
+    justify-content: flex-start;
+  }
+}
+
+.live-dot {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-cyan-signal);
+  animation: live-pulse 2s ease-out infinite;
+}
+
+@keyframes live-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(59, 166, 241, 0.5); }
+  70% { box-shadow: 0 0 0 8px rgba(59, 166, 241, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(59, 166, 241, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .live-dot {
+    animation: none;
+  }
+}
+
+.stage-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.stage-label {
+  margin: 0;
+}
+
+.stage-question {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 3vw, 28px);
+  line-height: 1.25;
+  letter-spacing: -0.4px;
+  margin: 6px 0 0;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+}
+
+/* flyScene.ts renders into a min(width, height) square; the model uses its middle ~55%, so the
+   box overlaps the text around it a little instead of leaving a white moat. */
+.fly-panel.stage-fly {
+  width: min(100%, 320px);
+  height: auto;
+  aspect-ratio: 1;
+  margin: -12px auto -20px;
+}
+
+.stage-caption {
+  color: var(--color-warm-gray);
+  font-size: 15px;
+  min-height: 1.6em;
+  margin: 0;
+}
+
+.stage-view.is-sealed .stage-caption {
+  color: var(--color-ink-black);
+  max-width: 40ch;
+}
+
+.stage-verdict {
+  align-self: stretch;
+  text-align: left;
+  margin-top: 12px;
+}
+
+/* The lab readout sits UNDER both stage columns, not inside the narrow fly column (2026-09-21):
+   its trial table, its 640px raster and its cell-type table need the panel's full width. At
+   ~315px — what the fly column is on a 1440px screen — the table clipped its own last column at
+   the card edge and the bias rows ran out past the border. */
+.stage-readout {
+  min-width: 0;
+}
+
+@media (min-width: 860px) {
+  .stage-readout {
+    grid-column: 1 / -1;
+  }
+}
+
+.answer-caveat {
+  font-size: 13px;
+  color: var(--color-warm-gray);
+  margin: 4px 0 8px;
+}
+
+/* A flex column so the `order: -1` the phone rule below puts on `.stage-tag` has a flex parent to
+   act in — without it the tag simply followed the canvas and the "slowed 10x" pill printed BELOW
+   the brain it labels (2026-09-21). On wider screens the tag is absolutely positioned and out of
+   flow anyway, so the column changes nothing there. */
+.stage-brain {
+  position: relative;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.stage-brain .hero-canvas {
+  aspect-ratio: 16 / 10;
+  box-shadow: none;
+  border: 1px solid var(--color-stone-border);
+}
+
+.stage-brain .stage-tag {
+  top: 12px;
+  left: 12px;
+}
+
+/* NOT sticky (2026-09-21). It used to be, from when the whole answer — card and lab readout —
+   lived in the column beside it and the brain was worth keeping in view while that column
+   scrolled. A sticky box is a positioned box: it paints above the in-flow blocks around it, and
+   once the readout moved to its own full-width row underneath, the brain hung over that row and
+   sliced the right half off the bias rows, the b0 paragraph and the spike raster. That clipping
+   was the reported clipping. The brain now scrolls with everything else. */
+@media (min-width: 860px) {
+  .stage-brain .hero-canvas {
+    aspect-ratio: auto;
+    height: clamp(320px, 46vh, 460px);
+  }
+}
+
+.recent-panel {
+  padding: 16px 20px;
+  margin-top: 24px;
+}
+
+.recent-list {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+}
+
+.recent-list li a {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0;
+  border-top: 1px solid var(--color-stone-border);
+  color: inherit;
+  text-decoration: none;
+  min-width: 0;
+}
+
+.recent-list li:first-child a {
+  border-top: 0;
+}
+
+.recent-list li a:hover .feed-question {
+  text-decoration: underline;
+}
+
+.recent-list .feed-question {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.recent-list .feed-meta {
+  display: flex;
+  gap: 10px;
+  flex: none;
+}
+
+.feed-verdict {
+  color: var(--color-ink-black);
+}
+
+/* The questions archive (2026-09-19; set apart 2026-09-22 — it read as one more grey card under
+   the stage, so it gets a real heading, a cyan accent and chips a visitor can scan). The row
+   itself stays a link; the heart sits outside it so a tap on one is never the other. */
+.questions-panel {
+  margin-top: 28px;
+  padding: 22px 24px 18px;
+  border-color: var(--color-sky-wash);
+  border-top: 3px solid var(--color-cyan-signal);
+  background: linear-gradient(180deg, rgba(193, 225, 247, 0.28) 0, var(--color-pure-white) 120px);
+}
+
+.questions-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 16px;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--color-stone-border);
+}
+
+.questions-titles {
+  min-width: 0;
+}
+
+.questions-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.3px;
+  color: var(--color-ink-black);
+}
+
+.questions-hint {
+  margin: 4px 0 0;
+  font-size: 0.9rem;
+  color: var(--color-warm-gray);
+}
+
+.questions-total {
+  color: var(--color-ink-black);
+  font-weight: 600;
+}
+
+.questions-tabs {
+  display: flex;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--color-stone-border);
+  border-radius: 999px;
+  background: var(--color-pure-white);
+}
+
+.questions-tab {
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  padding: 5px 14px;
+  font: inherit;
+  font-size: 0.9rem;
+  color: var(--color-warm-gray);
+  cursor: pointer;
+}
+
+.questions-tab:hover {
+  color: var(--color-ink-black);
+}
+
+.questions-tab.is-active {
+  background: var(--color-cyan-signal);
+  color: var(--color-pure-white);
+}
+
+.questions-list li {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  padding: 12px 0;
+  border-top: 1px solid var(--color-stone-border);
+}
+
+.questions-list li:first-child {
+  border-top: 0;
+}
+
+.questions-list li a {
+  flex: 1 1 260px;
+  min-width: 0;
+  padding: 0;
+  border-top: 0;
+}
+
+.questions-list .feed-question {
+  font-size: 1.02rem;
+  font-weight: 500;
+  color: var(--color-ink-black);
+}
+
+/* The tail: time, verdict, heart. One aligned group, so a question that wraps to three lines on a
+   phone does not leave the three of them scattered down the row at three different heights
+   (2026-09-21). Below 640px the question takes the whole width and the tail follows on a line of
+   its own, right-aligned under it. */
+.questions-list .feed-meta {
+  align-items: center;
+  flex: 0 0 auto;
+  color: var(--color-ash-gray);
+}
+
+@media (max-width: 639px) {
+  .questions-panel {
+    padding: 18px 16px 14px;
+  }
+  .questions-title {
+    font-size: 21px;
+  }
+  .questions-list li a {
+    flex: 1 1 100%;
+  }
+  .questions-list .feed-meta {
+    flex: 1 1 100%;
+    justify-content: flex-end;
+  }
+}
+
+/* One width for YES and NO, so the chips form a straight column down the list. */
+.verdict-chip {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 3.4rem;
+  padding: 2px 0;
+  border-radius: 999px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.verdict-chip.is-yes {
+  background: var(--color-sky-wash);
+  color: #0b5c94;
+}
+
+.verdict-chip.is-no {
+  background: var(--color-stone-border);
+  color: var(--color-soot);
+}
+
+.verdict-chip.is-sealed {
+  border: 1px dashed var(--color-stone-muted);
+  color: var(--color-warm-gray);
+}
+
+.like-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  flex: none;
+  min-width: 3.6rem;
+  min-height: 32px;
+  border: 1px solid var(--color-stone-muted);
+  border-radius: 999px;
+  background: var(--color-pure-white);
+  padding: 3px 12px;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.6;
+  color: var(--color-soot);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+}
+
+.like-btn:hover {
+  border-color: var(--color-cyan-signal);
+  color: var(--color-cyan-edge);
+}
+
+.like-btn.is-liked {
+  border-color: var(--color-cyan-signal);
+  background: var(--color-cyan-signal);
+  color: var(--color-pure-white);
+}
+
+.like-btn.is-failed {
+  border-color: var(--color-stone-muted);
+  background: var(--color-pure-white);
+  color: var(--color-ash-gray);
+}
+
+.like-btn[disabled] {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.like-heart {
+  font-size: 1.1em;
+  line-height: 1;
+}
+
+.questions-more {
+  margin-top: 12px;
+}
+
+/* Numbers: one strip, everything else one click away (the block was too bulky). */
+.lab-strip {
+  margin-top: var(--section-gap);
+  padding: 16px 20px;
+  border: 1px solid var(--color-stone-border);
+  border-radius: var(--radius-cards);
+  background: var(--color-pure-white);
+}
+
+.lab-strip-title {
+  margin: 0 0 10px;
+}
+
+.stats-strip {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 24px;
+}
+
+@media (min-width: 860px) {
+  .stats-strip {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.strip-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.strip-value {
+  font-family: var(--font-display);
+  font-size: 24px;
+  letter-spacing: -0.4px;
+}
+
+.lab-strip-more summary {
+  cursor: pointer;
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--color-warm-gray);
+}
+
+.lab-strip-more .stats-grid,
+.lab-strip-more h4 {
+  margin-top: 12px;
+}
+
+.about-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0 8px;
+}
+
+.sources-title {
+  font-size: var(--text-subheading);
+  margin: 32px 0 10px;
+}
+
+.sources-list {
+  margin: 0;
+  padding-left: 20px;
+  display: grid;
+  gap: 14px;
+}
+
+.sources-list p {
+  margin: 2px 0 0;
+}
+
+.share-page {
+  padding-top: 24px;
+}
+
+.share-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+/* Chat: taller, with its history one scroll up (it should keep and scroll history). */
+/* Below the desktop breakpoint the chat is an in-flow block after the archive, and a fixed
+   560px of it was ~90% empty whitespace on a phone with two messages in the room (2026-09-21).
+   It now takes the height its messages need and stops growing at 560px / 70vh, after which
+   .chat-messages scrolls inside it as before. */
+.live-chat-slot {
+  height: auto;
+  max-height: min(560px, 70vh);
+}
+
+.live-chat-slot .chat-panel {
+  max-height: none;
+}
+
+.live-chat-slot > * {
+  flex: 0 1 auto;
+}
+
+.live-chat-slot .chat-messages-wrap {
+  min-height: 96px;
+}
+
+@media (min-width: 1100px) {
+  .live-chat-slot {
+    height: calc(100vh - 96px);
+    max-height: 880px;
+  }
+  /* Beside the stage it is a full column again, so the panel stretches to fill it. */
+  .live-chat-slot > * {
+    flex: 1;
+  }
+  .live-chat-slot .chat-messages-wrap {
+    min-height: 160px;
+  }
+}
+
+.chat-older {
+  text-align: center;
+  font-size: 12px;
+  color: var(--color-warm-gray);
+  padding: 8px;
+  margin: 0;
+}
+
+/* --- Legal documents (/terms, /privacy) ------------------------------------------------------
+   Long-form reading, deliberately plainer than the marketing sections: one narrow measure, no
+   panels, no accent colour. Added 2026-09-21 with the Terms of Use and the Privacy Policy. */
+.legal-doc {
+  max-width: 76ch;
+  padding-bottom: var(--section-gap);
+}
+
+.legal-doc h1 {
+  font-size: var(--text-heading-sm);
+  line-height: var(--leading-heading-sm);
+  letter-spacing: var(--tracking-heading-sm);
+  margin-bottom: 8px;
+}
+
+/* A section heading set at the same weight and nearly the same size as the body turned both
+   documents into one grey wall — nothing to scan by (2026-09-21). The rule above each section
+   does most of the work; the heading only has to be clearly a heading. */
+.legal-doc h2 {
+  font-size: var(--text-subheading);
+  line-height: var(--leading-subheading);
+  letter-spacing: var(--tracking-subheading);
+  font-weight: 500;
+  color: var(--color-ink-black);
+  margin-bottom: 12px;
+}
+
+.legal-doc p {
+  font-size: var(--text-body-lg);
+  line-height: var(--leading-body-lg);
+  margin: 0 0 12px;
+}
+
+.legal-intro {
+  color: var(--color-warm-gray);
+  margin-top: 16px;
+}
+
+.legal-section {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--color-stone-border);
+}
+
+.legal-section:first-of-type {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.legal-list {
+  margin: 0 0 12px;
+  padding-left: 20px;
+  font-size: var(--text-body-lg);
+  line-height: var(--leading-body-lg);
+}
+
+.legal-list li {
+  margin-bottom: 8px;
+}
+
+.legal-footer-link {
+  margin-top: 40px;
+  border-top: 1px solid var(--color-stone-border);
+  padding-top: 16px;
+  color: var(--color-warm-gray);
+}
+
+.legal-doc a {
+  color: var(--color-ink-black);
+  text-decoration: underline;
+}
+
+/* The footer's document links sit a little apart from the disclaimer paragraphs above them. */
+.footer-links {
+  margin-top: 12px;
+}
+
+/* One quiet line under the ask box: what becomes public before anyone types. */
+.ask-disclaimer {
+  margin-top: 10px;
+}

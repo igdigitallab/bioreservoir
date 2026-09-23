@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#fafaf9" />
+    <meta
+      name="description"
+      content="Ask a real fly brain a yes/no question. A published Drosophila connectome (MaleCNS, CC BY 4.0) is simulated live and its spikes drive the answer."
+    />
+    <title>Ask a Real Fly Brain a Yes/No Question | IG Digital Lab</title>
+    <!-- Link previews (X, LinkedIn, Slack, iMessage): crawlers do not run JS, so these are static.
+         og.png is rendered from the real MaleCNS soma positions by scripts/export_og_image.py. -->
+    <link rel="canonical" href="https://fly.igdigi.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="BioReservoir by IG Digital Lab" />
+    <meta property="og:url" content="https://fly.igdigi.com/" />
+    <meta property="og:title" content="Ask a real fly brain a yes/no question" />
+    <meta property="og:description" content="165,122 real neurons from a published fruit-fly connectome, simulated live on our own servers for every question you ask. Not a chatbot, not a language model — a whole-brain biophysical simulation, scored against real controls." />
+    <meta property="og:image" content="https://fly.igdigi.com/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="A real fruit-fly brain, 165,000 neurons, drawn from the MaleCNS connectome" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Ask a real fly brain a yes/no question" />
+    <meta name="twitter:description" content="165,122 real neurons, simulated live on our servers. Ask a yes-or-no question and watch which way it turns — a real biophysical simulation, not a chatbot." />
+    <meta name="twitter:image" content="https://fly.igdigi.com/og.png" />
+    <!-- Cloudflare Turnstile, explicit render mode:
+         https://developers.cloudflare.com/turnstile/get-started/client-side-rendering/ -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
+    <link rel="icon" href="data:," />
+
+    <!-- Google Analytics — same property as igdigi.com (src/analytics.ts explains why: shared
+         `_ga` cookie at the apex domain keeps one session across the handoff to igdigi.com).
+         send_page_view:false because this is an SPA; src/analytics.ts fires every real
+         page_view (including the first one) with site_section:"fly" attached, via main.ts's
+         render(). https://developers.google.com/analytics/devguides/collection/ga4/views -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DV5C3E37KT"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-DV5C3E37KT', { send_page_view: false });
+    </script>
+
+    <!-- Structured data. Organization re-uses igdigi.com's own canonical @id
+         (https://igdigi.com/#organization, tools/site_chrome.py ORG_CANON there) instead of
+         declaring a second, competing Organization node for the same company — sameAs list
+         copied verbatim from that file's ORG_SAME_AS. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://igdigi.com/#organization",
+            "name": "IG Digital Lab",
+            "legalName": "IGGO, LLC",
+            "url": "https://igdigi.com/",
+            "sameAs": [
+              "https://www.linkedin.com/company/ig-digital-lab/",
+              "https://www.instagram.com/igdigitallab/",
+              "https://www.facebook.com/igdigitallab/",
+              "https://github.com/igdigitallab",
+              "https://www.goodfirms.co/company/ig-digital-lab",
+              "https://clutch.co/profile/ig-digital-lab",
+              "https://techbehemoths.com/company/ig-digital-lab",
+              "https://www.agencyspotter.com/ig-digital-lab",
+              "https://www.thumbtack.com/ca/sacramento/data-recovery/ig-digital-lab/service/581973703045505024",
+              "https://maps.google.com/?cid=7645713587463466936",
+              "https://fly.igdigi.com/"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://fly.igdigi.com/#website",
+            "url": "https://fly.igdigi.com/",
+            "name": "BioReservoir",
+            "description": "Ask a real fly brain a yes/no question. A published Drosophila connectome (MaleCNS, CC BY 4.0) is simulated live and its spikes drive the answer.",
+            "publisher": { "@id": "https://igdigi.com/#organization" },
+            "inLanguage": "en"
+          },
+          {
+            "@type": "SoftwareApplication",
+            "@id": "https://fly.igdigi.com/#software",
+            "name": "BioReservoir",
+            "applicationCategory": "ScienceApplication",
+            "operatingSystem": "Any (web browser)",
+            "url": "https://fly.igdigi.com/",
+            "description": "A whole-brain leaky integrate-and-fire simulation of a published fruit-fly connectome (Janelia MaleCNS v1.0), driven live by visitor questions and scored against a rewired connectome, a random graph and a no-brain baseline.",
+            "isAccessibleForFree": true,
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+            "author": { "@id": "https://igdigi.com/#organization" },
+            "license": "https://github.com/igdigitallab/bioreservoir/blob/master/LICENSE"
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <!-- Static, always-rendered text (task: crawlers that do not run JS — GPTBot, ClaudeBot,
+         PerplexityBot — got 2537 bytes of empty shell before this). Below the interactive
+         experience on purpose, not hidden (no display:none/visibility:hidden — that would read
+         as a cloaking trick to the same crawlers this exists for). Composition, the 3D scene and
+         the question -> answer flow above are unchanged. -->
+    <section class="section container" aria-labelledby="about-static-h2">
+      <div class="legal-doc">
+        <h2 id="about-static-h2">What BioReservoir actually is</h2>
+        <p>
+          BioReservoir simulates a real, published brain instead of training a language model.
+          The wiring is a male fruit fly's whole central nervous system, mapped neuron by neuron
+          by Janelia FlyEM (MaleCNS v1.0, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>)
+          — 165,122 neurons, 6.2 million connections. A small text-embedding model turns your
+          question into firing rates on real sensory neurons (taste, smell, sight, touch); a
+          leaky integrate-and-fire simulation, ported from Shiu, Sterne, Spiller et al.,
+          <em>Nature</em> 634 (2024), runs the whole brain for 250 simulated milliseconds; whichever
+          side reaches the descending motor-command neurons harder becomes yes or no. No part of
+          that pipeline is trained on outcomes.
+        </p>
+        <p>
+          Two checks anchor the honesty claim. What worked: driving the real sugar-sensing
+          neurons fires the real proboscis-extension neuron (MN9) at rates matching Shiu et al.'s
+          published result, and bitter input suppresses that firing by 96.8%. What failed: the
+          same lateral-bias readout, run on a second, female connectome (BANC, Harvard Dataverse,
+          CC BY 4.0), collapses to a constant response regardless of which side is stimulated — a
+          real limit of that dataset's public reconstruction, published as a failure, not left
+          out. Every answer is scored against a rewired connectome, a random graph, a
+          no-connectome baseline — not against nothing.
+        </p>
+        <p>
+          This runs live, not from a cache: every question above triggers a fresh whole-brain
+          simulation on IG Digital Lab's own CPU servers in Sacramento, California, and takes
+          about 66 seconds end to end — <a href="https://fly.igdigi.com/api/now">/api/now</a>
+          reports the live queue and cycle time. Snapshot from
+          <a href="https://fly.igdigi.com/api/stats">/api/stats</a> as of 2026-09-22: 8 questions
+          answered, 4.3 million real spikes recorded, 6 seconds of brain time simulated since the
+          page went up on 2026-09-19 — the live counters above update as new questions come in.
+        </p>
+        <p>
+          This is an experiment in brain wiring, not a claim about anything else. The full
+          methodology, the controls and what the numbers actually say are on the
+          <a href="/data">data page</a>; sources, images and contact are in the
+          <a href="/press">press kit</a>. Built and operated by
+          <a href="https://igdigi.com/?ref=fly">IG Digital Lab</a>.
+        </p>
+      </div>
+    </section>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

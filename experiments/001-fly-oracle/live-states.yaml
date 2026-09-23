@@ -1,0 +1,69 @@
+# Behavioural-state readouts for the live fly page, following the design principle that
+# "emotions" shown to visitors must be real behavioral programs, not decorative numbers. Each
+# state names the population(s) it reads (populations.yaml) and a normalization range turning a
+# raw spike count into 0..1. Read by `bioreservoir.live.states`.
+#
+# `validated: false` -> the live page (and API `Answer.states`) publishes `null` for that state:
+# if a state doesn't respond, it isn't shown. Only `arousal` starts `validated: true`, since it
+# is a whole-network fraction (0..1 by construction, no reference-distribution calibration needed
+# to make it a valid probability-like number — see its own `note`).
+#
+# `normalization: {min_spikes, max_spikes}` (5th/95th percentile of the validation run's 48
+# per-text mean spike counts, once set) is applied as `clip((raw - min) / (max - min), 0, 1)`.
+#
+# Populated by `python -m bioreservoir.live.validate_states` (see its module docstring for the
+# exact procedure) — that script is implemented but MUST NOT be run outside the CPU/memory cage
+# (`experiments/001-fly-oracle/RUNNING.md`), and is run manually, not by any automated process.
+
+states:
+  appetite:
+    populations: [MN9_proboscis]
+    validated: false
+    normalization: null
+    note: >-
+      Proboscis extension ("feed / approach"), male-only readout (MN9 confirmed absent in BANC,
+      docs/DATA.md) — moot for the live page, which only ever runs the male brain.
+
+  fear:
+    populations: [DNp01_giant_fiber]
+    validated: false
+    normalization: null
+    note: "Giant-fiber escape circuit (jump/flee)."
+
+  backoff:
+    populations: [MDN]
+    validated: false
+    normalization: null
+    note: "Moonwalker descending neurons (backward walking)."
+
+  courtship:
+    populations: [P1_pC1, pIP10]
+    validated: false
+    normalization: null
+    note: >-
+      Courtship-command circuit (P1/pC1 decision node + pIP10 song command), male-only
+      behaviourally (docs/DATA.md "Sex-specific circuitry") — moot for the live page.
+
+  arousal:
+    populations: []  # whole-network fraction active, not one named population — see states.py
+    validated: true
+    normalization: {min_frac: 0.0, max_frac: 1.0}
+    note: >-
+      Fraction of all simulated neurons that spiked at least once during the trial window.
+      Always in [0, 1] by construction (a fraction), so it needs no reference-distribution
+      calibration to be a valid 0..1 number the way a raw spike COUNT would — this is why it is
+      the one state marked validated from the start rather than pending validate_states.py.
+
+validation_procedure: >-
+  Run the 24 reference sentences (reference.yaml) plus 24 varied yes/no questions
+  (live-varied.yaml, committed alongside this file) through the male brain, `config.yaml`'s
+  `trial.n_trials` per text. For each candidate state population (appetite/fear/backoff/
+  courtship), compare the standard deviation of its per-text MEAN spike count across the 48 texts
+  ("across-text variance": does the reading actually depend on which text was shown) to the mean
+  standard deviation of a single text's own repeated trials ("trial-to-trial noise": does it just
+  fire noisily regardless of input). A state is proposed `validated: true` only when
+  across-text std >= `--threshold` (default 2.0) x mean within-text std — otherwise it stays
+  `false` and the live page keeps publishing `null` for it. Writes proposed `validated` +
+  `normalization` (5th/95th percentile of the 48 per-text means) back into this file for a human
+  to review and commit; never overwrites `arousal`, which needs no calibration (see its own
+  `note` above).

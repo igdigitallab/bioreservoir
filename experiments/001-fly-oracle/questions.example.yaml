@@ -1,0 +1,26 @@
+# Experiment 001 question set: example schema.
+# Real sets live in questions.yaml. Once a question is committed it is never edited;
+# corrections go in as a new id with `supersedes:`.
+
+- id: "2026-11-us-house-control"
+  format: scored            # scored | take
+  category: politics        # politics | sports | economics | culture | science | news
+  question: "Will the Democratic Party win a majority of seats in the US House of Representatives in the November 3, 2026 election?"
+  context: >-
+    Neutral 2-4 sentence summary of the public state of play, written by us.
+  resolves_by: "2026-11-30"
+  resolution_criterion: "Majority of 435 seats as reported by the Associated Press race calls."
+  resolution_source: "https://apnews.com/"
+  market_consensus:          # optional, quoted context only, never fed to the model
+    value: null              # e.g. 0.55
+    as_of: null              # ISO date
+    source_url: null
+  added: "2026-09-18"
+
+- id: "2026-09-hype-example"
+  format: take
+  category: news
+  question: "Topic headline in our own words."
+  context: >-
+    Neutral summary of the trending story.
+  added: "2026-09-18"

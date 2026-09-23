@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="index,follow" />
+    <title>The Data Behind BioReservoir | IG Digital Lab</title>
+    <meta
+      name="description"
+      content="33 independent yes/no questions, 429 runs including controls, computed from BioReservoir's own ledger: methodology, controls, invariance, and where the validation failed."
+    />
+    <link rel="canonical" href="https://fly.igdigi.com/data" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="The Data Behind BioReservoir" />
+    <meta property="og:description" content="33 independent yes/no questions, 429 runs including controls. Methodology, controls, invariance, and where the validation failed — computed, not asserted." />
+    <meta property="og:url" content="https://fly.igdigi.com/data" />
+    <meta property="og:image" content="https://fly.igdigi.com/og.png" />
+    <link rel="icon" href="data:," />
+    <!-- Static, self-contained page (see site/public/press.html's same comment): tokens copied
+         literally from site/src/style.css, no build-time dependency on the SPA bundle. -->
+    <style>
+      :root {
+        --canvas: #fafaf9; --white: #ffffff; --border: #e8e6e5; --ash: #a8a29e;
+        --warm-gray: #78716c; --ink: #0c0a09; --cyan: #3ba6f1; --cyan-wash: #eaf5fd;
+      }
+      * { box-sizing: border-box; }
+      html, body {
+        margin: 0; padding: 0;
+        background: var(--canvas); color: var(--ink);
+        font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+        font-size: 16px; line-height: 1.64;
+      }
+      main { max-width: 76ch; margin: 0 auto; padding: 48px 24px 96px; }
+      h1 { font-size: 34px; line-height: 1.2; letter-spacing: -0.8px; margin: 0 0 8px; }
+      h2 { font-size: 20px; font-weight: 500; margin: 40px 0 12px; padding-top: 24px; border-top: 1px solid var(--border); }
+      h2:first-of-type { border-top: 0; padding-top: 0; margin-top: 24px; }
+      h3 { font-size: 16px; font-weight: 600; margin: 20px 0 8px; }
+      p { margin: 0 0 14px; }
+      a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--ash); }
+      a:hover { text-decoration-color: var(--ink); }
+      .kicker { color: var(--warm-gray); font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; }
+      .stat-row { display: flex; gap: 16px; flex-wrap: wrap; margin: 16px 0 24px; }
+      .stat { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 14px 18px; min-width: 150px; flex: 1; }
+      .stat .n { font-size: 26px; font-weight: 600; display: block; }
+      .stat .label { font-size: 13px; color: var(--warm-gray); }
+      table { border-collapse: collapse; width: 100%; margin: 12px 0 20px; font-size: 15px; }
+      th, td { text-align: left; padding: 8px 12px 8px 0; border-bottom: 1px solid var(--border); vertical-align: top; }
+      th { color: var(--warm-gray); font-weight: 500; }
+      ul, ol { padding-left: 22px; margin: 0 0 14px; }
+      li { margin-bottom: 8px; }
+      .callout { background: var(--white); border: 1px solid var(--border); border-left: 3px solid var(--cyan); border-radius: 6px; padding: 14px 18px; margin: 16px 0; }
+      .callout.fail { border-left-color: #c2410c; }
+      .callout .tag { font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--warm-gray); display: block; margin-bottom: 4px; }
+      .missing { color: var(--warm-gray); font-style: italic; }
+      footer { max-width: 76ch; margin: 0 auto; padding: 24px; border-top: 1px solid var(--border); color: var(--warm-gray); font-size: 14px; }
+      footer a { color: var(--warm-gray); }
+      code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.9em; }
+    </style>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Dataset",
+            "name": "BioReservoir — batch 001 process data",
+            "description": "33 independent yes/no questions, 429 runs including rewired-connectome, no-connectome and random-graph controls, computed from the experiment's own ledger. Underlying connectomes: Janelia MaleCNS v1.0 and BANC.",
+            "url": "https://fly.igdigi.com/data",
+            "license": "https://creativecommons.org/licenses/by/4.0/",
+            "creator": { "@id": "https://igdigi.com/#organization" },
+            "citation": [
+              "Berg, Beckett, Costa et al. Sexual dimorphism in the complete connectome of the Drosophila male central nervous system. bioRxiv (2025). https://doi.org/10.1101/2025.10.09.680999",
+              "Bates, Phelps, Kim et al. Distributed control circuits across a brain-and-cord connectome (preprint). Harvard Dataverse. https://doi.org/10.7910/DVN/8TFGGB",
+              "Shiu, Sterne, Spiller et al. A Drosophila computational brain model reveals sensorimotor processing. Nature 634, 210-219 (2024). https://doi.org/10.1038/s41586-024-07763-9"
+            ],
+            "variableMeasured": [
+              "p(yes) per question and phrasing variant",
+              "lateral bias of descending-neuron population activity",
+              "invariance to negation and paraphrase"
+            ]
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How much data is in this batch?",
+                "acceptedAnswer": { "@type": "Answer", "text": "33 independent yes/no questions, 429 runs including rewired-connectome, no-connectome and random-graph controls. Full per-run tables are published in the repository." }
+              },
+              {
+                "@type": "Question",
+                "name": "What controls does BioReservoir score against?",
+                "acceptedAnswer": { "@type": "Answer", "text": "A no-connectome baseline (same embedding and readout wiring, no brain), a rewired connectome that preserves degrees, weights, signs and cell types, and an Erdős–Rényi random graph of the same size and density." }
+              },
+              {
+                "@type": "Question",
+                "name": "Did BioReservoir's validation pass?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Partly, and that is reported directly. The male connectome (MaleCNS) reproduces Shiu et al.'s published sugar-feeding response and shows a real, consistent left/right lateral bias. The female connectome (BANC) fails the same lateral-bias validation, collapsing to a constant response regardless of which side is stimulated -- reported as a failure, not hidden." }
+              },
+              {
+                "@type": "Question",
+                "name": "Are outcomes scored yet?",
+                "acceptedAnswer": { "@type": "Answer", "text": "No. This batch's questions resolve by 2026-12-15 and no outcomes have been recorded yet, so no accuracy, Brier score or calibration numbers exist yet -- only the process numbers on this page." }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <main>
+      <p class="kicker">Data</p>
+      <h1>The data behind BioReservoir</h1>
+      <p>
+        This page is the landing page for anyone who wants the numbers, not the interactive
+        experience — link here instead of the home page. Everything below is computed from
+        BioReservoir's own ledger and committed calibration files, not asserted. Where the ledger
+        does not have enough to support a claim, that is said explicitly instead of filled in.
+      </p>
+      <p>
+        Every run is a live event, not a cached reply: the simulation runs fresh on IG Digital
+        Lab's own CPU servers in Sacramento, California, and takes about 66 seconds end to end.
+        <a href="https://fly.igdigi.com/api/now">/api/now</a> reports the current queue and cycle
+        time in real time.
+      </p>
+
+      <div class="stat-row">
+        <div class="stat"><span class="n">33</span><span class="label">independent yes/no questions</span></div>
+        <div class="stat"><span class="n">429</span><span class="label">runs including controls</span></div>
+        <div class="stat"><span class="n">99</span><span class="label">real-brain runs (33 × 3 phrasings)</span></div>
+        <div class="stat"><span class="n">330</span><span class="label">control runs</span></div>
+      </div>
+
+      <h2>Volume</h2>
+      <p>
+        33 independent yes/no questions · 429 runs including controls. Verified directly against
+        <code>experiments/001-fly-oracle/ledger.sqlite</code>: 99 runs on the real male connectome
+        (33 questions, each asked as its original phrasing, its negation, and a paraphrase — 10
+        simulation trials per run) plus 330 control runs (see below). All questions are about
+        public events; per the owner's decision, this page does not name individual questions or
+        report which way any one of them leaned — only aggregate, batch-level numbers.
+      </p>
+
+      <h2>Controls</h2>
+      <p>Every question is also scored against these controls, not just against nothing:</p>
+      <ul>
+        <li><strong>No-connectome baseline</strong> — the same text embedding and readout wiring, with no brain at all. Isolates how much of any answer comes from the embedding itself rather than the connectome.</li>
+        <li><strong>Rewired connectome</strong> — the same neurons, degrees, synapse weights, signs and cell types, with connections shuffled. Isolates the real wiring pattern from everything else that is held constant.</li>
+        <li><strong>Erdős–Rényi random graph</strong> — a random graph of the same size and density as the real connectome (auxiliary control).</li>
+      </ul>
+      <p>
+        No-connectome runs are deterministic given their seed (one trial each); real, rewired and
+        random-graph runs are stochastic simulations (10 trials each). Full per-run counts for
+        every condition, including controls not named above, are published in the repository (see
+        below).
+      </p>
+
+      <h2>Invariance and confidence</h2>
+      <p>
+        Computed from the real-brain runs only (33 questions × 3 phrasings, malecns/real
+        condition), comparing each question's original phrasing against its negation and its
+        paraphrase:
+      </p>
+      <p>
+        Full per-run measurement tables are published in the repository:
+        <a href="https://github.com/igdigitallab/bioreservoir/blob/main/experiments/001-fly-oracle/RESULTS.md">experiments/001-fly-oracle/RESULTS.md</a>.
+        Read plainly: rephrasing a question — negating it or paraphrasing it — moves the answer
+        only slightly, for every condition tested. That is consistent with the rest of this site's
+        framing: the signal is real and measurable (see Validation below), but it is small, and
+        this batch does not show it producing a confidently one-sided answer to individual
+        questions.
+      </p>
+      <p class="missing">
+        Not available yet: accuracy, Brier score and calibration against actual outcomes. This
+        batch's questions resolve by 2026-12-15 and no outcomes have been recorded in the ledger's
+        resolutions table yet — that scoring will only exist after resolution, and will be
+        published here when it does, including if the brain performs no better than its controls.
+      </p>
+
+      <h2>Methodology</h2>
+      <ol>
+        <li><strong>Encode.</strong> A small text-embedding model (<code>all-MiniLM-L6-v2</code>) turns the question's text into a vector, which becomes Poisson input rates on real sensory neuron populations: gustatory (sugar/bitter), olfactory, photoreceptor and mechanosensory, defined by each connectome's own cell-type vocabulary.</li>
+        <li><strong>Simulate.</strong> A whole-brain leaky integrate-and-fire (LIF) network — parameters ported unchanged from Shiu et al. (2024) — runs for 250 simulated milliseconds per trial, 10 trials per (question, phrasing, condition).</li>
+        <li><strong>Read out.</strong> The primary readout is the lateral bias of the descending-neuron population, (L−R)/(L+R) (~650 neurons per side) — not a single named cell pair, which turned out to be too small a sample to trust on its own.</li>
+        <li><strong>Correct for handedness.</strong> Every brain has its own intrinsic left/right asymmetry, independent of any question. A set of 24 short, neutral reference sentences establishes that baseline bias per (brain, condition), and it is subtracted from every question's raw bias before scoring.</li>
+        <li><strong>Map to yes/no.</strong> Each question gets its own pre-committed, randomly seeded assignment deciding whether a leftward corrected bias reads as "yes" or "no" for that question — set before any run, so a brain that happened to have a constant left/right lean could not read as a uniform yes-or-no skew across the batch.</li>
+      </ol>
+      <p>
+        Full parameter table, citations and calibration detail: live at
+        <a href="https://fly.igdigi.com/api/validation">/api/validation</a> and on the
+        <a href="https://fly.igdigi.com/#validation">validation section of the home page</a>.
+      </p>
+
+      <h2>What validated, and what didn't</h2>
+      <div class="callout">
+        <span class="tag">Reproduced</span>
+        Driving the real sugar-sensing neurons (the male connectome's own labellar taste
+        population) fires the real proboscis-extension motor neuron, MN9, at 128.5 ± 21.3 Hz
+        (mean ± std, 10 trials, 150 Hz input) against 0 spikes with no input — matching Shiu et
+        al.'s published direction and shape of the response. Adding bitter input on top of sugar
+        suppresses that firing by 96.8%, reproducing the paper's feed-forward inhibition result.
+      </div>
+      <div class="callout fail">
+        <span class="tag">Failed — published anyway</span>
+        The same lateral-bias readout, run on the second, female connectome (BANC), does not
+        track which side is stimulated at all: driving either the left or right side of a
+        balanced sensory population produces the identical bias, collapsing to a constant
+        response every trial. This is a real limit of BANC's current public reconstruction (a
+        proofreading-driven left/right imbalance in the released data, not a code bug — verified
+        by checking reachability and by trying a rebalanced subgraph, which did not fix it), not a
+        result we are hiding. The male connectome (MaleCNS) does not have this problem: its
+        lateral bias tracks stimulus side correctly and consistently. Live numbers for both:
+        <a href="https://fly.igdigi.com/api/validation">/api/validation</a>.
+      </div>
+
+      <h2>Try it yourself</h2>
+      <p>
+        <a href="https://fly.igdigi.com/">Ask the fly a question</a> and watch the real spikes, or
+        read the <a href="/press">press kit</a> for sources, images and contact. The pipeline
+        described above — encoding, simulation, readout, handedness correction, scoring — is open
+        source: <a href="https://github.com/igdigitallab/bioreservoir">github.com/igdigitallab/bioreservoir</a>,
+        Apache License 2.0. This page and the live experience are built and operated by
+        <a href="https://igdigi.com/?ref=fly">IG Digital Lab</a>.
+      </p>
+    </main>
+    <footer>
+      <a href="https://igdigi.com/?ref=fly">igdigi.com</a> ·
+      <a href="/press">Press</a> ·
+      <a href="/">Ask the fly</a> ·
+      <a href="/terms">Terms</a> ·
+      <a href="/privacy">Privacy</a>
+    </footer>
+  </body>
+</html>
