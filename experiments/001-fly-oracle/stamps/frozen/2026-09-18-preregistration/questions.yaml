@@ -1,0 +1,1202 @@
+# Experiment 001 question set: 2026 US midterm elections (November 3, 2026).
+#
+# Selection criteria (see experiments/001-fly-oracle/README.md and questions.example.yaml
+# for the schema): chamber control (House + Senate); every Senate race rated Toss-up or
+# Lean by at least one of Cook Political Report / Sabato's Crystal Ball / Inside Elections
+# as of mid-September 2026, plus the Florida and Ohio special elections and the Oklahoma and
+# South Carolina races (regular elections held by appointed incumbents) regardless of rating;
+# the top 8 governor races rated Toss-up/Lean by the same three raters; and 11 of
+# the most competitive U.S. House races (all Cook Toss-ups as of September 11, 2026).
+#
+# No Kalshi/Polymarket/Manifold data was used anywhere; market_consensus is null throughout.
+# All facts are sourced to official state/AP/Ballotpedia/Wikipedia/Cook/Sabato/Inside
+# Elections pages, cross-checked against each other (see `sources` per question).
+#
+# Balance check (33 questions total: 13 Senate incl. control, 12 House incl. control, 8
+# governor): of the 31 individual-race questions, 20 have a Republican incumbent party and
+# 11 a Democratic incumbent party. This mirrors the 2026 map itself, not a selection choice:
+# Republicans are defending 22 of the 35 Senate seats up this cycle (vs. 13 for Democrats),
+# and among Cook's House Toss-ups only 5 of 21 are Democratic-held, all 5 of which are
+# included here. The two chamber-control questions are tagged with the party currently
+# holding the majority (Republican in both chambers).
+
+- id: "2026-senate-control"
+  format: scored
+  category: politics
+  question: "Will the Republican Party hold its majority in the United States Senate after the November 3, 2026 election?"
+  context: >-
+    Republicans currently hold 53 of 100 Senate seats (Democrats 45, independents caucusing with
+    Democrats 2); Vice President JD Vance, a Republican, breaks any 50-50 tie. Of the 35 seats up in
+    2026, Republicans hold 22 (including the Florida and Ohio special elections) and Democrats hold
+    13, so Republicans are defending far more ground. Cook Political Report rated 7 of the 35 races
+    Toss-up as of September 15, 2026.
+  resolves_by: "2026-12-15"
+  resolution_criterion: >-
+    Republicans are counted as holding the majority if they win at least 50 of the 100 seats for the
+    120th Congress (the Vice President's tiebreak keeps a 50-50 Senate under Republican control);
+    Democrats and independents who caucus with them are counted as holding the majority only if they
+    win at least 51 seats. Based on the Associated Press's cumulative race calls once every 2026
+    Senate race, including any runoffs, has been decided.
+  resolution_source: "https://apnews.com/"
+  market_consensus:
+    value: null
+    as_of: null
+    source_url: null
+  candidates: []
+  incumbent_party: "Republican"
+  rating:
+    cook: null
+    sabato: null
+    inside: null
+    as_of: "2026-09-15"
+  sources:
+    - "https://en.wikipedia.org/wiki/2026_United_States_Senate_elections"
+    - "https://www.cookpolitical.com/ratings/senate-race-ratings"
+  added: "2026-09-18"
+
+- id: "2026-house-control"
+  format: scored
+  category: politics
+  question: "Will the Republican Party hold its majority in the United States House of Representatives after the November 3, 2026 election?"
+  context: >-
+    Republicans currently hold a narrow majority in the 435-seat House. A majority requires 218 seats.
+    Cook Political Report rated 21 of the 435 districts Toss-up as of September 11, 2026, 16 of them
+    currently held by Republicans and 5 by Democrats.
+  resolves_by: "2026-12-15"
+  resolution_criterion: >-
+    Whichever party holds at least 218 of the 435 seats for the 120th Congress. Based on the
+    Associated Press's cumulative race calls once every 2026 House race has been decided.
+  resolution_source: "https://apnews.com/"
+  market_consensus:
+    value: null
+    as_of: null
+    source_url: null
+  candidates: []
+  incumbent_party: "Republican"
+  rating:
+    cook: null
+    sabato: null
+    inside: null
+    as_of: "2026-09-11"
+  sources:
+    - "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_elections"
+    - "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings"
+  added: "2026-09-18"
+
+- id: "2026-senate-ak"
+  format: scored
+  category: politics
+  question: "Will the Republican Party hold the Alaska U.S. Senate seat in the November 3, 2026 election?"
+  context: >-
+    Republican incumbent Dan Sullivan is seeking a third term against Democrat Mary Peltola, a former
+    U.S. representative who lost her U.S. House seat in 2024. Alaska leans Republican (Cook PVI R+6)
+    but is one of five Republican-held Senate seats rated most competitive nationally. Cook and Sabato
+    rated the race a Toss-up as of September 15, 2026.
+  resolves_by: "2026-12-15"
+  resolution_criterion: >-
+    Resolves YES if the Associated Press calls the Alaska U.S. Senate race for the Republican nominee;
+    NO if AP calls it for a candidate of another party. If a runoff is required, the runoff result
+    controls.
+  resolution_source: "https://apnews.com/"
+  market_consensus:
+    value: null
+    as_of: null
+    source_url: null
+  candidates:
+    - name: "Dan Sullivan"
+      party: "Republican"
+    - name: "Mary Peltola"
+      party: "Democratic"
+  incumbent_party: "Republican"
+  rating:
+    cook: "Tossup"
+    sabato: "Tossup"
+    inside: "Tilt R"
+    as_of: "2026-09-15"
+  sources:
+    - "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Alaska"
+    - "https://www.cookpolitical.com/ratings/senate-race-ratings"
+    - "https://centerforpolitics.org/crystalball/2026-senate/"
+  added: "2026-09-18"
+
+- id: "2026-senate-ga"
+  format: scored
+  category: politics
+  question: "Will the Democratic Party hold the Georgia U.S. Senate seat in the November 3, 2026 election?"
+  context: >-
+    Democratic incumbent Jon Ossoff, first elected in the 2021 runoff, faces U.S. Representative Mike
+    Collins. Georgia leans slightly Republican by partisan index (Cook PVI R+1), but forecasters have
+    grown more confident in Ossoff since mid-2026; Cook rated the race Lean Democratic as of September
+    15, 2026. Georgia requires a 50%+1 majority to win outright; if no candidate clears that on
+    November 3, a runoff follows on December 1, 2026.
+  resolves_by: "2026-12-15"
+  resolution_criterion: >-
+    Resolves YES if the Associated Press calls the Georgia U.S. Senate race for the Democratic
+    nominee; NO if AP calls it for a candidate of another party. If a runoff is required, the runoff
+    result controls.
+  resolution_source: "https://apnews.com/"
+  market_consensus:
+    value: null
+    as_of: null
+    source_url: null
+  candidates:
+    - name: "Jon Ossoff"
+      party: "Democratic"
+    - name: "Mike Collins"
+      party: "Republican"
+  incumbent_party: "Democratic"
+  rating:
+    cook: "Lean D"
+    sabato: "Likely D"
+    inside: "Tilt D"
+    as_of: "2026-09-15"
+  sources:
+    - "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Georgia"
+    - "https://www.cookpolitical.com/ratings/senate-race-ratings"
+    - "https://centerforpolitics.org/crystalball/2026-senate/"
+  added: "2026-09-18"
+
+- id: "2026-senate-ia"
+  format: scored
+  category: politics
+  question: "Will the Republican Party hold the Iowa U.S. Senate seat in the November 3, 2026 election?"
+  context: >-
+    Incumbent Republican Joni Ernst is not seeking re-election. U.S. Representative Ashley Hinson is
+    the Republican nominee against Democratic state representative Josh Turek for the open seat. Iowa
+    leans Republican (Cook PVI R+6); Cook rated the open seat a Toss-up as of September 15, 2026.
+  resolves_by: "2026-12-15"
+  resolution_criterion: >-
+    Resolves YES if the Associated Press calls the Iowa U.S. Senate race for the Republican nominee;
+    NO if AP calls it for a candidate of another party. If a runoff is required, the runoff result
+    controls.
+  resolution_source: "https://apnews.com/"
+  market_consensus:
+    value: null
+    as_of: null
+    source_url: null
+  candidates:
+    - name: "Ashley Hinson"
+      party: "Republican"
+    - name: "Josh Turek"
+      party: "Democratic"
+  incumbent_party: "Republican"
+  rating:
+    cook: "Tossup"
+    sabato: "Lean R"
+    inside: "Tilt R"
+    as_of: "2026-09-15"
+  sources:
+    - "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Iowa"
+    - "https://www.cookpolitical.com/ratings/senate-race-ratings"
+    - "https://centerforpolitics.org/crystalball/2026-senate/"
+  added: "2026-09-18"
+
+- id: "2026-senate-me"
+  format: scored
+  category: politics
+  question: "Will the Republican Party hold the Maine U.S. Senate seat in the November 3, 2026 election?"
+  context: >-
+    Republican incumbent Susan Collins, first elected in 1996, is seeking re-election in a state that
+    leans Democratic (Cook PVI D+4). Her Democratic opponent, former Maine Senate president Troy
+    Jackson, entered the race after the original Democratic nominee, Graham Platner, withdrew
+    following sexual-assault allegations. Cook, Sabato and Inside Elections all rated the race a
+    Toss-up as of mid-September 2026.
+  resolves_by: "2026-12-15"
+  resolution_criterion: >-
+    Resolves YES if the Associated Press calls the Maine U.S. Senate race for the Republican nominee;
+    NO if AP calls it for a candidate of another party. If a runoff is required, the runoff result
+    controls.
+  resolution_source: "https://apnews.com/"
+  market_consensus:
+    value: null
+    as_of: null
+    source_url: null
+  candidates:
+    - name: "Susan Collins"
+      party: "Republican"
+    - name: "Troy Jackson"
+      party: "Democratic"
+  incumbent_party: "Republican"
+  rating:
+    cook: "Tossup"
+    sabato: "Tossup"
+    inside: "Tossup"
+    as_of: "2026-09-15"
+  sources:
+    - "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Maine"
+    - "https://www.cookpolitical.com/ratings/senate-race-ratings"
+    - "https://centerforpolitics.org/crystalball/2026-senate/"
+  added: "2026-09-18"
+
+- id: "2026-senate-mi"
+  format: scored
+  category: politics
+  question: "Will the Democratic Party hold the Michigan U.S. Senate seat in the November 3, 2026 election?"
+  context: >-
+    Democratic incumbent Gary Peters is retiring, opening a seat in a state with an even partisan lean
+    (Cook PVI EVEN). Former U.S. Representative Mike Rogers, the 2024 Republican Senate nominee, faces
+    former Wayne County health department director Abdul El-Sayed. Cook, Sabato and Inside Elections
+    all rated the open seat a Toss-up as of mid-September 2026.
+  resolves_by: "2026-12-15"
+  resolution_criterion: >-
+    Resolves YES if the Associated Press calls the Michigan U.S. Senate race for the Democratic
+    nominee; NO if AP calls it for a candidate of another party. If a runoff is required, the runoff
+    result controls.
+  resolution_source: "https://apnews.com/"
+  market_consensus:
+    value: null
+    as_of: null
+    source_url: null
+  candidates:
+    - name: "Mike Rogers"
+      party: "Republican"
+    - name: "Abdul El-Sayed"
+      party: "Democratic"
+  incumbent_party: "Democratic"
+  rating:
+    cook: "Tossup"
+    sabato: "Tossup"
+    inside: "Tossup"
+    as_of: "2026-09-15"
+  sources:
+    - "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Michigan"
+    - "https://www.cookpolitical.com/ratings/senate-race-ratings"
+    - "https://centerforpolitics.org/crystalball/2026-senate/"
+  added: "2026-09-18"
+
+- id: "2026-senate-nh"
+  format: scored
+  category: politics
+  question: "Will the Democratic Party hold the New Hampshire U.S. Senate seat in the November 3, 2026 election?"
+  context: >-
+    Democratic incumbent Jeanne Shaheen is retiring. U.S. Representative Chris Pappas, the Democratic
+    nominee, faces former U.S. Senator John E. Sununu, who lost this seat to Shaheen in 2008. New
+    Hampshire leans slightly Democratic (Cook PVI D+2); Cook moved its rating from Lean Democratic to
+    Toss-up on September 15, 2026, its biggest rating change of the cycle.
+  resolves_by: "2026-12-15"
+  resolution_criterion: >-
+    Resolves YES if the Associated Press calls the New Hampshire U.S. Senate race for the Democratic
+    nominee; NO if AP calls it for a candidate of another party. If a runoff is required, the runoff
+    result controls.
+  resolution_source: "https://apnews.com/"
+  market_consensus:
+    value: null
+    as_of: null
+    source_url: null
+  candidates:
+    - name: "Chris Pappas"
+      party: "Democratic"
+    - name: "John E. Sununu"
+      party: "Republican"
+  incumbent_party: "Democratic"
+  rating:
+    cook: "Tossup"
+    sabato: "Lean D"
+    inside: "Tossup"
+    as_of: "2026-09-15"
+  sources:
+    - "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_New_Hampshire"
+    - "https://www.cookpolitical.com/ratings/senate-race-ratings"
+    - "https://centerforpolitics.org/crystalball/2026-senate/"
+  added: "2026-09-18"
+
+- id: "2026-senate-nc"
+  format: scored
+  category: politics
+  question: "Will the Republican Party hold the North Carolina U.S. Senate seat in the November 3, 2026 election?"
+  context: >-
+    Republican incumbent Thom Tillis is retiring. Former Republican National Committee chairman
+    Michael Whatley faces former North Carolina governor Roy Cooper. North
+    Carolina leans slightly Republican (Cook PVI R+1), but this is the one Republican-held Senate seat
+    that forecasters rate as favoring the Democratic candidate; Cook and Sabato both rated it Lean
+    Democratic as of mid-September 2026.
+  resolves_by: "2026-12-15"
+  resolution_criterion: >-
+    Resolves YES if the Associated Press calls the North Carolina U.S. Senate race for the Republican
+    nominee; NO if AP calls it for a candidate of another party. If a runoff is required, the runoff
+    result controls.
+  resolution_source: "https://apnews.com/"
+  market_consensus:
+    value: null
+    as_of: null
+    source_url: null
+  candidates:
+    - name: "Michael Whatley"
+      party: "Republican"
+    - name: "Roy Cooper"
+      party: "Democratic"
+  incumbent_party: "Republican"
+  rating:
+    cook: "Lean D"
+    sabato: "Lean D"
+    inside: "Tilt D"
+    as_of: "2026-09-15"
+  sources:
+    - "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_North_Carolina"
+    - "https://www.cookpolitical.com/ratings/senate-race-ratings"
+    - "https://centerforpolitics.org/crystalball/2026-senate/"
+  added: "2026-09-18"
+
+- id: "2026-senate-oh"
+  format: scored
+  category: politics
+  question: "Will the Republican Party hold the Ohio U.S. Senate seat in the November 3, 2026 election?"
+  context: >-
+    This is a special election to complete the term of JD Vance, who resigned in January 2025 to
+    become Vice President. Governor-appointed incumbent Jon Husted faces former U.S. Senator Sherrod
+    Brown, who lost re-election to this seat's counterpart race in 2024. Ohio leans Republican (Cook
+    PVI R+5); Cook, Sabato and Inside Elections all rated the race a Toss-up as of mid-September 2026.
+  resolves_by: "2026-12-15"
+  resolution_criterion: >-
+    Resolves YES if the Associated Press calls the Ohio U.S. Senate race for the Republican nominee;
+    NO if AP calls it for a candidate of another party. If a runoff is required, the runoff result
+    controls.
+  resolution_source: "https://apnews.com/"
+  market_consensus:
+    value: null
+    as_of: null
+    source_url: null
+  candidates:
+    - name: "Jon Husted"
+      party: "Republican"
+    - name: "Sherrod Brown"
+      party: "Democratic"
+  incumbent_party: "Republican"
+  rating:
+    cook: "Tossup"
+    sabato: "Tossup"
+    inside: "Tossup"
+    as_of: "2026-09-15"
+  sources:
+    - "https://en.wikipedia.org/wiki/2026_United_States_Senate_special_election_in_Ohio"
+    - "https://www.cookpolitical.com/ratings/senate-race-ratings"
+    - "https://centerforpolitics.org/crystalball/2026-senate/"
+  added: "2026-09-18"
+
+- id: "2026-senate-tx"
+  format: scored
+  category: politics
+  question: "Will the Republican Party hold the Texas U.S. Senate seat in the November 3, 2026 election?"
+  context: >-
+    Incumbent Republican John Cornyn lost renomination to Texas Attorney General Ken Paxton, who faces
+    Democratic state representative James Talarico for the open seat. Texas leans Republican (Cook PVI
+    R+6); Cook and Sabato both rated the race a Toss-up as of mid-September 2026, reflecting Paxton's
+    vulnerabilities as a general-election candidate.
+  resolves_by: "2026-12-15"
+  resolution_criterion: >-
+    Resolves YES if the Associated Press calls the Texas U.S. Senate race for the Republican nominee;
+    NO if AP calls it for a candidate of another party. If a runoff is required, the runoff result
+    controls.
+  resolution_source: "https://apnews.com/"
+  market_consensus:
+    value: null
+    as_of: null
+    source_url: null
+  candidates:
+    - name: "Ken Paxton"
+      party: "Republican"
+    - name: "James Talarico"
+      party: "Democratic"
+  incumbent_party: "Republican"
+  rating:
+    cook: "Tossup"
+    sabato: "Tossup"
+    inside: "Lean R"
+    as_of: "2026-09-15"
+  sources:
+    - "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Texas"
+    - "https://www.cookpolitical.com/ratings/senate-race-ratings"
+    - "https://centerforpolitics.org/crystalball/2026-senate/"
+  added: "2026-09-18"
+
+- id: "2026-senate-fl"
+  format: scored
+  category: politics
+  question: "Will the Republican Party hold the Florida U.S. Senate seat in the November 3, 2026 election?"
+  context: >-
+    This is a special election to complete the term of Marco Rubio, who resigned in January 2025 to
+    become Secretary of State. Governor-appointed incumbent Ashley Moody faces Democratic state
+    representative Angie Nixon, who won an upset primary victory over the better-funded Alex Vindman.
+    Florida leans Republican (Cook PVI R+5); Cook rated the race Solid Republican as of September 15,
+    2026, but it is included here as a special election.
+  resolves_by: "2026-12-15"
+  resolution_criterion: >-
+    Resolves YES if the Associated Press calls the Florida U.S. Senate race for the Republican
+    nominee; NO if AP calls it for a candidate of another party. If a runoff is required, the runoff
+    result controls.
+  resolution_source: "https://apnews.com/"
+  market_consensus:
+    value: null
+    as_of: null
+    source_url: null
+  candidates:
+    - name: "Ashley Moody"
+      party: "Republican"
+    - name: "Angie Nixon"
+      party: "Democratic"
+  incumbent_party: "Republican"
+  rating:
+    cook: "Solid R"
+    sabato: "Safe R"
+    inside: "Solid R"
+    as_of: "2026-09-15"
+  sources:
+    - "https://en.wikipedia.org/wiki/2026_United_States_Senate_special_election_in_Florida"
+    - "https://www.cookpolitical.com/ratings/senate-race-ratings"
+    - "https://centerforpolitics.org/crystalball/2026-senate/"
+  added: "2026-09-18"
+
+- id: "2026-senate-ok"
+  format: scored
+  category: politics
+  question: "Will the Republican Party hold the Oklahoma U.S. Senate seat in the November 3, 2026 election?"
+  context: >-
+    This is the regularly scheduled election for the seat of Markwayne Mullin, who resigned in March
+    2026 to become Secretary of Homeland Security. Governor-appointed interim Senator Alan Armstrong is barred
+    by Oklahoma law from seeking a full term; U.S. Representative Kevin Hern is the Republican nominee
+    against nurse N'Kiyla Jasmine Thomas. Oklahoma is heavily Republican (Cook PVI R+17); Cook rated
+    the race Solid Republican as of September 15, 2026; it is included because the incumbent is an
+    appointee.
+  resolves_by: "2026-12-15"
+  resolution_criterion: >-
+    Resolves YES if the Associated Press calls the Oklahoma U.S. Senate race for the Republican
+    nominee; NO if AP calls it for a candidate of another party. If a runoff is required, the runoff
+    result controls.
+  resolution_source: "https://apnews.com/"
+  market_consensus:
+    value: null
+    as_of: null
+    source_url: null
+  candidates:
+    - name: "Kevin Hern"
+      party: "Republican"
+    - name: "N'Kiyla Jasmine Thomas"
+      party: "Democratic"
+  incumbent_party: "Republican"
+  rating:
+    cook: "Solid R"
+    sabato: "Safe R"
+    inside: "Solid R"
+    as_of: "2026-09-15"
+  sources:
+    - "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Oklahoma"
+    - "https://www.cookpolitical.com/ratings/senate-race-ratings"
+    - "https://centerforpolitics.org/crystalball/2026-senate/"
+  added: "2026-09-18"
+
+- id: "2026-senate-sc"
+  format: scored
+  category: politics
+  question: "Will the Republican Party hold the South Carolina U.S. Senate seat in the November 3, 2026 election?"
+  context: >-
+    This is the regularly scheduled election for the seat held by Senator Lindsey Graham until his
+    death on July 11, 2026. Governor-appointed Senator Darline Graham, Lindsey Graham's sister, won
+    the Republican primary runoff and faces physician Annie Andrews, the Democratic nominee. South Carolina
+    is heavily Republican (Cook PVI R+8); Cook rated the race Solid Republican as of September 15,
+    2026; it is included because the incumbent is an appointee.
+  resolves_by: "2026-12-15"
+  resolution_criterion: >-
+    Resolves YES if the Associated Press calls the South Carolina U.S. Senate race for the Republican
+    nominee; NO if AP calls it for a candidate of another party. If a runoff is required, the runoff
+    result controls.
+  resolution_source: "https://apnews.com/"
+  market_consensus:
+    value: null
+    as_of: null
+    source_url: null
+  candidates:
+    - name: "Darline Graham"
+      party: "Republican"
+    - name: "Annie Andrews"
+      party: "Democratic"
+  incumbent_party: "Republican"
+  rating:
+    cook: "Solid R"
+    sabato: "Safe R"
+    inside: "Likely R"
+    as_of: "2026-09-15"
+  sources:
+    - "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_South_Carolina"
+    - "https://www.cookpolitical.com/ratings/senate-race-ratings"
+    - "https://centerforpolitics.org/crystalball/2026-senate/"
+  added: "2026-09-18"
+
+- id: "2026-house-az-1"
+  format: scored
+  category: politics
+  question: "Will the Republican Party hold Arizona's 1st congressional district in the November 3, 2026 election?"
+  context: >-
+    Republican incumbent David Schweikert is retiring to run for governor. Former NFL kicker Jay Feely
+    is the Republican nominee against Democrat Amish Shah, a former state legislator, for the open
+    seat. The district is close to even (Cook PVI R+1); Cook, Sabato and Inside Elections all rated it
+    a Toss-up as of mid-September 2026.
+  resolves_by: "2026-12-15"
+  resolution_criterion: >-
+    Resolves YES if the Associated Press calls Arizona's 1 U.S. House district for the Republican
+    nominee; NO if AP calls it for a candidate of another party.
+  resolution_source: "https://apnews.com/"
+  market_consensus:
+    value: null
+    as_of: null
+    source_url: null
+  candidates:
+    - name: "Jay Feely"
+      party: "Republican"
+    - name: "Amish Shah"
+      party: "Democratic"
+  incumbent_party: "Republican"
+  rating:
+    cook: "Tossup"
+    sabato: "Tossup"
+    inside: "Tossup"
+    as_of: "2026-09-11"
+  sources:
+    - "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_elections_in_Arizona"
+    - "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings"
+    - "https://www.cookpolitical.com/ratings/house-race-ratings"
+  added: "2026-09-18"
+
+- id: "2026-house-co-8"
+  format: scored
+  category: politics
+  question: "Will the Republican Party hold Colorado's 8th congressional district in the November 3, 2026 election?"
+  context: >-
+    Republican incumbent Gabe Evans, first elected in 2024 by roughly one point, seeks re-election
+    against Democrat Manny Rutinel, whom he defeated in 2024. The district has an even partisan lean
+    (Cook PVI EVEN); Cook, Sabato and Inside Elections all rated it a Toss-up as of mid-September
+    2026.
+  resolves_by: "2026-12-15"
+  resolution_criterion: >-
+    Resolves YES if the Associated Press calls Colorado's 8 U.S. House district for the Republican
+    nominee; NO if AP calls it for a candidate of another party.
+  resolution_source: "https://apnews.com/"
+  market_consensus:
+    value: null
+    as_of: null
+    source_url: null
+  candidates:
+    - name: "Gabe Evans"
+      party: "Republican"
+    - name: "Manny Rutinel"
+      party: "Democratic"
+  incumbent_party: "Republican"
+  rating:
+    cook: "Tossup"
+    sabato: "Tossup"
+    inside: "Tossup"
+    as_of: "2026-09-11"
+  sources:
+    - "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_elections_in_Colorado"
+    - "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings"
+    - "https://www.cookpolitical.com/ratings/house-race-ratings"
+  added: "2026-09-18"
+
+- id: "2026-house-fl-14"
+  format: scored
+  category: politics
+  question: "Will the Democratic Party hold Florida's 14th congressional district in the November 3, 2026 election?"
+  context: >-
+    Democratic incumbent Kathy Castor, first elected in 2006, seeks re-election in a Tampa-area
+    district redrawn to lean Republican after Florida's mid-decade redistricting (Cook PVI R+4). State
+    legislator Mike Beltran is the Republican nominee. Cook, Sabato and Inside Elections all rated the
+    race a Toss-up as of mid-September 2026.
+  resolves_by: "2026-12-15"
+  resolution_criterion: >-
+    Resolves YES if the Associated Press calls Florida's 14 U.S. House district for the Democratic
+    nominee; NO if AP calls it for a candidate of another party.
+  resolution_source: "https://apnews.com/"
+  market_consensus:
+    value: null
+    as_of: null
+    source_url: null
+  candidates:
+    - name: "Mike Beltran"
+      party: "Republican"
+    - name: "Kathy Castor"
+      party: "Democratic"
+  incumbent_party: "Democratic"
+  rating:
+    cook: "Tossup"
+    sabato: "Tossup"
+    inside: "Tossup"
+    as_of: "2026-09-11"
+  sources:
+    - "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_elections_in_Florida"
+    - "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings"
+    - "https://www.cookpolitical.com/ratings/house-race-ratings"
+  added: "2026-09-18"
+
+- id: "2026-house-fl-25"
+  format: scored
+  category: politics
+  question: "Will the Democratic Party hold Florida's 25th congressional district in the November 3, 2026 election?"
+  context: >-
+    Democratic incumbent Jared Moskowitz seeks re-election in a South Florida district redrawn to lean
+    Republican after Florida's mid-decade redistricting (Cook PVI R+3). Boca Raton mayor Scott Singer
+    is the Republican nominee. Cook, Sabato and Inside Elections all rated the race a Toss-up as of
+    mid-September 2026.
+  resolves_by: "2026-12-15"
+  resolution_criterion: >-
+    Resolves YES if the Associated Press calls Florida's 25 U.S. House district for the Democratic
+    nominee; NO if AP calls it for a candidate of another party.
+  resolution_source: "https://apnews.com/"
+  market_consensus:
+    value: null
+    as_of: null
+    source_url: null
+  candidates:
+    - name: "Scott Singer"
+      party: "Republican"
+    - name: "Jared Moskowitz"
+      party: "Democratic"
+  incumbent_party: "Democratic"
+  rating:
+    cook: "Tossup"
+    sabato: "Tossup"
+    inside: "Tossup"
+    as_of: "2026-09-11"
+  sources:
+    - "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_elections_in_Florida"
+    - "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings"
+    - "https://www.cookpolitical.com/ratings/house-race-ratings"
+  added: "2026-09-18"
+
+- id: "2026-house-ia-1"
+  format: scored
+  category: politics
+  question: "Will the Republican Party hold Iowa's 1st congressional district in the November 3, 2026 election?"
+  context: >-
+    Republican incumbent Mariannette Miller-Meeks, who won her past two races by less than one point,
+    faces a third consecutive rematch against Democrat Christina Bohannan. The district leans
+    Republican (Cook PVI R+4); Cook, Sabato and Inside Elections all rated it a Toss-up as of
+    mid-September 2026.
+  resolves_by: "2026-12-15"
+  resolution_criterion: >-
+    Resolves YES if the Associated Press calls Iowa's 1 U.S. House district for the Republican
+    nominee; NO if AP calls it for a candidate of another party.
+  resolution_source: "https://apnews.com/"
+  market_consensus:
+    value: null
+    as_of: null
+    source_url: null
+  candidates:
+    - name: "Mariannette Miller-Meeks"
+      party: "Republican"
+    - name: "Christina Bohannan"
+      party: "Democratic"
+  incumbent_party: "Republican"
+  rating:
+    cook: "Tossup"
+    sabato: "Tossup"
+    inside: "Tossup"
+    as_of: "2026-09-11"
+  sources:
+    - "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_elections_in_Iowa"
+    - "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings"
+    - "https://www.cookpolitical.com/ratings/house-race-ratings"
+  added: "2026-09-18"
+
+- id: "2026-house-mi-10"
+  format: scored
+  category: politics
+  question: "Will the Republican Party hold Michigan's 10th congressional district in the November 3, 2026 election?"
+  context: >-
+    Republican incumbent John James is retiring to run for governor. Oakland County Sheriff Mike
+    Bouchard is the Republican nominee against Democrat Christina Hines for the open seat. The
+    district leans Republican (Cook PVI R+3); Cook and Sabato rated it a Toss-up as of mid-September
+    2026.
+  resolves_by: "2026-12-15"
+  resolution_criterion: >-
+    Resolves YES if the Associated Press calls Michigan's 10 U.S. House district for the Republican
+    nominee; NO if AP calls it for a candidate of another party.
+  resolution_source: "https://apnews.com/"
+  market_consensus:
+    value: null
+    as_of: null
+    source_url: null
+  candidates:
+    - name: "Mike Bouchard"
+      party: "Republican"
+    - name: "Christina Hines"
+      party: "Democratic"
+  incumbent_party: "Republican"
+  rating:
+    cook: "Tossup"
+    sabato: "Tossup"
+    inside: "Tilt R"
+    as_of: "2026-09-11"
+  sources:
+    - "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_elections_in_Michigan"
+    - "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings"
+    - "https://www.cookpolitical.com/ratings/house-race-ratings"
+  added: "2026-09-18"
+
+- id: "2026-house-ny-17"
+  format: scored
+  category: politics
+  question: "Will the Republican Party hold New York's 17th congressional district in the November 3, 2026 election?"
+  context: >-
+    Republican incumbent Mike Lawler seeks re-election in a Hudson Valley district that leans
+    Democratic (Cook PVI D+1) and that Kamala Harris carried in 2024. Democrat Cait Conley, a former
+    National Security Council official, is the nominee. Cook, Sabato and Inside Elections all rated
+    the race a Toss-up as of mid-September 2026.
+  resolves_by: "2026-12-15"
+  resolution_criterion: >-
+    Resolves YES if the Associated Press calls New York's 17 U.S. House district for the Republican
+    nominee; NO if AP calls it for a candidate of another party.
+  resolution_source: "https://apnews.com/"
+  market_consensus:
+    value: null
+    as_of: null
+    source_url: null
+  candidates:
+    - name: "Mike Lawler"
+      party: "Republican"
+    - name: "Cait Conley"
+      party: "Democratic"
+  incumbent_party: "Republican"
+  rating:
+    cook: "Tossup"
+    sabato: "Tossup"
+    inside: "Tossup"
+    as_of: "2026-09-11"
+  sources:
+    - "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_elections_in_New_York"
+    - "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings"
+    - "https://www.cookpolitical.com/ratings/house-race-ratings"
+  added: "2026-09-18"
+
+- id: "2026-house-oh-9"
+  format: scored
+  category: politics
+  question: "Will the Democratic Party hold Ohio's 9th congressional district in the November 3, 2026 election?"
+  context: >-
+    Democratic incumbent Marcy Kaptur, the longest-serving woman in Congressional history, seeks
+    re-election in a Toledo-area district that leans Republican after redistricting (Cook PVI R+5).
+    State legislator Derek Merrin, who lost to Kaptur by under 3,000 votes in 2024, is the Republican
+    nominee again. Cook and Sabato rated the race a Toss-up as of mid-September 2026.
+  resolves_by: "2026-12-15"
+  resolution_criterion: >-
+    Resolves YES if the Associated Press calls Ohio's 9 U.S. House district for the Democratic
+    nominee; NO if AP calls it for a candidate of another party.
+  resolution_source: "https://apnews.com/"
+  market_consensus:
+    value: null
+    as_of: null
+    source_url: null
+  candidates:
+    - name: "Derek Merrin"
+      party: "Republican"
+    - name: "Marcy Kaptur"
+      party: "Democratic"
+  incumbent_party: "Democratic"
+  rating:
+    cook: "Tossup"
+    sabato: "Tossup"
+    inside: "Tilt R"
+    as_of: "2026-09-11"
+  sources:
+    - "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_elections_in_Ohio"
+    - "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings"
+    - "https://www.cookpolitical.com/ratings/house-race-ratings"
+  added: "2026-09-18"
+
+- id: "2026-house-pa-7"
+  format: scored
+  category: politics
+  question: "Will the Republican Party hold Pennsylvania's 7th congressional district in the November 3, 2026 election?"
+  context: >-
+    Republican incumbent Ryan Mackenzie, elected in 2024 by about two points, seeks re-election in the
+    Lehigh Valley against Democrat Bob Brooks. The district is close to even (Cook PVI R+1); Cook,
+    Sabato and Inside Elections all rated it a Toss-up as of mid-September 2026.
+  resolves_by: "2026-12-15"
+  resolution_criterion: >-
+    Resolves YES if the Associated Press calls Pennsylvania's 7 U.S. House district for the Republican
+    nominee; NO if AP calls it for a candidate of another party.
+  resolution_source: "https://apnews.com/"
+  market_consensus:
+    value: null
+    as_of: null
+    source_url: null
+  candidates:
+    - name: "Ryan Mackenzie"
+      party: "Republican"
+    - name: "Bob Brooks"
+      party: "Democratic"
+  incumbent_party: "Republican"
+  rating:
+    cook: "Tossup"
+    sabato: "Tossup"
+    inside: "Tossup"
+    as_of: "2026-09-11"
+  sources:
+    - "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_elections_in_Pennsylvania"
+    - "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings"
+    - "https://www.cookpolitical.com/ratings/house-race-ratings"
+  added: "2026-09-18"
+
+- id: "2026-house-tx-34"
+  format: scored
+  category: politics
+  question: "Will the Democratic Party hold Texas's 34th congressional district in the November 3, 2026 election?"
+  context: >-
+    Democratic incumbent Vicente Gonzalez seeks re-election in a South Texas border district that
+    leans Republican (Cook PVI R+3) after a sharp rightward shift in Rio Grande Valley voting patterns
+    since 2020. Republican Eric Flores is the nominee. Cook and Inside Elections rated the race a
+    Toss-up as of mid-September 2026.
+  resolves_by: "2026-12-15"
+  resolution_criterion: >-
+    Resolves YES if the Associated Press calls Texas's 34 U.S. House district for the Democratic
+    nominee; NO if AP calls it for a candidate of another party.
+  resolution_source: "https://apnews.com/"
+  market_consensus:
+    value: null
+    as_of: null
+    source_url: null
+  candidates:
+    - name: "Eric Flores"
+      party: "Republican"
+    - name: "Vicente Gonzalez"
+      party: "Democratic"
+  incumbent_party: "Democratic"
+  rating:
+    cook: "Tossup"
+    sabato: "Lean D"
+    inside: "Tossup"
+    as_of: "2026-09-11"
+  sources:
+    - "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_elections_in_Texas"
+    - "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings"
+    - "https://www.cookpolitical.com/ratings/house-race-ratings"
+  added: "2026-09-18"
+
+- id: "2026-house-wa-3"
+  format: scored
+  category: politics
+  question: "Will the Democratic Party hold Washington's 3rd congressional district in the November 3, 2026 election?"
+  context: >-
+    Democratic incumbent Marie Gluesenkamp Perez, known for a moderate profile in a Republican-leaning
+    district (Cook PVI R+2), seeks a third term against state Senate Republican leader John Braun.
+    Cook and Inside Elections rated the race a Toss-up as of mid-September 2026.
+  resolves_by: "2026-12-15"
+  resolution_criterion: >-
+    Resolves YES if the Associated Press calls Washington's 3 U.S. House district for the Democratic
+    nominee; NO if AP calls it for a candidate of another party.
+  resolution_source: "https://apnews.com/"
+  market_consensus:
+    value: null
+    as_of: null
+    source_url: null
+  candidates:
+    - name: "John Braun"
+      party: "Republican"
+    - name: "Marie Gluesenkamp Perez"
+      party: "Democratic"
+  incumbent_party: "Democratic"
+  rating:
+    cook: "Tossup"
+    sabato: "Lean D"
+    inside: "Tossup"
+    as_of: "2026-09-11"
+  sources:
+    - "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_elections_in_Washington"
+    - "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings"
+    - "https://www.cookpolitical.com/ratings/house-race-ratings"
+  added: "2026-09-18"
+
+- id: "2026-gov-ak"
+  format: scored
+  category: politics
+  question: "Will the Republican Party hold the Alaska governorship in the November 3, 2026 election?"
+  context: >-
+    Republican Governor Mike Dunleavy is term-limited. Alaska uses a nonpartisan top-four primary
+    followed by a ranked-choice general election; three Republicans (Bernadette Wilson, Dave Bronson
+    and Attorney General Treg Taylor) and one Democrat (state senator Jonathan Kreiss-Tomkins)
+    advanced. Alaska leans Republican (Cook PVI R+6); Cook and Sabato rated the race a Toss-up as of
+    mid-September 2026, in part because the split Republican field could affect ranked-choice
+    tabulation.
+  resolves_by: "2026-12-15"
+  resolution_criterion: >-
+    Resolves YES if the Associated Press calls the Alaska governor's race for the Republican nominee;
+    NO if AP calls it for a candidate of another party. If a runoff is required, the runoff result
+    controls; in Alaska, the result after ranked-choice tabulation controls.
+  resolution_source: "https://apnews.com/"
+  market_consensus:
+    value: null
+    as_of: null
+    source_url: null
+  candidates:
+    - name: "Jonathan Kreiss-Tomkins"
+      party: "Democratic"
+    - name: "Bernadette Wilson"
+      party: "Republican"
+    - name: "Dave Bronson"
+      party: "Republican"
+    - name: "Treg Taylor"
+      party: "Republican"
+  incumbent_party: "Republican"
+  rating:
+    cook: "Tossup"
+    sabato: "Tossup"
+    inside: "Lean R"
+    as_of: "2026-09-17"
+  sources:
+    - "https://en.wikipedia.org/wiki/2026_Alaska_gubernatorial_election"
+    - "https://www.cookpolitical.com/ratings/governor-race-ratings"
+    - "https://centerforpolitics.org/crystalball/2026-governor/"
+  added: "2026-09-18"
+
+- id: "2026-gov-ga"
+  format: scored
+  category: politics
+  question: "Will the Republican Party hold the Georgia governorship in the November 3, 2026 election?"
+  context: >-
+    Republican Governor Brian Kemp is term-limited. Healthcare executive Rick Jackson won a Republican
+    runoff over Lieutenant Governor Burt Jones; former Atlanta mayor Keisha Lance Bottoms is the
+    Democratic nominee. Georgia leans slightly Republican (Cook PVI R+1); Cook, Sabato and Inside
+    Elections all rated the open seat a Toss-up as of mid-September 2026. Georgia requires a 50%+1
+    majority to win outright; if no candidate clears that on November 3, a runoff follows on December
+    1, 2026.
+  resolves_by: "2026-12-15"
+  resolution_criterion: >-
+    Resolves YES if the Associated Press calls the Georgia governor's race for the Republican nominee;
+    NO if AP calls it for a candidate of another party. If a runoff is required, the runoff result
+    controls; in Alaska, the result after ranked-choice tabulation controls.
+  resolution_source: "https://apnews.com/"
+  market_consensus:
+    value: null
+    as_of: null
+    source_url: null
+  candidates:
+    - name: "Rick Jackson"
+      party: "Republican"
+    - name: "Keisha Lance Bottoms"
+      party: "Democratic"
+  incumbent_party: "Republican"
+  rating:
+    cook: "Tossup"
+    sabato: "Tossup"
+    inside: "Tossup"
+    as_of: "2026-09-17"
+  sources:
+    - "https://en.wikipedia.org/wiki/2026_Georgia_gubernatorial_election"
+    - "https://www.cookpolitical.com/ratings/governor-race-ratings"
+    - "https://centerforpolitics.org/crystalball/2026-governor/"
+  added: "2026-09-18"
+
+- id: "2026-gov-ia"
+  format: scored
+  category: politics
+  question: "Will the Republican Party hold the Iowa governorship in the November 3, 2026 election?"
+  context: >-
+    Republican Governor Kim Reynolds is not seeking re-election. Businessman Zach Lahn won an upset
+    Republican primary victory over more establishment-aligned candidates; State Auditor Rob Sand, the
+    only statewide-elected Democrat in Iowa, is the Democratic nominee. Iowa leans Republican (Cook
+    PVI R+6), but Cook, Sabato and Inside Elections all rated the open seat as favoring the Democratic
+    nominee as of mid-September 2026.
+  resolves_by: "2026-12-15"
+  resolution_criterion: >-
+    Resolves YES if the Associated Press calls the Iowa governor's race for the Republican nominee; NO
+    if AP calls it for a candidate of another party. If a runoff is required, the runoff result
+    controls; in Alaska, the result after ranked-choice tabulation controls.
+  resolution_source: "https://apnews.com/"
+  market_consensus:
+    value: null
+    as_of: null
+    source_url: null
+  candidates:
+    - name: "Zach Lahn"
+      party: "Republican"
+    - name: "Rob Sand"
+      party: "Democratic"
+  incumbent_party: "Republican"
+  rating:
+    cook: "Lean D"
+    sabato: "Lean D"
+    inside: "Tilt D"
+    as_of: "2026-09-17"
+  sources:
+    - "https://en.wikipedia.org/wiki/2026_Iowa_gubernatorial_election"
+    - "https://www.cookpolitical.com/ratings/governor-race-ratings"
+    - "https://centerforpolitics.org/crystalball/2026-governor/"
+  added: "2026-09-18"
+
+- id: "2026-gov-ks"
+  format: scored
+  category: politics
+  question: "Will the Democratic Party hold the Kansas governorship in the November 3, 2026 election?"
+  context: >-
+    Democratic Governor Laura Kelly is term-limited. State senator Cindy Holscher won the Democratic
+    primary; State Senate President Ty Masterson is the Republican nominee. Kansas leans Republican
+    (Cook PVI R+13); Cook, Sabato and Inside Elections all rated the open seat as favoring the
+    Republican nominee as of mid-September 2026.
+  resolves_by: "2026-12-15"
+  resolution_criterion: >-
+    Resolves YES if the Associated Press calls the Kansas governor's race for the Democratic nominee;
+    NO if AP calls it for a candidate of another party. If a runoff is required, the runoff result
+    controls; in Alaska, the result after ranked-choice tabulation controls.
+  resolution_source: "https://apnews.com/"
+  market_consensus:
+    value: null
+    as_of: null
+    source_url: null
+  candidates:
+    - name: "Cindy Holscher"
+      party: "Democratic"
+    - name: "Ty Masterson"
+      party: "Republican"
+  incumbent_party: "Democratic"
+  rating:
+    cook: "Lean R"
+    sabato: "Lean R"
+    inside: "Tilt R"
+    as_of: "2026-09-17"
+  sources:
+    - "https://en.wikipedia.org/wiki/2026_Kansas_gubernatorial_election"
+    - "https://www.cookpolitical.com/ratings/governor-race-ratings"
+    - "https://centerforpolitics.org/crystalball/2026-governor/"
+  added: "2026-09-18"
+
+- id: "2026-gov-mi"
+  format: scored
+  category: politics
+  question: "Will the Democratic Party hold the Michigan governorship in the November 3, 2026 election?"
+  context: >-
+    Democratic Governor Gretchen Whitmer is term-limited. Secretary of State Jocelyn Benson is the
+    Democratic nominee against U.S. Representative John James, who is leaving his House seat
+    (Michigan's 10th district) to run. Michigan has an even partisan lean (Cook PVI EVEN); Cook,
+    Sabato and Inside Elections all rated the open seat as favoring the Democratic nominee as of
+    mid-September 2026.
+  resolves_by: "2026-12-15"
+  resolution_criterion: >-
+    Resolves YES if the Associated Press calls the Michigan governor's race for the Democratic
+    nominee; NO if AP calls it for a candidate of another party. If a runoff is required, the runoff
+    result controls; in Alaska, the result after ranked-choice tabulation controls.
+  resolution_source: "https://apnews.com/"
+  market_consensus:
+    value: null
+    as_of: null
+    source_url: null
+  candidates:
+    - name: "Jocelyn Benson"
+      party: "Democratic"
+    - name: "John James"
+      party: "Republican"
+  incumbent_party: "Democratic"
+  rating:
+    cook: "Lean D"
+    sabato: "Lean D"
+    inside: "Tilt D"
+    as_of: "2026-09-17"
+  sources:
+    - "https://en.wikipedia.org/wiki/2026_Michigan_gubernatorial_election"
+    - "https://www.cookpolitical.com/ratings/governor-race-ratings"
+    - "https://centerforpolitics.org/crystalball/2026-governor/"
+  added: "2026-09-18"
+
+- id: "2026-gov-nv"
+  format: scored
+  category: politics
+  question: "Will the Republican Party hold the Nevada governorship in the November 3, 2026 election?"
+  context: >-
+    Republican Governor Joe Lombardo, elected in 2022 by less than one point, seeks re-election
+    against state Attorney General Aaron Ford, the Democratic nominee. Nevada leans slightly
+    Democratic (Cook PVI D+1); Cook rated the race a Toss-up as of mid-September 2026.
+  resolves_by: "2026-12-15"
+  resolution_criterion: >-
+    Resolves YES if the Associated Press calls the Nevada governor's race for the Republican nominee;
+    NO if AP calls it for a candidate of another party. If a runoff is required, the runoff result
+    controls; in Alaska, the result after ranked-choice tabulation controls.
+  resolution_source: "https://apnews.com/"
+  market_consensus:
+    value: null
+    as_of: null
+    source_url: null
+  candidates:
+    - name: "Joe Lombardo"
+      party: "Republican"
+    - name: "Aaron Ford"
+      party: "Democratic"
+  incumbent_party: "Republican"
+  rating:
+    cook: "Tossup"
+    sabato: "Lean R"
+    inside: "Tilt R"
+    as_of: "2026-09-17"
+  sources:
+    - "https://en.wikipedia.org/wiki/2026_Nevada_gubernatorial_election"
+    - "https://www.cookpolitical.com/ratings/governor-race-ratings"
+    - "https://centerforpolitics.org/crystalball/2026-governor/"
+  added: "2026-09-18"
+
+- id: "2026-gov-oh"
+  format: scored
+  category: politics
+  question: "Will the Republican Party hold the Ohio governorship in the November 3, 2026 election?"
+  context: >-
+    Republican Governor Mike DeWine is term-limited. Businessman and 2024 presidential candidate Vivek
+    Ramaswamy is the Republican nominee against former state
+    health director Amy Acton, the unopposed Democratic nominee. Ohio leans Republican (Cook PVI R+5);
+    Cook rated the open seat a Toss-up as of mid-September 2026.
+  resolves_by: "2026-12-15"
+  resolution_criterion: >-
+    Resolves YES if the Associated Press calls the Ohio governor's race for the Republican nominee; NO
+    if AP calls it for a candidate of another party. If a runoff is required, the runoff result
+    controls; in Alaska, the result after ranked-choice tabulation controls.
+  resolution_source: "https://apnews.com/"
+  market_consensus:
+    value: null
+    as_of: null
+    source_url: null
+  candidates:
+    - name: "Vivek Ramaswamy"
+      party: "Republican"
+    - name: "Amy Acton"
+      party: "Democratic"
+  incumbent_party: "Republican"
+  rating:
+    cook: "Tossup"
+    sabato: "Lean R"
+    inside: "Tilt R"
+    as_of: "2026-09-17"
+  sources:
+    - "https://en.wikipedia.org/wiki/2026_Ohio_gubernatorial_election"
+    - "https://www.cookpolitical.com/ratings/governor-race-ratings"
+    - "https://centerforpolitics.org/crystalball/2026-governor/"
+  added: "2026-09-18"
+
+- id: "2026-gov-wi"
+  format: scored
+  category: politics
+  question: "Will the Democratic Party hold the Wisconsin governorship in the November 3, 2026 election?"
+  context: >-
+    Democratic Governor Tony Evers announced in July 2025 he would not seek a third term. Milwaukee
+    County executive David Crowley is the Democratic nominee against U.S.
+    Representative Tom Tiffany, the Republican nominee. Wisconsin is a perennial swing state; Cook and
+    Inside Elections rated the open seat a Toss-up as of mid-September 2026.
+  resolves_by: "2026-12-15"
+  resolution_criterion: >-
+    Resolves YES if the Associated Press calls the Wisconsin governor's race for the Democratic
+    nominee; NO if AP calls it for a candidate of another party. If a runoff is required, the runoff
+    result controls; in Alaska, the result after ranked-choice tabulation controls.
+  resolution_source: "https://apnews.com/"
+  market_consensus:
+    value: null
+    as_of: null
+    source_url: null
+  candidates:
+    - name: "David Crowley"
+      party: "Democratic"
+    - name: "Tom Tiffany"
+      party: "Republican"
+  incumbent_party: "Democratic"
+  rating:
+    cook: "Tossup"
+    sabato: "Lean D"
+    inside: "Tossup"
+    as_of: "2026-09-17"
+  sources:
+    - "https://en.wikipedia.org/wiki/2026_Wisconsin_gubernatorial_election"
+    - "https://www.cookpolitical.com/ratings/governor-race-ratings"
+    - "https://centerforpolitics.org/crystalball/2026-governor/"
+  added: "2026-09-18"
