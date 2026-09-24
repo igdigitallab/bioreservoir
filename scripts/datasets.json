@@ -1,0 +1,203 @@
+{
+  "generated": "2026-09-18",
+  "files": [
+    {
+      "dataset": "malecns-v1.0",
+      "version": "v1.0",
+      "path": "data/raw/malecns-v1.0/body-annotations-male-cns-v1.0-minconf-0.5.feather",
+      "url": "https://storage.googleapis.com/flyem-male-cns/v1.0/connectome-data/flat-connectome/body-annotations-male-cns-v1.0-minconf-0.5.feather",
+      "size_bytes": 14483314,
+      "sha256": "2177e246113e4cfbf1e7772ec37c6da1955ff22e8063d0b1f833101f99a9a3b2",
+      "license": "CC-BY-4.0",
+      "retrieved": "2026-09-18",
+      "citation": "Berg, Beckett, Costa et al. Sexual dimorphism in the complete connectome of the Drosophila male central nervous system. bioRxiv (2025). doi:10.1101/2025.10.09.680999. Data: https://male-cns.janelia.org/"
+    },
+    {
+      "dataset": "malecns-v1.0",
+      "version": "v1.0",
+      "path": "data/raw/malecns-v1.0/body-neurotransmitters-male-cns-v1.0.feather",
+      "url": "https://storage.googleapis.com/flyem-male-cns/v1.0/connectome-data/flat-connectome/body-neurotransmitters-male-cns-v1.0.feather",
+      "size_bytes": 43282834,
+      "sha256": "95c9289220663abeb3409f3ad9e5a7f8a53f8093f5139d15502cd08da8879621",
+      "license": "CC-BY-4.0",
+      "retrieved": "2026-09-18",
+      "citation": "Berg, Beckett, Costa et al. Sexual dimorphism in the complete connectome of the Drosophila male central nervous system. bioRxiv (2025). doi:10.1101/2025.10.09.680999. Data: https://male-cns.janelia.org/"
+    },
+    {
+      "dataset": "malecns-v1.0",
+      "version": "v1.0",
+      "path": "data/raw/malecns-v1.0/connectome-weights-male-cns-v1.0-minconf-0.5.feather",
+      "url": "https://storage.googleapis.com/flyem-male-cns/v1.0/connectome-data/flat-connectome/connectome-weights-male-cns-v1.0-minconf-0.5.feather",
+      "size_bytes": 1051241946,
+      "sha256": "e35da783d1c686b2b58b3b87cd6a403ae43bfcfba8bff28e08ef752c1a56afc1",
+      "license": "CC-BY-4.0",
+      "retrieved": "2026-09-18",
+      "citation": "Berg, Beckett, Costa et al. Sexual dimorphism in the complete connectome of the Drosophila male central nervous system. bioRxiv (2025). doi:10.1101/2025.10.09.680999. Data: https://male-cns.janelia.org/"
+    },
+    {
+      "dataset": "banc-626",
+      "version": "CAVE materialization 626 (snapshotted 2025-07-21), Harvard Dataverse doi:10.7910/DVN/8TFGGB",
+      "path": "data/raw/banc-626/codex_annotations_flat_table.tab",
+      "url": "https://dataverse.harvard.edu/api/access/datafile/11845666",
+      "size_bytes": 26364012,
+      "sha256": "8d1970e0225a87f1a1ccb58bce71255207681997d2661949da271519e753f4d3",
+      "license": "CC-BY-4.0",
+      "retrieved": "2026-09-18",
+      "citation": "Bates, Phelps, Kim et al. Distributed control circuits across a brain-and-cord connectome (preprint). Harvard Dataverse, doi:10.7910/DVN/8TFGGB."
+    },
+    {
+      "dataset": "banc-626",
+      "version": "CAVE materialization 626 (snapshotted 2025-07-21), Harvard Dataverse doi:10.7910/DVN/8TFGGB",
+      "path": "data/raw/banc-626/banc_neurotransmitter_prediction.csv",
+      "url": "https://dataverse.harvard.edu/api/access/datafile/11837016",
+      "size_bytes": 14405782,
+      "sha256": "3472ba034050b4288eeb32a505c1257e60b50d7d657a1ad2423a13fd775bf35e",
+      "license": "CC-BY-4.0",
+      "retrieved": "2026-09-18",
+      "citation": "Bates, Phelps, Kim et al. Distributed control circuits across a brain-and-cord connectome (preprint). Harvard Dataverse, doi:10.7910/DVN/8TFGGB."
+    },
+    {
+      "dataset": "banc-626",
+      "version": "CAVE materialization 626 (snapshotted 2025-07-21), Harvard Dataverse doi:10.7910/DVN/8TFGGB",
+      "path": "data/raw/banc-626/connections_princeton.csv.gz",
+      "url": "https://dataverse.harvard.edu/api/access/datafile/11842997",
+      "size_bytes": 26868883,
+      "sha256": "05ad6d8cbbcc240b41e3f029c8ed8a3acca168f46f7659772b2617f4a7e776c1",
+      "license": "CC-BY-4.0",
+      "retrieved": "2026-09-18",
+      "citation": "Bates, Phelps, Kim et al. Distributed control circuits across a brain-and-cord connectome (preprint). Harvard Dataverse, doi:10.7910/DVN/8TFGGB."
+    },
+    {
+      "dataset": "banc-626",
+      "version": "CAVE materialization 626 (snapshotted 2025-07-21), Harvard Dataverse doi:10.7910/DVN/8TFGGB",
+      "path": "data/raw/banc-626/backbone_proofread.tab",
+      "url": "https://dataverse.harvard.edu/api/access/datafile/11844864",
+      "size_bytes": 20439170,
+      "sha256": "2b2c3356c0bed1168f04dbb88ca35ba52284298131ba0ac81d3e1e5e62c36900",
+      "license": "CC-BY-4.0",
+      "retrieved": "2026-09-18",
+      "citation": "Bates, Phelps, Kim et al. Distributed control circuits across a brain-and-cord connectome (preprint). Harvard Dataverse, doi:10.7910/DVN/8TFGGB. File: export of the backbone_proofread CAVE table, materialization 626 (proofreading status). NOTE: Dataverse's own recorded MD5 for this file (266de40c...) does not match the bytes served by the /access/datafile endpoint at fetch time, even though the file size matches exactly and two independent downloads were byte-identical (same known behaviour was already observed for codex_annotations_flat_table.tab, both are Dataverse-ingested .tab exports) — the sha256 above is the self-computed hash of the actually-downloaded, reproducible bytes, same convention as every other entry in this manifest."
+    },
+    {
+      "dataset": "all-MiniLM-L6-v2",
+      "version": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+      "path": "data/models/all-MiniLM-L6-v2/config.json",
+      "url": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config.json",
+      "size_bytes": 612,
+      "sha256": "953f9c0d463486b10a6871cc2fd59f223b2c70184f49815e7efbcab5d8908b41",
+      "license": "Apache-2.0",
+      "retrieved": "2026-09-18",
+      "citation": "Reimers, Gurevych. Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks. EMNLP (2019). Model: https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2"
+    },
+    {
+      "dataset": "all-MiniLM-L6-v2",
+      "version": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+      "path": "data/models/all-MiniLM-L6-v2/config_sentence_transformers.json",
+      "url": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config_sentence_transformers.json",
+      "size_bytes": 116,
+      "sha256": "061ca9d39661d6c6d6de5ba27f79a1cd5770ea247f8d46412a68a498dc5ac9f3",
+      "license": "Apache-2.0",
+      "retrieved": "2026-09-18",
+      "citation": "Reimers, Gurevych. Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks. EMNLP (2019). Model: https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2"
+    },
+    {
+      "dataset": "all-MiniLM-L6-v2",
+      "version": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+      "path": "data/models/all-MiniLM-L6-v2/modules.json",
+      "url": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/modules.json",
+      "size_bytes": 349,
+      "sha256": "84e40c8e006c9b1d6c122e02cba9b02458120b5fb0c87b746c41e0207cf642cf",
+      "license": "Apache-2.0",
+      "retrieved": "2026-09-18",
+      "citation": "Reimers, Gurevych. Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks. EMNLP (2019). Model: https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2"
+    },
+    {
+      "dataset": "all-MiniLM-L6-v2",
+      "version": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+      "path": "data/models/all-MiniLM-L6-v2/sentence_bert_config.json",
+      "url": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/sentence_bert_config.json",
+      "size_bytes": 53,
+      "sha256": "fc1993fde0a95c24ec6c022539d41cf6e2f7c9721e5415d6fb6897472a9cd4b7",
+      "license": "Apache-2.0",
+      "retrieved": "2026-09-18",
+      "citation": "Reimers, Gurevych. Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks. EMNLP (2019). Model: https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2"
+    },
+    {
+      "dataset": "all-MiniLM-L6-v2",
+      "version": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+      "path": "data/models/all-MiniLM-L6-v2/special_tokens_map.json",
+      "url": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/special_tokens_map.json",
+      "size_bytes": 112,
+      "sha256": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3",
+      "license": "Apache-2.0",
+      "retrieved": "2026-09-18",
+      "citation": "Reimers, Gurevych. Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks. EMNLP (2019). Model: https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2"
+    },
+    {
+      "dataset": "all-MiniLM-L6-v2",
+      "version": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+      "path": "data/models/all-MiniLM-L6-v2/tokenizer.json",
+      "url": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer.json",
+      "size_bytes": 466247,
+      "sha256": "be50c3628f2bf5bb5e3a7f17b1f74611b2561a3a27eeab05e5aa30f411572037",
+      "license": "Apache-2.0",
+      "retrieved": "2026-09-18",
+      "citation": "Reimers, Gurevych. Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks. EMNLP (2019). Model: https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2"
+    },
+    {
+      "dataset": "all-MiniLM-L6-v2",
+      "version": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+      "path": "data/models/all-MiniLM-L6-v2/tokenizer_config.json",
+      "url": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer_config.json",
+      "size_bytes": 350,
+      "sha256": "acb92769e8195aabd29b7b2137a9e6d6e25c476a4f15aa4355c233426c61576b",
+      "license": "Apache-2.0",
+      "retrieved": "2026-09-18",
+      "citation": "Reimers, Gurevych. Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks. EMNLP (2019). Model: https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2"
+    },
+    {
+      "dataset": "all-MiniLM-L6-v2",
+      "version": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+      "path": "data/models/all-MiniLM-L6-v2/vocab.txt",
+      "url": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/vocab.txt",
+      "size_bytes": 231508,
+      "sha256": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+      "license": "Apache-2.0",
+      "retrieved": "2026-09-18",
+      "citation": "Reimers, Gurevych. Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks. EMNLP (2019). Model: https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2"
+    },
+    {
+      "dataset": "all-MiniLM-L6-v2",
+      "version": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+      "path": "data/models/all-MiniLM-L6-v2/1_Pooling/config.json",
+      "url": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/1_Pooling/config.json",
+      "size_bytes": 190,
+      "sha256": "4be450dde3b0273bb9787637cfbd28fe04a7ba6ab9d36ac48e92b11e350ffc23",
+      "license": "Apache-2.0",
+      "retrieved": "2026-09-18",
+      "citation": "Reimers, Gurevych. Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks. EMNLP (2019). Model: https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2"
+    },
+    {
+      "dataset": "all-MiniLM-L6-v2",
+      "version": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+      "path": "data/models/all-MiniLM-L6-v2/README.md",
+      "url": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/README.md",
+      "size_bytes": 10502,
+      "sha256": "dcd602d2fd35c203a247304a06fec6654a12f7941b739f9221a064fe8dc3b7f0",
+      "license": "Apache-2.0",
+      "retrieved": "2026-09-18",
+      "citation": "Reimers, Gurevych. Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks. EMNLP (2019). Model: https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2"
+    },
+    {
+      "dataset": "all-MiniLM-L6-v2",
+      "version": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+      "path": "data/models/all-MiniLM-L6-v2/model.safetensors",
+      "url": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/model.safetensors",
+      "size_bytes": 90868376,
+      "sha256": "53aa51172d142c89d9012cce15ae4d6cc0ca6895895114379cacb4fab128d9db",
+      "license": "Apache-2.0",
+      "retrieved": "2026-09-18",
+      "citation": "Reimers, Gurevych. Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks. EMNLP (2019). Model: https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2"
+    }
+  ]
+}

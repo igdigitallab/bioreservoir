@@ -1,0 +1,227 @@
+# Population selection rules for experiment 001 (Fly Oracle): the sensory-input and readout
+# neuron groups named in README.md's Pipeline section.
+#
+# Every rule is written against each dataset's OWN raw annotation vocabulary, not a shared
+# vocabulary — the two datasets do not use the same column names or values (see docs/DATA.md
+# "Harmonized graphs"):
+#   malecns: `type` / `class` / `subclass` / `somaSide` / `receptorType`, from
+#            body-annotations-male-cns-v1.0-minconf-0.5.feather.
+#   banc:    `cell_type` / `cell_class` / `cell_sub_class` / `cell_function` /
+#            `cell_function_detailed` / `side`, from codex_annotations_flat_table.tab.
+# These are richer than the common schema in schema.py (which has only `cell_type`/`cell_class`/
+# `super_class`/`side` — no `subclass`, `receptorType`, `cell_function`, or
+# `cell_function_detailed`), so the loader in populations.py reads the raw files directly rather
+# than the already-loaded common-schema neuron table.
+#
+# Rules are parsed and matched by src/bioreservoir/connectomes/populations.py, always against
+# the harmonized, proofread-only neuron set from harmonize.load_neurons() — never the raw,
+# unfiltered annotation table — so a reported count is always "how many neurons of this kind are
+# in the graph the experiment actually runs on".
+#
+# A rule is a list of `conditions`, ALL of which must match (AND):
+#   mode: exact       -> column value is one of `values` (case-sensitive, exact string match).
+#   mode: startswith  -> column value starts with `values[0]`.
+# `datasets.<name>.absent: true` + `reason` means the population genuinely does not exist in
+# that dataset's own vocabulary — checked by inspecting the actual column values (not a search
+# failure), same convention as inspect.py's existing CELL_TYPE_QUERIES.
+
+populations:
+
+  # --- Inputs -----------------------------------------------------------------------------
+
+  gustatory_sugar:
+    role: input
+    description: Sugar-sensing ("sweet") gustatory receptor neurons.
+    datasets:
+      malecns:
+        absent: true
+        reason: >-
+          No gene-name (Gr5a/Gr64f) or sweet/bitter functional label exists anywhere in
+          MaleCNS's own annotation columns (checked type, class, subclass, receptorType,
+          2026-09-18); receptorType only carries pheromone/mating channels (putative_ppk23,
+          putative_ppk25, putative_IR52b), not taste receptors.
+      banc:
+        conditions:
+          - column: cell_function_detailed
+            mode: exact
+            values: [sweet]
+
+  gustatory_bitter:
+    role: input
+    description: Bitter-sensing gustatory receptor neurons.
+    datasets:
+      malecns:
+        absent: true
+        reason: >-
+          Same as gustatory_sugar — no sweet/bitter split exists in MaleCNS's own vocabulary.
+      banc:
+        conditions:
+          - column: cell_function_detailed
+            mode: exact
+            values: [bitter]
+
+  gustatory_all:
+    role: input
+    description: >-
+      All gustatory receptor neurons, sugar/bitter/other pooled — the only gustatory input
+      population MaleCNS supports (no sweet/bitter split, see gustatory_sugar); kept for BANC
+      too as a coarser cross-check against gustatory_sugar + gustatory_bitter.
+    datasets:
+      malecns:
+        conditions:
+          - column: class
+            mode: exact
+            values: [gustatory]
+      banc:
+        conditions:
+          - column: cell_class
+            mode: exact
+            values:
+              - taste_peg_neuron
+              - external_taste_sensillum_neuron
+              - internal_taste_sensillum_neuron
+
+  olfactory_receptor_neuron:
+    role: input
+    description: Antennal/maxillary-palp olfactory receptor neurons.
+    datasets:
+      malecns:
+        conditions:
+          - column: class
+            mode: exact
+            values: [olfactory]
+      banc:
+        conditions:
+          - column: cell_class
+            mode: exact
+            values: [olfactory_receptor_neuron]
+
+  mechanosensory_johnstons_organ:
+    role: input
+    description: >-
+      Johnston's organ neurons (antennal mechanosensation: wind, gravity, near-field sound).
+    datasets:
+      malecns:
+        conditions:
+          # MaleCNS's own vocabulary has no single "Johnston's organ" class label; all JO
+          # subtypes share the `JO-` type prefix (e.g. JO-EV1, JO-B1_a) and enter via the
+          # antennal nerve — verified 2026-09-18.
+          - column: type
+            mode: startswith
+            values: ["JO-"]
+      banc:
+        conditions:
+          - column: cell_sub_class
+            mode: startswith
+            values: ["johnstons_organ_"]
+
+  photoreceptor:
+    role: input
+    description: >-
+      Photoreceptor sensory neurons (R1-R6/R7/R8 in MaleCNS's own type names). CAVEAT: counts
+      differ by roughly 60x between the two datasets (see docs/DATA.md) — likely reconstruction/
+      proofreading coverage of the retina, not a real biological difference; treat this
+      population as unreliable for a fair male-vs-female comparison.
+    datasets:
+      malecns:
+        conditions:
+          - column: class
+            mode: exact
+            values: [visual]
+      banc:
+        conditions:
+          - column: cell_class
+            mode: exact
+            values: [photoreceptor_neuron]
+
+  # --- Readouts -----------------------------------------------------------------------------
+
+  DNa01_left:
+    role: readout
+    description: Left DNa01 descending neuron (turning, primary "T-maze" readout).
+    datasets:
+      malecns:
+        conditions:
+          - {column: type, mode: exact, values: [DNa01]}
+          - {column: somaSide, mode: exact, values: [L]}
+      banc:
+        conditions:
+          - {column: cell_type, mode: exact, values: [DNa01]}
+          - {column: side, mode: exact, values: [left]}
+
+  DNa01_right:
+    role: readout
+    description: Right DNa01 descending neuron (turning, primary "T-maze" readout).
+    datasets:
+      malecns:
+        conditions:
+          - {column: type, mode: exact, values: [DNa01]}
+          - {column: somaSide, mode: exact, values: [R]}
+      banc:
+        conditions:
+          - {column: cell_type, mode: exact, values: [DNa01]}
+          - {column: side, mode: exact, values: [right]}
+
+  DNa02_left:
+    role: readout
+    description: Left DNa02 descending neuron (turning, primary "T-maze" readout).
+    datasets:
+      malecns:
+        conditions:
+          - {column: type, mode: exact, values: [DNa02]}
+          - {column: somaSide, mode: exact, values: [L]}
+      banc:
+        conditions:
+          - {column: cell_type, mode: exact, values: [DNa02]}
+          - {column: side, mode: exact, values: [left]}
+
+  DNa02_right:
+    role: readout
+    description: Right DNa02 descending neuron (turning, primary "T-maze" readout).
+    datasets:
+      malecns:
+        conditions:
+          - {column: type, mode: exact, values: [DNa02]}
+          - {column: somaSide, mode: exact, values: [R]}
+      banc:
+        conditions:
+          - {column: cell_type, mode: exact, values: [DNa02]}
+          - {column: side, mode: exact, values: [right]}
+
+  DNp01_giant_fiber:
+    role: readout
+    description: DNp01 giant fiber descending neuron, both sides pooled (escape).
+    datasets:
+      malecns:
+        conditions:
+          - {column: type, mode: exact, values: [DNp01]}
+      banc:
+        conditions:
+          - {column: cell_type, mode: exact, values: [DNp01]}
+
+  MDN:
+    role: readout
+    description: Moonwalker descending neurons, both sides pooled (backward walking).
+    datasets:
+      malecns:
+        conditions:
+          - {column: type, mode: exact, values: [MDN]}
+      banc:
+        conditions:
+          - {column: cell_type, mode: exact, values: [MDN]}
+
+  MN9_proboscis:
+    role: readout
+    description: MN9 proboscis motor neuron (feed/approach).
+    datasets:
+      malecns:
+        conditions:
+          - {column: type, mode: exact, values: [MN9]}
+      banc:
+        absent: true
+        reason: >-
+          No cell_type literally named "MN9" in BANC's vocabulary, and no cross-reference to one
+          (other_names is null for every candidate). The closest functional group is
+          cell_function == "proboscis_motor" (35 neurons, named only by opaque codex "CB####"
+          IDs, checked 2026-09-18) — not a confirmed MN9 homolog, so this is reported as absent
+          rather than guessed, same convention as pIP10/P9 in docs/DATA.md.

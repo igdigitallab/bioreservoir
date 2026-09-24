@@ -1,0 +1,54 @@
+BioReservoir
+Copyright 2026 IGGO, LLC dba IG Digital Lab
+
+The code in this repository is licensed under the Apache License, Version 2.0 (see LICENSE).
+The data it consumes is NOT ours and keeps its own license, listed below. Redistribute or
+build on any of it under that license, with the attribution given here.
+
+Janelia MaleCNS v1.0 connectome
+  Berg, Beckett, Costa et al. "Sexual dimorphism in the complete connectome of the Drosophila
+  male central nervous system." bioRxiv (2025). doi:10.1101/2025.10.09.680999
+  Source: https://male-cns.janelia.org/
+  License: Creative Commons Attribution 4.0 International (CC BY 4.0)
+           https://creativecommons.org/licenses/by/4.0/
+  Changes: connectivity tables are converted into a simulation network (signed synaptic weights,
+           neuron subsets for input and readout) and, for control conditions, rewired.
+  BioReservoir is not affiliated with or endorsed by Janelia Research Campus, HHMI or the
+  dataset authors.
+
+BANC (Brain And Nerve Cord) connectome, CAVE materialization 626
+  Bates, Phelps, Kim et al. "Distributed control circuits across a brain-and-cord connectome."
+  bioRxiv (2025). doi:10.1101/2025.07.31.667571
+  Source: Harvard Dataverse, doi:10.7910/DVN/8TFGGB
+  License: Creative Commons Attribution 4.0 International (CC BY 4.0)
+           https://creativecommons.org/licenses/by/4.0/
+  Changes: same as above.
+  BioReservoir is not affiliated with or endorsed by the BANC or FlyWire teams or the dataset
+  authors.
+
+sentence-transformers/all-MiniLM-L6-v2 text embedding model
+  Source: https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2
+  License: Apache License 2.0
+
+Every public output (site, video, write-up) carries these attributions.
+
+flybody fruit-fly meshes (site/public/models/fly.glb)
+  Google DeepMind and HHMI Janelia Research Campus, flybody contributors.
+  Vaxenburg et al. "Whole-body physics simulation of fruit fly locomotion."
+  Nature 643, 1312–1320 (2025). https://doi.org/10.1038/s41586-025-09029-4
+  Source: https://github.com/TuragaLab/flybody
+  Commit: 736608121847c3c025fd02a629bdb016a3294f9a
+  License: Apache License 2.0; full text at site/public/models/fly-LICENSE.txt.
+  Model-specific licence statement (including a link to that exact upstream commit):
+    https://github.com/google-deepmind/mujoco_menagerie/blob/8161bba264d7fa7c99ca301e91e7fb44737676ad/flybody/README.md#license
+  Changes: reduced mesh resolution, quantised positions/normals, converted anatomical MJCF
+  hierarchy to glTF, warm monochrome materials, shortened abdomen and dark terminal tergites
+  for a male-like silhouette. The original reconstruction is female, not the connectome donor.
+  Licence and attribution files accompany the distributed model; no UI credit is required.
+  BioReservoir is not affiliated with or endorsed by the model's authors.
+
+"Ambient" by Arulo (docs/media/fly-24s.mp4 soundtrack)
+  Source: Mixkit (https://mixkit.co/)
+  License: Mixkit Free License (https://mixkit.co/license/) — free for personal and commercial
+  use, no attribution required. This track is NOT covered by this repository's Apache License,
+  Version 2.0; it keeps the Mixkit Free License above.

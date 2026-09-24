@@ -1,0 +1,215 @@
+{
+  "meta": {
+    "title": "Ask a Real Fly Brain a Yes/No Question | IG Digital Lab",
+    "description": "165,000 real fly neurons decide your yes/no question live, no chatbot, no script. Watch the real spikes and see which way it turns.",
+    "og_title": "A Real Fly Brain Is Answering Live Yes/No Questions",
+    "og_description": "No chatbot. No script. 165,000 real neurons from a complete fly brain decide your question live, and you can watch every spike."
+  },
+  "hero": {
+    "headline": "A {{Real Fly Brain}} Is Answering Your Questions Right Now",
+    "subheadline": "A real fly's wiring map — 165,000 neurons — simulated live. Ask anything with a yes-or-no answer and watch which way it turns.",
+    "cta": "Ask the fly"
+  },
+  "ask": {
+    "placeholder": "Will... ? (a yes/no question)",
+    "helper": "One yes/no question, up to 140 characters. Every question gets its turn, even if the line is long.",
+    "rules": [
+      "Yes/no questions only, 140 characters max, no links or @handles",
+      "No named private individuals, no voting how-to, no medical or financial advice",
+      "Up to 3 questions in line per person",
+      "The same words always get the same answer: a repeat is shown at once, marked as asked before"
+    ],
+    "rejected_messages": {
+      "not_yes_no": "That's not a yes/no question. Rephrase it so the fly only has two ways to turn.",
+      "self_harm": "The fly can't help with this, but people can. In the US, call or text 988, any time, free and confidential. Anywhere else: findahelpline.com",
+      "voting_procedure": "We keep the fly away from voting logistics: how, where, or when to vote. Your county elections office has that answer.",
+      "medical": "No medical questions. A fly's nervous system isn't a doctor, and neither is this page.",
+      "financial_advice": "Not financial advice, and we won't let the fly play at giving any. Try a different question.",
+      "private_person": "No questions about named private individuals. Public figures and public events only.",
+      "violence_or_hate": "That question doesn't clear moderation. Try something else.",
+      "sexual": "Keep it non-sexual. The fly's courtship circuits are for the science, not for this.",
+      "spam": "Looks like spam or a duplicate. One real question at a time.",
+      "too_long": "140 characters max, shorter than that tweet you didn't send.",
+      "rate_limited": "You've asked enough for now. Give the queue a minute and try again.",
+      "captcha": "Quick check first: prove you're not a bot before a real brain answers you."
+    },
+    "rules_toggle": "Question rules",
+    "disclaimer": "Your question is published on this page as soon as it is accepted — don't include personal details. Answers are for entertainment and research, not advice.",
+    "terms_note": "By asking, you accept the Terms of Use."
+  },
+  "queue": {
+    "title": "Queue",
+    "empty": "No one's waiting. Your question goes straight to the brain.",
+    "position_template": "You're #{n} in line. The fly is working through the queue."
+  },
+  "answer": {
+    "yes_label": "YES",
+    "no_label": "NO",
+    "confidence_label": "Turn strength",
+    "states": {
+      "appetite": {
+        "label": "Appetite",
+        "tooltip": "Fired MN9, the motor neuron that extends a fly's proboscis to feed. Reads as reaching toward something, not literal hunger."
+      },
+      "fear": {
+        "label": "Startle",
+        "tooltip": "Fired the giant fiber circuit (DNp01), the fast pathway behind a fly's escape jump. Reads as flinching away, not a felt emotion."
+      },
+      "backoff": {
+        "label": "Backed off",
+        "tooltip": "Fired the MDN \"moonwalker\" neurons that drive backward walking. Reads as retreating from the question."
+      },
+      "courtship": {
+        "label": "Courtship",
+        "tooltip": "Fired P1/pC1 and pIP10, the circuits behind courtship song and display in male flies. Reads as strong engagement, not romantic interest."
+      },
+      "arousal": {
+        "label": "Whole-brain buzz",
+        "tooltip": "How much of the entire brain lit up, not one circuit. Reads as how hard the question landed, not how the fly feels about it."
+      }
+    },
+    "share_text_template": "I asked a real fly brain: \"{question}\" — its answer: {answer}.",
+    "strength_reference": "of the turn a sound on one side causes",
+    "caveat": "The fly reacts to the pattern of your words, not their meaning."
+  },
+  "how_it_works": [
+    {
+      "title": "You ask",
+      "body": "Type a yes/no question. A small tool, not the fly and not a chatbot, turns your words into numbers."
+    },
+    {
+      "title": "Numbers become a signal",
+      "body": "Those numbers set a pattern of activity on real sensory neurons: taste, smell, sight and touch, the way an actual flavor or smell would."
+    },
+    {
+      "title": "The whole brain runs",
+      "body": "All ~165,000 neurons of a male fruit fly's brain and nerve cord fire for a quarter of a second, wired as scientists mapped it in the real animal (Janelia MaleCNS v1.0)."
+    },
+    {
+      "title": "The turn is the answer",
+      "body": "Whichever side the signal reaches the fly's motor-command neurons harder decides which way it turns. Left or right maps to yes or no."
+    },
+    {
+      "title": "You see the real spikes",
+      "body": "Every neuron that fired lights up on the page and the stream, placed at its real position in the brain, along with any named behavior program (feeding, escape, courtship) it triggered."
+    },
+    {
+      "title": "It doesn't understand the question",
+      "body": "The fly has no idea what a market, a match or a person is. That's the honest part: we're testing whether real brain wiring produces a structured response at all, not simulating understanding."
+    }
+  ],
+  "honesty": {
+    "title": "What this {{actually is, and isn't}}",
+    "body": "The only machine-learning step here is small: a text-embedding model turns your words into numbers. It doesn't write anything and it doesn't choose your answer. Those numbers become a sensory signal into a real, complete connectome, the full wiring diagram of a male fruit fly's brain and nerve cord, and a biophysical simulation runs the whole thing, spike by spike, for a quarter of a second. The fly's own wiring decides which way it turns, not any AI. It has no idea what your question means. We show the real spike pattern next to every answer, because that's the actual honesty check: does real brain wiring respond differently from a scrambled one, or not."
+  },
+  "about_lab": {
+    "title": "IG Digital Lab: a {{digital-brain research lab}}",
+    "body": "IG Digital Lab is an AI and software company in Sacramento, California. Our team builds AI into how businesses work: custom software, AI workflow automation, AI for calls and chat, websites and apps. BioReservoir is our research lab. Each time a new brain-wiring map is published (a fly today, maybe a rat or a primate next), we build an experiment on it, publish the method, and score every result against real controls.",
+    "links": {
+      "site": "Visit igdigi.com",
+      "email": "hello@igdigi.com",
+      "code": "Code on GitHub"
+    },
+    "sources_title": "Is this really a fly brain? The sources",
+    "sources": [
+      {
+        "what": "The wiring map",
+        "cite": "Berg, Beckett, Costa et al. (2025). Sexual dimorphism in the complete connectome of the Drosophila male central nervous system. bioRxiv.",
+        "url": "https://doi.org/10.1101/2025.10.09.680999",
+        "extra": "Data: Janelia MaleCNS v1.0, CC BY 4.0",
+        "extra_url": "https://male-cns.janelia.org/"
+      },
+      {
+        "what": "The simulation method",
+        "cite": "Shiu, Sterne, Spiller et al. (2024). A Drosophila computational brain model reveals sensorimotor processing. Nature 634, 210–219.",
+        "url": "https://doi.org/10.1038/s41586-024-07763-9"
+      },
+      {
+        "what": "The 3D fly",
+        "cite": "Vaxenburg et al. (2025). Whole-body physics simulation of fruit fly locomotion. Nature 643, 1312–1320.",
+        "url": "https://doi.org/10.1038/s41586-025-09029-4"
+      },
+      {
+        "what": "Our own checks",
+        "cite": "The simulated brain reproduces the published sugar-feeding response, and it turns toward a sound played on either side. The numbers are in Brain validation above.",
+        "url": "#validation"
+      }
+    ]
+  },
+  "footer": {
+    "attribution": "Brain data: Janelia (HHMI), University of Cambridge, MRC Laboratory of Molecular Biology and Google Research, MaleCNS v1.0, CC BY 4.0. BioReservoir is not affiliated with or endorsed by these institutions or the dataset authors.",
+    "disclaimer": "A research demonstration of a real, simulated brain — not a statement of fact, not advice, and not a claim about anything in the world. Every question on this site was typed by a visitor; neither the question nor the fly's answer is a statement by IG Digital Lab. Nothing here is medical, financial, legal or voting advice, and no money or wagering is involved anywhere on this site.",
+    "terms_link": "Terms of Use",
+    "privacy_link": "Privacy Policy"
+  },
+  "stream": {
+    "headline": "A real fly brain, live, answering your questions",
+    "qr_caption": "Scan to ask the fly your own question",
+    "ticker": [
+      "165,000 real neurons. Zero chatbots.",
+      "This brain has no idea what your question means. It's answering anyway.",
+      "Left turn or right turn. That's the whole answer.",
+      "One small text tool reads your words. The fly decides the rest.",
+      "Real spikes, real positions, real fly.",
+      "Ask a yes/no question. Get in line.",
+      "MaleCNS v1.0: proofread neurons, real synapse counts, CC BY 4.0.",
+      "No AI is picking your answer.",
+      "A quarter of a second. That's how long it takes to decide."
+    ]
+  },
+  "sections": {
+    "how_it_works": "How it {{works}}",
+    "validation": "Brain {{validation}}",
+    "lab_stats": "The lab's {{live numbers}}"
+  },
+  "stage": {
+    "label_live": "Live",
+    "label_deciding": "Live · deciding now",
+    "label_yours_deciding": "Your question · deciding now",
+    "label_visitor": "Asked by a visitor · just now",
+    "label_replay": "Replay · the last answer, {ago}",
+    "label_yours": "Your question",
+    "label_yours_repeat": "Your question · asked before, {when}: same words, same answer",
+    "label_shared": "Shared answer",
+    "deciding": "The fly is deciding…",
+    "deciding_short": "The fly is deciding…",
+    "turned": "It turned toward {answer}.",
+    "sealed": "Held back: this answer goes only to the person who asked.",
+    "status_waiting": "{n} waiting",
+    "status_empty": "No one waiting",
+    "idle_empty": "Nobody has asked yet. Be the first.",
+    "idle_offline": "Can't reach the fly right now. It will pick up again on its own.",
+    "loading": "Connecting to the fly…"
+  },
+  "mine": {
+    "title": "Your questions",
+    "queued": "#{n} in line · {wait} at the current pace",
+    "joined": "Someone asked the same words first, so you share their place in line.",
+    "thinking": "The fly is deciding it right now.",
+    "answered": "Answered: {answer}",
+    "repeat": "Asked before: the same words always get the same answer.",
+    "keep_link": "Your answer will play at this link when the fly gets to it. You can close this tab and come back.",
+    "copy": "Copy link",
+    "copied": "Link copied",
+    "watch": "Watch it again",
+    "rejected": "Not answered"
+  },
+  "recent": {
+    "title": "Recent answers",
+    "sealed": "held back",
+    "empty": "No answers yet."
+  },
+  "questions": {
+    "title": "What people are asking the fly",
+    "tab_recent": "Latest",
+    "tab_top": "Most liked",
+    "total": "{n} answered so far",
+    "hint": "tap ♥ on the ones you like, the most liked stay on top",
+    "more": "Show more",
+    "like": "Like this question",
+    "empty": "No questions yet.",
+    "loading": "Loading questions…",
+    "offline": "The question list is temporarily unavailable.",
+    "like_failed": "Could not register that just now — try again in a moment."
+  }
+}
